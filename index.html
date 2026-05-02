@@ -12,19 +12,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --forest: #1a2e1a;
-      --forest-mid: #243424;
-      --forest-light: #2e4a2e;
-      --sage: #4a6741;
-      --sage-light: #7a9c70;
-      --cream: #f5f0e8;
-      --cream-dark: #ede5d4;
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --gold-pale: #f5e6b8;
-      --text-dark: #1a1a1a;
-      --text-mid: #4a4a4a;
-      --text-light: #7a7a7a;
+      --forest: #071A14;
+      --forest-mid: #0B1F18;
+      --forest-light: #10261F;
+      --sage: #5A6B56;
+      --sage-light: #7A8C76;
+      --beige: #F5F0E4;
+      --beige-dark: #EDE5D0;
+      --gold: #C6A86B;
+      --gold-light: #D9C9A3;
+      --gold-pale: #F0E6C8;
+      --crimson: #C0392B;
+      --crimson-dark: #5A1823;
+      --text-dark: #F5F0E4;
+      --text-mid: #A8A29E;
+      --text-light: #6B6560;
       --white: #ffffff;
     }
 
@@ -32,7 +34,7 @@
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
+      background: var(--forest);
       color: var(--text-dark);
       overflow-x: hidden;
     }
@@ -40,9 +42,9 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(26, 46, 26, 0.95);
+      background: rgba(7, 26, 20, 0.96);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      border-bottom: 1px solid rgba(198, 168, 107, 0.2);
       padding: 0 5%;
       height: 68px;
       display: flex; align-items: center; justify-content: space-between;
@@ -65,7 +67,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem;
       font-weight: 600;
-      color: var(--cream);
+      color: var(--beige);
       letter-spacing: 0.02em;
     }
 
@@ -75,7 +77,7 @@
     }
 
     .nav-links a {
-      color: rgba(245, 240, 232, 0.7);
+      color: rgba(245, 240, 228, 0.6);
       text-decoration: none;
       font-size: 0.875rem;
       font-weight: 400;
@@ -109,8 +111,8 @@
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(74, 103, 65, 0.3) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(90,26,35,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(198,168,107,0.06) 0%, transparent 60%);
     }
 
     .hero-botanical {
@@ -156,7 +158,7 @@
 
     .hero-badge-dot {
       width: 6px; height: 6px;
-      background: var(--gold);
+      background: var(--crimson);
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
@@ -170,7 +172,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 500;
-      color: var(--cream);
+      color: var(--beige);
       line-height: 1.1;
       letter-spacing: -0.01em;
       margin-bottom: 24px;
@@ -184,7 +186,7 @@
 
     .hero-sub {
       font-size: 1.1rem;
-      color: rgba(245, 240, 232, 0.65);
+      color: rgba(245, 240, 228, 0.6);
       line-height: 1.7;
       max-width: 480px;
       margin-bottom: 40px;
@@ -259,20 +261,20 @@
     }
 
     .mockup-window {
-      background: #1e2d1e;
+      background: #0B1F18;
       border-radius: 16px;
-      border: 1px solid rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(198, 168, 107, 0.2);
       box-shadow:
-        0 40px 80px rgba(0,0,0,0.5),
+        0 40px 80px rgba(0,0,0,0.6),
         0 0 0 1px rgba(255,255,255,0.03);
       overflow: hidden;
     }
 
     .mockup-bar {
-      background: #162016;
+      background: #071A14;
       padding: 12px 16px;
       display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(198,168,107,0.1);
     }
 
     .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -294,8 +296,8 @@
 
     .mockup-sidebar {
       width: 180px;
-      background: #162016;
-      border-right: 1px solid rgba(255,255,255,0.04);
+      background: #071A14;
+      border-right: 1px solid rgba(198,168,107,0.08);
       padding: 16px 0;
       flex-shrink: 0;
     }
@@ -329,9 +331,9 @@
     }
 
     .mockup-nav-item.active {
-      background: rgba(201, 168, 76, 0.1);
+      background: rgba(192, 57, 43, 0.12);
       color: var(--gold-light);
-      border-right: 2px solid var(--gold);
+      border-right: 2px solid var(--crimson);
     }
 
     .mockup-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.6; }
@@ -402,7 +404,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--sage);
+      color: var(--gold);
       margin-bottom: 16px;
     }
 
@@ -411,21 +413,26 @@
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 500;
       line-height: 1.15;
-      color: var(--forest);
+      color: var(--beige);
     }
 
     .section-sub {
       font-size: 1rem;
-      color: var(--text-mid);
+      color: rgba(245,240,228,0.6);
       line-height: 1.7;
       max-width: 520px;
       font-weight: 300;
       margin-top: 16px;
     }
 
+    /* gold divider line between sections */
+    section + section {
+      border-top: 1px solid rgba(198,168,107,0.12);
+    }
+
     /* ── PROBLEM SECTION ── */
     .problem {
-      background: var(--cream-dark);
+      background: var(--sage);
       position: relative;
     }
 
@@ -446,9 +453,9 @@
     .problem-list li {
       display: flex; align-items: flex-start; gap: 14px;
       padding: 14px 0;
-      border-bottom: 1px solid rgba(26,46,26,0.08);
+      border-bottom: 1px solid rgba(245,240,228,0.1);
       font-size: 0.95rem;
-      color: var(--text-mid);
+      color: rgba(245,240,228,0.8);
       line-height: 1.5;
     }
 
@@ -456,7 +463,7 @@
 
     .problem-icon {
       width: 32px; height: 32px; border-radius: 8px;
-      background: rgba(26,46,26,0.07);
+      background: rgba(7,26,20,0.3);
       display: flex; align-items: center; justify-content: center;
       font-size: 15px;
       flex-shrink: 0;
@@ -466,9 +473,10 @@
       background: var(--forest);
       border-radius: 20px;
       padding: 40px;
-      color: var(--cream);
+      color: var(--beige);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(198,168,107,0.2);
     }
 
     .solution-card::before {
@@ -476,7 +484,7 @@
       position: absolute;
       top: -40px; right: -40px;
       width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%);
+      background: radial-gradient(circle, rgba(192,57,43,0.15), transparent 70%);
       border-radius: 50%;
     }
 
@@ -485,13 +493,13 @@
       font-size: 1.8rem;
       font-weight: 500;
       margin-bottom: 16px;
-      color: var(--cream);
+      color: var(--beige);
     }
 
     .solution-card p {
       font-size: 0.95rem;
       line-height: 1.7;
-      color: rgba(245,240,232,0.65);
+      color: rgba(245,240,228,0.65);
       font-weight: 300;
       margin-bottom: 24px;
     }
@@ -527,7 +535,7 @@
 
     /* ── FEATURES ── */
     .features {
-      background: var(--white);
+      background: var(--beige);
       max-width: 100%;
     }
 
@@ -540,6 +548,10 @@
       text-align: center;
       margin-bottom: 64px;
     }
+
+    .features-header .section-label { color: var(--sage); }
+    .features-header .section-title { color: var(--forest-light); }
+    .features-header .section-sub { color: var(--text-light); margin: 16px auto 0; }
 
     .features-header .section-sub {
       margin: 16px auto 0;
@@ -554,8 +566,8 @@
     .feature-card {
       padding: 32px;
       border-radius: 16px;
-      border: 1px solid rgba(26,46,26,0.07);
-      background: var(--cream);
+      border: 1px solid rgba(7,26,20,0.08);
+      background: white;
       transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       position: relative;
       overflow: hidden;
@@ -566,15 +578,15 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
       opacity: 0;
       transition: opacity 0.25s;
     }
 
     .feature-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(26,46,26,0.1);
-      border-color: rgba(201,168,76,0.3);
+      box-shadow: 0 16px 40px rgba(7,26,20,0.12);
+      border-color: rgba(198,168,107,0.3);
     }
 
     .feature-card:hover::before { opacity: 1; }
@@ -598,6 +610,10 @@
 
     .feature-desc {
       font-size: 0.875rem;
+      color: #4a4a4a;
+      line-height: 1.65;
+      font-weight: 300;
+    }
       color: var(--text-mid);
       line-height: 1.65;
       font-weight: 300;
@@ -727,7 +743,7 @@
       flex-shrink: 0; font-size: 10px;
     }
 
-    .check.yes { background: rgba(74,103,65,0.4); color: #7ab870; }
+    .check.yes { background: rgba(198,168,107,0.2); color: var(--gold); }
     .check.no { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); }
 
     .pricing-btn {
@@ -765,7 +781,7 @@
 
     /* ── WHO IT'S FOR ── */
     .audience {
-      background: var(--cream-dark);
+      background: var(--forest-light);
     }
 
     .audience-inner {
@@ -780,22 +796,29 @@
     }
 
     .audience-pill {
-      background: var(--forest);
-      color: rgba(245,240,232,0.8);
+      background: rgba(90,107,86,0.3);
+      color: rgba(245,240,228,0.85);
       font-size: 0.82rem;
       padding: 8px 16px;
       border-radius: 100px;
-      border: 1px solid rgba(201,168,76,0.2);
+      border: 1px solid rgba(198,168,107,0.25);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .audience-pill:hover {
+      background: rgba(192,57,43,0.2);
+      border-color: rgba(192,57,43,0.4);
     }
 
     .audience-right { }
 
     .quote-card {
-      background: var(--white);
+      background: var(--sage);
       border-radius: 20px;
       padding: 36px;
-      box-shadow: 0 8px 40px rgba(26,46,26,0.08);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
       position: relative;
+      border: 1px solid rgba(198,168,107,0.2);
     }
 
     .quote-mark {
@@ -811,7 +834,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.25rem;
       font-style: italic;
-      color: var(--forest);
+      color: var(--beige);
       line-height: 1.6;
       margin-bottom: 24px;
     }
@@ -822,18 +845,19 @@
 
     .quote-avatar {
       width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--forest), var(--sage));
+      background: linear-gradient(135deg, var(--forest), var(--forest-light));
       display: flex; align-items: center; justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; color: var(--cream); font-weight: 600;
+      font-size: 1.1rem; color: var(--gold); font-weight: 600;
+      border: 1px solid rgba(198,168,107,0.3);
     }
 
-    .quote-name { font-size: 0.875rem; font-weight: 600; color: var(--forest); }
-    .quote-title { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+    .quote-name { font-size: 0.875rem; font-weight: 600; color: var(--beige); }
+    .quote-title { font-size: 0.75rem; color: rgba(245,240,228,0.5); margin-top: 2px; }
 
     /* ── CTA SECTION ── */
     .cta-section {
-      background: var(--cream);
+      background: var(--forest-mid);
       text-align: center;
       padding: 120px 5%;
     }
@@ -857,22 +881,22 @@
     .email-input {
       flex: 1;
       padding: 13px 18px;
-      border: 1.5px solid rgba(26,46,26,0.15);
+      border: 1.5px solid rgba(198,168,107,0.25);
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem;
-      background: var(--white);
-      color: var(--text-dark);
+      background: rgba(7,26,20,0.6);
+      color: var(--beige);
       outline: none;
       transition: border-color 0.2s;
     }
 
-    .email-input:focus { border-color: var(--sage); }
-    .email-input::placeholder { color: rgba(26,46,26,0.3); }
+    .email-input:focus { border-color: var(--gold); }
+    .email-input::placeholder { color: rgba(245,240,228,0.3); }
 
     .cta-note {
       font-size: 0.78rem;
-      color: var(--text-light);
+      color: rgba(245,240,228,0.35);
       margin-top: 14px;
     }
 
@@ -1093,10 +1117,10 @@
           <p>AuraFormulate was built specifically for people who make and sell handmade beauty products — at every stage of the journey. Whether you just took your first custom order or you're juggling twenty clients, every feature was designed around how you actually work.</p>
           <p style="margin-top:16px;">No more spreadsheet chaos. No more pricing guesswork. No more losing track of custom orders.</p>
           <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#4a6741,#7a9c70);display:flex;align-items:center;justify-content:center;font-size:20px;">🌿</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C0392B,#5A1823);display:flex;align-items:center;justify-content:center;font-size:20px;">🌿</div>
             <div>
-              <div style="font-size:0.85rem;font-weight:600;color:#f5f0e8;">Purpose-built for makers like you</div>
-              <div style="font-size:0.75rem;color:rgba(245,240,232,0.5);margin-top:2px;">Not corporate software. Not a spreadsheet. Something better.</div>
+              <div style="font-size:0.85rem;font-weight:600;color:#F5F0E4;">Purpose-built for makers like you</div>
+              <div style="font-size:0.75rem;color:rgba(245,240,228,0.5);margin-top:2px;">Not corporate software. Not a spreadsheet. Something better.</div>
             </div>
           </div>
         </div>
