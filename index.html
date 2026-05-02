@@ -9,1314 +9,558 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --forest: #071A14;
-      --forest-mid: #0B1F18;
-      --forest-light: #10261F;
-      --sage: #5A6B56;
-      --sage-light: #7A8C76;
-      --beige: #F5F0E4;
-      --beige-dark: #EDE5D0;
-      --gold: #C6A86B;
-      --gold-light: #D9C9A3;
-      --gold-pale: #F0E6C8;
-      --crimson: #C0392B;
-      --crimson-dark: #5A1823;
-      --text-dark: #F5F0E4;
-      --text-mid: #A8A29E;
-      --text-light: #6B6560;
-      --white: #ffffff;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--forest);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(7, 26, 20, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(198, 168, 107, 0.2);
-      padding: 0 5%;
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 34px; height: 34px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-
-    .nav-logo-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--beige);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(245, 240, 228, 0.6);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold-light); }
-
-    .nav-cta {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--forest) !important;
-      padding: 8px 20px;
-      border-radius: 6px;
-      font-weight: 600 !important;
-      font-size: 0.875rem !important;
-      transition: opacity 0.2s !important;
-    }
-
-    .nav-cta:hover { opacity: 0.9; color: var(--forest) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: var(--forest);
-      position: relative;
-      overflow: hidden;
-      display: flex; align-items: center;
-      padding: 100px 5% 80px;
-    }
-
-    .hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(90,26,35,0.2) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(198,168,107,0.06) 0%, transparent 60%);
-    }
-
-    .hero-botanical {
-      position: absolute;
-      right: -40px; top: 50%;
-      transform: translateY(-50%);
-      width: 55%;
-      opacity: 0.06;
-      pointer-events: none;
-      font-size: 380px;
-      line-height: 1;
-      user-select: none;
-    }
-
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 600px;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201, 168, 76, 0.12);
-      border: 1px solid rgba(201, 168, 76, 0.3);
-      border-radius: 100px;
-      padding: 6px 14px;
-      margin-bottom: 28px;
-      animation: fadeUp 0.8s 0.1s ease both;
-    }
-
-    .hero-badge span {
-      font-size: 0.78rem;
-      color: var(--gold-light);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .hero-badge-dot {
-      width: 6px; height: 6px;
-      background: var(--crimson);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 500;
-      color: var(--beige);
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: rgba(245, 240, 228, 0.6);
-      line-height: 1.7;
-      max-width: 480px;
-      margin-bottom: 40px;
-      font-weight: 300;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-
-    .hero-actions {
-      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--forest);
-      padding: 14px 32px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
-    }
-
-    .btn-secondary {
-      color: rgba(245, 240, 232, 0.7);
-      font-size: 0.9rem;
-      text-decoration: none;
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: color 0.2s;
-    }
-
-    .btn-secondary:hover { color: var(--cream); }
-
-    .hero-stats {
-      display: flex; gap: 32px; margin-top: 56px;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
-
-    .hero-stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      line-height: 1;
-    }
-
-    .hero-stat-label {
-      font-size: 0.78rem;
-      color: rgba(245, 240, 232, 0.5);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── APP MOCKUP ── */
-    .hero-mockup {
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 46%;
-      max-width: 680px;
-      animation: fadeUp 0.8s 0.4s ease both;
-    }
-
-    .mockup-window {
-      background: #0B1F18;
-      border-radius: 16px;
-      border: 1px solid rgba(198, 168, 107, 0.2);
-      box-shadow:
-        0 40px 80px rgba(0,0,0,0.6),
-        0 0 0 1px rgba(255,255,255,0.03);
-      overflow: hidden;
-    }
-
-    .mockup-bar {
-      background: #071A14;
-      padding: 12px 16px;
-      display: flex; align-items: center; gap: 8px;
-      border-bottom: 1px solid rgba(198,168,107,0.1);
-    }
-
-    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .mockup-dot:nth-child(1) { background: #ff5f57; }
-    .mockup-dot:nth-child(2) { background: #febc2e; }
-    .mockup-dot:nth-child(3) { background: #28c840; }
-
-    .mockup-url {
-      flex: 1; background: rgba(255,255,255,0.06);
-      border-radius: 4px; padding: 4px 10px;
-      font-size: 0.7rem; color: rgba(255,255,255,0.3);
-      margin-left: 8px;
-    }
-
-    .mockup-body {
-      display: flex;
-      height: 360px;
-    }
-
-    .mockup-sidebar {
-      width: 180px;
-      background: #071A14;
-      border-right: 1px solid rgba(198,168,107,0.08);
-      padding: 16px 0;
-      flex-shrink: 0;
-    }
-
-    .mockup-logo {
-      padding: 0 16px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      margin-bottom: 8px;
-    }
-
-    .mockup-logo-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-
-    .mockup-logo-sub {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .mockup-nav-item {
-      padding: 7px 16px;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.35);
-      display: flex; align-items: center; gap: 7px;
-      cursor: default;
-    }
-
-    .mockup-nav-item.active {
-      background: rgba(192, 57, 43, 0.12);
-      color: var(--gold-light);
-      border-right: 2px solid var(--crimson);
-    }
-
-    .mockup-nav-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.6; }
-
-    .mockup-main {
-      flex: 1; padding: 16px; overflow: hidden;
-    }
-
-    .mockup-header {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    .mockup-cards {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 8px; margin-bottom: 12px;
-    }
-
-    .mockup-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      padding: 10px;
-    }
-
-    .mockup-card-label {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.35);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .mockup-card-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--gold-light);
-    }
-
-    .mockup-recipe-list { space-y: 4px; }
-
-    .mockup-recipe-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 6px;
-      padding: 7px 10px;
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 5px;
-    }
-
-    .mockup-recipe-name { font-size: 0.62rem; color: rgba(255,255,255,0.6); }
-    .mockup-recipe-badge {
-      font-size: 0.52rem; padding: 2px 6px;
-      background: rgba(74, 103, 65, 0.4); color: #7ab870;
-      border-radius: 3px;
-    }
-
-    /* ── SECTIONS SHARED ── */
-    section { padding: 100px 5%; }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 500;
-      line-height: 1.15;
-      color: var(--beige);
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: rgba(245,240,228,0.6);
-      line-height: 1.7;
-      max-width: 520px;
-      font-weight: 300;
-      margin-top: 16px;
-    }
-
-    /* gold divider line between sections */
-    section + section {
-      border-top: 1px solid rgba(198,168,107,0.12);
-    }
-
-    /* ── PROBLEM SECTION ── */
-    .problem {
-      background: var(--sage);
-      position: relative;
-    }
-
-    .problem-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .problem-list {
-      list-style: none;
-      margin-top: 32px;
-    }
-
-    .problem-list li {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(245,240,228,0.1);
-      font-size: 0.95rem;
-      color: rgba(245,240,228,0.8);
-      line-height: 1.5;
-    }
-
-    .problem-list li:last-child { border-bottom: none; }
-
-    .problem-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: rgba(7,26,20,0.3);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px;
-      flex-shrink: 0;
-    }
-
-    .solution-card {
-      background: var(--forest);
-      border-radius: 20px;
-      padding: 40px;
-      color: var(--beige);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(198,168,107,0.2);
-    }
-
-    .solution-card::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(192,57,43,0.15), transparent 70%);
-      border-radius: 50%;
-    }
-
-    .solution-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-bottom: 16px;
-      color: var(--beige);
-    }
-
-    .solution-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: rgba(245,240,228,0.65);
-      font-weight: 300;
-      margin-bottom: 24px;
-    }
-
-    .solution-author {
-      display: flex; align-items: center; gap: 12px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .solution-avatar {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--sage), var(--sage-light));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      color: var(--cream);
-      font-weight: 600;
-    }
-
-    .solution-author-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--cream);
-    }
-
-    .solution-author-title {
-      font-size: 0.75rem;
-      color: rgba(245,240,232,0.5);
-      margin-top: 2px;
-    }
-
-    /* ── FEATURES ── */
-    .features {
-      background: var(--beige);
-      max-width: 100%;
-    }
-
-    .features-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .features-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .features-header .section-label { color: var(--sage); }
-    .features-header .section-title { color: var(--forest-light); }
-    .features-header .section-sub { color: var(--text-light); margin: 16px auto 0; }
-
-    .features-header .section-sub {
-      margin: 16px auto 0;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .feature-card {
-      padding: 32px;
-      border-radius: 16px;
-      border: 1px solid rgba(7,26,20,0.08);
-      background: white;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--crimson), var(--gold));
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(7,26,20,0.12);
-      border-color: rgba(198,168,107,0.3);
-    }
-
-    .feature-card:hover::before { opacity: 1; }
-
-    .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: var(--forest);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    .feature-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--forest);
-      margin-bottom: 10px;
-    }
-
-    .feature-desc {
-      font-size: 0.875rem;
-      color: #4a4a4a;
-      line-height: 1.65;
-      font-weight: 300;
-    }
-      color: var(--text-mid);
-      line-height: 1.65;
-      font-weight: 300;
-    }
-
-    /* ── PRICING ── */
-    .pricing {
-      background: var(--forest);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,103,65,0.2), transparent 70%);
-    }
-
-    .pricing-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative; z-index: 1;
-    }
-
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .pricing-header .section-label { color: var(--gold-light); }
-    .pricing-header .section-title { color: var(--cream); }
-    .pricing-header .section-sub { color: rgba(245,240,232,0.6); margin: 16px auto 0; }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .pricing-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 40px;
-      transition: border-color 0.25s;
-    }
-
-    .pricing-card.featured {
-      background: rgba(201,168,76,0.08);
-      border-color: rgba(201,168,76,0.35);
-      position: relative;
-    }
-
-    .pricing-badge {
-      position: absolute;
-      top: -12px; left: 50%; transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--forest);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 4px 14px;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-
-    .pricing-tier {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(245,240,232,0.4);
-      margin-bottom: 12px;
-    }
-
-    .pricing-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.2rem;
-      font-weight: 600;
-      color: var(--cream);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .pricing-price span {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: rgba(245,240,232,0.5);
-    }
-
-    .pricing-period {
-      font-size: 0.8rem;
-      color: rgba(245,240,232,0.4);
-      margin-bottom: 8px;
-    }
-
-    .pricing-annual {
-      font-size: 0.78rem;
-      color: var(--gold-light);
-      margin-bottom: 28px;
-    }
-
-    .pricing-divider {
-      height: 1px;
-      background: rgba(255,255,255,0.06);
-      margin-bottom: 24px;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 32px;
-    }
-
-    .pricing-features li {
-      font-size: 0.875rem;
-      color: rgba(245,240,232,0.65);
-      padding: 7px 0;
-      display: flex; align-items: center; gap: 10px;
-      line-height: 1.4;
-    }
-
-    .pricing-features li.included { color: rgba(245,240,232,0.8); }
-
-    .check {
-      width: 18px; height: 18px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 10px;
-    }
-
-    .check.yes { background: rgba(198,168,107,0.2); color: var(--gold); }
-    .check.no { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.2); }
-
-    .pricing-btn {
-      display: block; width: 100%; text-align: center;
-      padding: 13px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer; border: none;
-    }
-
-    .pricing-btn.free {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(245,240,232,0.7);
-    }
-
-    .pricing-btn.free:hover {
-      border-color: rgba(255,255,255,0.3);
-      color: var(--cream);
-    }
-
-    .pricing-btn.pro {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--forest);
-      box-shadow: 0 4px 20px rgba(201,168,76,0.25);
-    }
-
-    .pricing-btn.pro:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 28px rgba(201,168,76,0.35);
-    }
-
-    /* ── WHO IT'S FOR ── */
-    .audience {
-      background: var(--forest-light);
-    }
-
-    .audience-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-      align-items: center;
-    }
-
-    .audience-pills {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      margin-top: 28px;
-    }
-
-    .audience-pill {
-      background: rgba(90,107,86,0.3);
-      color: rgba(245,240,228,0.85);
-      font-size: 0.82rem;
-      padding: 8px 16px;
-      border-radius: 100px;
-      border: 1px solid rgba(198,168,107,0.25);
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .audience-pill:hover {
-      background: rgba(192,57,43,0.2);
-      border-color: rgba(192,57,43,0.4);
-    }
-
-    .audience-right { }
-
-    .quote-card {
-      background: var(--sage);
-      border-radius: 20px;
-      padding: 36px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
-      position: relative;
-      border: 1px solid rgba(198,168,107,0.2);
-    }
-
-    .quote-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
-      color: var(--gold);
-      line-height: 0.5;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .quote-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--beige);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .quote-author {
-      display: flex; align-items: center; gap: 12px;
-    }
-
-    .quote-avatar {
-      width: 42px; height: 42px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--forest), var(--forest-light));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; color: var(--gold); font-weight: 600;
-      border: 1px solid rgba(198,168,107,0.3);
-    }
-
-    .quote-name { font-size: 0.875rem; font-weight: 600; color: var(--beige); }
-    .quote-title { font-size: 0.75rem; color: rgba(245,240,228,0.5); margin-top: 2px; }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--forest-mid);
-      text-align: center;
-      padding: 120px 5%;
-    }
-
-    .cta-inner {
-      max-width: 600px; margin: 0 auto;
-    }
-
-    .cta-section .section-title {
-      margin-bottom: 16px;
-    }
-
-    .cta-section .section-sub {
-      margin: 0 auto 40px;
-    }
-
-    .email-form {
-      display: flex; gap: 12px; max-width: 440px; margin: 0 auto;
-    }
-
-    .email-input {
-      flex: 1;
-      padding: 13px 18px;
-      border: 1.5px solid rgba(198,168,107,0.25);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      background: rgba(7,26,20,0.6);
-      color: var(--beige);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .email-input:focus { border-color: var(--gold); }
-    .email-input::placeholder { color: rgba(245,240,228,0.3); }
-
-    .cta-note {
-      font-size: 0.78rem;
-      color: rgba(245,240,228,0.35);
-      margin-top: 14px;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--forest);
-      padding: 48px 5%;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px;
-      border-top: 1px solid rgba(201,168,76,0.1);
-    }
-
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--cream);
-    }
-
-    .footer-text {
-      font-size: 0.8rem;
-      color: rgba(245,240,232,0.35);
-    }
-
-    .footer-links {
-      display: flex; gap: 24px; list-style: none;
-    }
-
-    .footer-links a {
-      font-size: 0.8rem;
-      color: rgba(245,240,232,0.4);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--gold-light); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-mockup { display: none; }
-      .hero-content { max-width: 100%; }
-      .problem-inner, .audience-inner { grid-template-columns: 1fr; gap: 40px; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      nav .nav-links { display: none; }
-    }
-
-    @media (max-width: 600px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 20px; }
-      .email-form { flex-direction: column; }
-    }
-
-    /* ── SCROLL ANIMATIONS ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --forest:#0D1F18;--forest-mid:#111E17;--forest-nav:rgba(11,20,16,0.97);
+      --sage:#3D5A38;--sage-card:rgba(50,75,45,0.45);
+      --gold:#C6A96B;--gold-light:#D9C9A3;--gold-muted:#8A7040;
+      --crimson:#7A1E2C;--crimson-mid:#9B2535;
+      --beige:#F5F0E4;--beige-dim:rgba(245,240,228,0.6);--beige-faint:rgba(245,240,228,0.35);
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--forest);color:var(--beige);overflow-x:hidden;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--forest-nav);backdrop-filter:blur(16px);border-bottom:1px solid rgba(198,169,107,0.15);padding:0 6%;height:64px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--beige);letter-spacing:.01em;}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+    .nav-links a{color:var(--beige-dim);text-decoration:none;font-size:.875rem;font-weight:400;transition:color .2s;}
+    .nav-links a:hover{color:var(--gold-light);}
+    .nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light))!important;color:var(--forest)!important;padding:8px 20px;border-radius:6px;font-weight:600!important;transition:opacity .2s!important;}
+    .nav-cta:hover{opacity:.88!important;}
+
+    .hero{min-height:100vh;background:var(--forest);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;padding:100px 6% 80px;}
+    .hero::before{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:60%;height:80%;background:radial-gradient(ellipse at center,rgba(122,30,44,.18) 0%,rgba(198,169,107,.06) 40%,transparent 70%);pointer-events:none;}
+    .hero-left{position:relative;z-index:2;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(198,169,107,.1);border:1px solid rgba(198,169,107,.25);border-radius:100px;padding:5px 14px;margin-bottom:28px;}
+    .hero-badge-dot{width:6px;height:6px;background:var(--crimson-mid);border-radius:50%;animation:pulse 2s infinite;}
+    .hero-badge span{font-size:.75rem;color:var(--gold-light);font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
+    .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:500;color:var(--beige);line-height:1.08;letter-spacing:-.02em;margin-bottom:22px;animation:fadeUp .7s .1s ease both;}
+    .hero h1 em{font-style:italic;color:var(--gold-light);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .hero-sub{font-size:1rem;color:var(--beige-dim);line-height:1.75;max-width:440px;margin-bottom:36px;font-weight:300;animation:fadeUp .7s .2s ease both;}
+    .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:fadeUp .7s .3s ease both;margin-bottom:48px;}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--forest);padding:13px 28px;border-radius:7px;font-weight:600;font-size:.9rem;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(198,169,107,.25);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(198,169,107,.35);}
+    .btn-ghost{color:var(--beige-dim);text-decoration:none;font-size:.9rem;font-weight:400;transition:color .2s;display:flex;align-items:center;gap:6px;}
+    .btn-ghost:hover{color:var(--gold-light);}
+    .hero-stats{display:flex;gap:32px;animation:fadeUp .7s .4s ease both;}
+    .hero-stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--gold-light);line-height:1;}
+    .hero-stat-label{font-size:.72rem;color:var(--beige-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;}
+
+    .hero-right{position:relative;z-index:2;animation:fadeUp .9s .3s ease both;}
+    .mockup-wrap{position:relative;}
+    .mockup-window{background:#0B1A14;border-radius:14px;border:1px solid rgba(198,169,107,.2);box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.03),inset 0 1px 0 rgba(255,255,255,.04);overflow:hidden;}
+    .mockup-bar{background:#071410;padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(198,169,107,.08);}
+    .mockup-dot{width:10px;height:10px;border-radius:50%;}
+    .mockup-url{margin-left:8px;background:rgba(255,255,255,.05);border-radius:4px;padding:3px 10px;font-size:.7rem;color:rgba(255,255,255,.3);font-family:monospace;}
+    .mockup-body{display:flex;min-height:340px;}
+    .mockup-sidebar{width:145px;background:#071410;border-right:1px solid rgba(198,169,107,.07);padding:14px 0;flex-shrink:0;}
+    .mockup-brand{padding:0 12px 12px;border-bottom:1px solid rgba(198,169,107,.07);margin-bottom:8px;}
+    .mockup-brand-name{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:var(--gold-light);font-weight:600;}
+    .mockup-brand-sub{font-size:.52rem;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;}
+    .mockup-nav-item{padding:6px 12px;font-size:.65rem;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:7px;}
+    .mockup-nav-item.active{background:rgba(122,30,44,.15);color:var(--gold-light);border-right:2px solid var(--crimson-mid);}
+    .mockup-nav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5;}
+    .mockup-main{flex:1;padding:16px;overflow:hidden;}
+    .mockup-welcome-title{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--beige);font-weight:500;margin-bottom:2px;}
+    .mockup-welcome-sub{font-size:.58rem;color:rgba(255,255,255,.35);margin-bottom:14px;}
+    .mockup-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+    .mockup-stat{background:rgba(50,75,45,.3);border:1px solid rgba(198,169,107,.12);border-radius:7px;padding:8px;}
+    .mockup-stat-label{font-size:.5rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.04em;}
+    .mockup-stat-val{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold-light);font-weight:600;line-height:1.2;}
+    .mockup-stat-change{font-size:.48rem;color:#4CAF7A;margin-top:2px;}
+    .mockup-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+    .mockup-panel{background:rgba(50,75,45,.2);border:1px solid rgba(198,169,107,.1);border-radius:7px;padding:8px;}
+    .mockup-panel-title{font-size:.56rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px;}
+    .mockup-order-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.57rem;}
+    .mockup-order-name{color:rgba(255,255,255,.6);}
+    .mockup-badge{font-size:.48rem;padding:2px 5px;border-radius:100px;}
+    .badge-processing{background:rgba(198,169,107,.2);color:var(--gold-light);}
+    .badge-shipped{background:rgba(76,175,122,.2);color:#4CAF7A;}
+    .badge-delivered{background:rgba(50,75,45,.4);color:rgba(255,255,255,.4);}
+    .mockup-alert-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.57rem;}
+    .mockup-alert-name{color:rgba(255,255,255,.55);}
+    .mockup-alert-qty{color:var(--crimson-mid);font-weight:600;}
+
+    .mockup-float{position:absolute;bottom:-18px;right:-22px;background:#0D1A13;border:1px solid rgba(198,169,107,.25);border-radius:12px;padding:12px 16px;box-shadow:0 16px 40px rgba(0,0,0,.5);min-width:150px;}
+    .mockup-float-label{font-size:.58rem;color:rgba(255,255,255,.35);margin-bottom:3px;}
+    .mockup-float-val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);font-weight:600;}
+    .mockup-float-change{font-size:.55rem;color:#4CAF7A;margin-top:2px;}
+    .mockup-float2{position:absolute;bottom:56px;left:-26px;background:#0D1A13;border:1px solid rgba(198,169,107,.2);border-radius:12px;padding:12px 14px;box-shadow:0 12px 32px rgba(0,0,0,.4);min-width:130px;}
+    .mockup-float2-icon{font-size:1.3rem;margin-bottom:5px;}
+    .mockup-float2-title{font-family:'Cormorant Garamond',serif;font-size:.82rem;color:var(--beige);font-weight:600;}
+    .mockup-float2-sub{font-size:.55rem;color:rgba(255,255,255,.35);margin-top:2px;}
+    .mockup-float2-link{font-size:.55rem;color:var(--gold);margin-top:8px;display:block;text-decoration:none;}
+
+    .ticker{background:var(--sage);border-top:1px solid rgba(198,169,107,.12);border-bottom:1px solid rgba(198,169,107,.12);overflow:hidden;}
+    .ticker-inner{display:flex;animation:ticker 24s linear infinite;white-space:nowrap;}
+    .ticker-item{display:flex;align-items:center;gap:10px;padding:16px 36px;font-size:.82rem;color:rgba(245,240,228,.75);flex-shrink:0;}
+    .ticker-dot{color:var(--gold-muted);font-size:.5rem;}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+    section{padding:96px 6%;}
+    .section-label{display:inline-block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin-bottom:14px;}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.12;color:var(--beige);letter-spacing:-.02em;}
+    .section-title em{font-style:italic;color:var(--gold-light);}
+    .section-sub{font-size:.95rem;color:var(--beige-dim);line-height:1.75;max-width:520px;font-weight:300;margin-top:14px;}
+    section+section{border-top:1px solid rgba(198,169,107,.1);}
+
+    .power{background:var(--forest-mid);}
+    .power-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start;}
+    .power-explore{display:inline-flex;align-items:center;gap:8px;background:rgba(198,169,107,.1);border:1px solid rgba(198,169,107,.25);color:var(--gold);padding:10px 18px;border-radius:7px;font-size:.85rem;font-weight:500;text-decoration:none;margin-top:28px;transition:background .2s,transform .2s;}
+    .power-explore:hover{background:rgba(198,169,107,.18);transform:translateY(-1px);}
+    .power-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;border-radius:16px;overflow:hidden;}
+    .power-card{position:relative;background:var(--sage-card);aspect-ratio:4/3;overflow:hidden;transition:transform .3s;}
+    .power-card:hover{transform:scale(1.02);z-index:2;}
+    .power-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transition:opacity .3s;}
+    .power-card:hover .power-card-img{opacity:.68;}
+    .power-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(7,20,16,.88) 100%);}
+    .power-card-content{position:absolute;bottom:0;left:0;right:0;padding:18px;}
+    .power-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--beige);margin-bottom:3px;}
+    .power-card-desc{font-size:.7rem;color:var(--beige-dim);line-height:1.5;}
+    .power-card-link{font-size:.65rem;color:var(--gold);text-decoration:none;margin-top:7px;display:inline-block;transition:color .2s;}
+    .power-card-link:hover{color:var(--gold-light);}
+
+    .showcase{background:var(--forest);}
+    .showcase-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .showcase-mockup{background:#0B1A14;border-radius:14px;border:1px solid rgba(198,169,107,.15);box-shadow:0 24px 60px rgba(0,0,0,.5);overflow:hidden;}
+    .showcase-bar{background:#071410;padding:10px 14px;border-bottom:1px solid rgba(198,169,107,.08);display:flex;align-items:center;gap:6px;}
+    .showcase-content{padding:18px;}
+    .showcase-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+    .showcase-field{background:rgba(50,75,45,.2);border:1px solid rgba(198,169,107,.12);border-radius:8px;padding:9px 11px;}
+    .showcase-field-label{font-size:.52rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+    .showcase-field-val{font-size:.75rem;color:var(--beige);}
+    .showcase-ing-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+    .showcase-ing-title{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:var(--gold-light);}
+    .showcase-total{font-size:.58rem;background:rgba(76,175,122,.15);border:1px solid rgba(76,175,122,.3);color:#4CAF7A;padding:2px 8px;border-radius:100px;}
+    .showcase-ing-table{background:rgba(50,75,45,.15);border:1px solid rgba(198,169,107,.08);border-radius:8px;overflow:hidden;}
+    .showcase-ing-row{display:grid;grid-template-columns:20px 1fr 44px 52px 44px;gap:6px;padding:6px 9px;border-bottom:1px solid rgba(255,255,255,.04);font-size:.58rem;color:rgba(255,255,255,.55);align-items:center;}
+    .showcase-ing-row.header{color:rgba(255,255,255,.28);font-size:.5rem;text-transform:uppercase;letter-spacing:.05em;background:rgba(0,0,0,.2);}
+    .showcase-phase{background:rgba(198,169,107,.2);color:var(--gold-light);border-radius:3px;padding:1px 4px;font-size:.48rem;text-align:center;}
+    .showcase-checkmarks{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .showcase-check{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--beige-dim);}
+    .showcase-check-icon{width:18px;height:18px;background:rgba(76,175,122,.2);border:1px solid rgba(76,175,122,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.52rem;color:#4CAF7A;flex-shrink:0;}
+
+    .audience{background:var(--forest-mid);}
+    .audience-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .audience-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+    .audience-pill{background:rgba(61,90,56,.3);color:var(--beige-dim);font-size:.82rem;padding:8px 16px;border-radius:100px;border:1px solid rgba(198,169,107,.2);transition:all .2s;cursor:default;}
+    .audience-pill:hover{background:rgba(122,30,44,.2);border-color:rgba(155,37,53,.4);color:var(--beige);}
+    .quote-card{background:var(--sage-card);border-radius:20px;padding:36px;border:1px solid rgba(198,169,107,.15);box-shadow:0 8px 40px rgba(0,0,0,.3);}
+    .quote-mark{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--gold);line-height:.5;margin-bottom:16px;display:block;}
+    .quote-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--beige);line-height:1.65;margin-bottom:24px;}
+    .quote-author{display:flex;align-items:center;gap:12px;}
+    .quote-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--forest),#1a3020);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-weight:600;border:1px solid rgba(198,169,107,.25);}
+    .quote-name{font-size:.875rem;font-weight:600;color:var(--beige);}
+    .quote-title-text{font-size:.75rem;color:var(--beige-faint);margin-top:2px;}
+
+    .pricing{background:var(--forest);}
+    .pricing-inner{max-width:860px;margin:0 auto;}
+    .pricing-header{text-align:center;margin-bottom:52px;}
+    .pricing-header .section-sub{margin:14px auto 0;}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+    .pricing-card{background:rgba(50,75,45,.2);border:1px solid rgba(198,169,107,.15);border-radius:20px;padding:34px;transition:transform .25s,box-shadow .25s;}
+    .pricing-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3);}
+    .pricing-card.featured{background:rgba(61,90,56,.35);border-color:rgba(198,169,107,.35);position:relative;}
+    .pricing-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--forest);padding:4px 18px;border-radius:100px;font-size:.7rem;font-weight:700;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;}
+    .pricing-tier{font-size:.73rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:11px;}
+    .pricing-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:500;color:var(--beige);line-height:1;margin-bottom:4px;}
+    .pricing-price span{font-size:1.1rem;color:var(--beige-dim);}
+    .pricing-period{font-size:.78rem;color:var(--beige-faint);margin-bottom:4px;}
+    .pricing-annual{font-size:.76rem;color:var(--gold);margin-bottom:22px;min-height:1.2em;}
+    .pricing-divider{height:1px;background:rgba(198,169,107,.15);margin-bottom:22px;}
+    .pricing-features{list-style:none;margin-bottom:26px;}
+    .pricing-features li{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.875rem;color:var(--beige-dim);border-bottom:1px solid rgba(255,255,255,.04);}
+    .pricing-features li.included{color:var(--beige);}
+    .check{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:.6rem;flex-shrink:0;}
+    .check.yes{background:rgba(198,169,107,.2);color:var(--gold);}
+    .check.no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);}
+    .pricing-btn{display:block;text-align:center;padding:13px;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;transition:transform .2s,opacity .2s;}
+    .pricing-btn:hover{transform:translateY(-1px);opacity:.9;}
+    .pricing-btn.free{background:rgba(198,169,107,.12);border:1px solid rgba(198,169,107,.3);color:var(--gold-light);}
+    .pricing-btn.pro{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--forest);}
+
+    .cta-section{background:var(--forest-mid);text-align:center;padding:120px 6%;}
+    .cta-inner{max-width:540px;margin:0 auto;}
+    .cta-section .section-sub{margin:14px auto 36px;}
+    .email-form{display:flex;gap:10px;max-width:420px;margin:0 auto;}
+    .email-input{flex:1;padding:13px 16px;border:1.5px solid rgba(198,169,107,.2);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:.875rem;background:rgba(7,20,16,.6);color:var(--beige);outline:none;transition:border-color .2s;}
+    .email-input:focus{border-color:var(--gold);}
+    .email-input::placeholder{color:var(--beige-faint);}
+    .cta-note{font-size:.75rem;color:var(--beige-faint);margin-top:14px;}
+
+    footer{background:#071410;border-top:1px solid rgba(198,169,107,.1);padding:30px 6%;display:flex;align-items:center;justify-content:space-between;}
+    .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--beige);font-weight:600;}
+    .footer-text{font-size:.72rem;color:var(--beige-faint);margin-top:3px;}
+    .footer-links{display:flex;gap:22px;list-style:none;}
+    .footer-links a{color:var(--beige-faint);text-decoration:none;font-size:.78rem;transition:color .2s;}
+    .footer-links a:hover{color:var(--gold-light);}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding-top:90px;}
+      .hero-right{display:none;}
+      .power-inner{grid-template-columns:1fr;}
+      .power-grid{grid-template-columns:1fr 1fr;}
+      .showcase-inner{grid-template-columns:1fr;}
+      .audience-inner{grid-template-columns:1fr;}
+      .pricing-grid{grid-template-columns:1fr;}
+      .nav-links{display:none;}
+      .email-form{flex-direction:column;}
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">🌿</div>
-      <span class="nav-logo-text">AuraFormulate</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="https://app.auraformulate.com" class="nav-cta">Try Free →</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">🌿</div>
+    <span class="nav-logo-text">AuraFormulate</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#who">About</a></li>
+    <li><a href="https://app.auraformulate.com" class="nav-cta">Try Free →</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-botanical">🌿</div>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <div class="hero-badge-dot"></div>
-        <span>Now live — made for makers at every stage</span>
-      </div>
-
-      <h1>Turn your passion for making<br/><em>into a real business</em></h1>
-
-      <p class="hero-sub">Recipes, clients, orders, AI-powered formulation, cost calculations, and shipping — all in one beautiful tool. Everything you need to manage your formulation business professionally.</p>
-
-      <div class="hero-actions">
-        <a href="https://app.auraformulate.com" class="btn-primary">
-          Start free today →
-        </a>
-        <a href="#features" class="btn-secondary">
-          See what's inside ↓
-        </a>
-      </div>
-
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">13</div>
-          <div class="hero-stat-label">Built-in tools</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">AI</div>
-          <div class="hero-stat-label">Recipe generator</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">Free</div>
-          <div class="hero-stat-label">To get started</div>
-        </div>
-      </div>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Now Live — Made for Makers at Every Stage</span>
     </div>
+    <h1>Turn your passion<br/>for making<br/><em>into a real business</em></h1>
+    <p class="hero-sub">Recipes, clients, orders, AI-powered formulation, cost calculations, and shipping — all in one beautiful tool. Everything you need to manage your formulation business professionally.</p>
+    <div class="hero-actions">
+      <a href="https://app.auraformulate.com" class="btn-primary">Start free today →</a>
+      <a href="#features" class="btn-ghost">See what's inside ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">13</div><div class="hero-stat-label">Built-in Tools</div></div>
+      <div><div class="hero-stat-num">AI</div><div class="hero-stat-label">Recipe Generator</div></div>
+      <div><div class="hero-stat-num">Free</div><div class="hero-stat-label">To Get Started</div></div>
+    </div>
+  </div>
 
-    <!-- App mockup -->
-    <div class="hero-mockup">
+  <div class="hero-right">
+    <div class="mockup-wrap">
       <div class="mockup-window">
         <div class="mockup-bar">
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
+          <div class="mockup-dot" style="background:#FF5F57"></div>
+          <div class="mockup-dot" style="background:#FEBC2E"></div>
+          <div class="mockup-dot" style="background:#28C840"></div>
           <div class="mockup-url">app.auraformulate.com</div>
         </div>
         <div class="mockup-body">
           <div class="mockup-sidebar">
-            <div class="mockup-logo">
-              <div class="mockup-logo-text">AuraFormulate</div>
-              <div class="mockup-logo-sub">Made for Makers</div>
+            <div class="mockup-brand">
+              <div class="mockup-brand-name">AuraFormulate</div>
+              <div class="mockup-brand-sub">Made for Makers</div>
             </div>
-            <div class="mockup-nav-item active"><div class="mockup-nav-dot"></div> Recipe Library</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Recipe Builder</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Clients</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Client Orders</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Inventory</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Cost & Pricing</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Fragrance Blender</div>
-            <div class="mockup-nav-item"><div class="mockup-nav-dot"></div> Marketing</div>
+            <div class="mockup-nav-item active"><span class="mockup-nav-dot"></span> Dashboard</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Recipes</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Clients</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Orders</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Inventory</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Cost &amp; Pricing</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Fragrance Blender</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Marketing</div>
+            <div class="mockup-nav-item"><span class="mockup-nav-dot"></span> Settings</div>
           </div>
           <div class="mockup-main">
-            <div class="mockup-header">Recipe Library</div>
-            <div class="mockup-cards">
-              <div class="mockup-card">
-                <div class="mockup-card-label">Total Recipes</div>
-                <div class="mockup-card-val">24</div>
-              </div>
-              <div class="mockup-card">
-                <div class="mockup-card-label">Active Orders</div>
-                <div class="mockup-card-val">7</div>
-              </div>
+            <div class="mockup-welcome-title">Welcome back, Creator ✦</div>
+            <div class="mockup-welcome-sub">Here's what's happening with your business today.</div>
+            <div class="mockup-stats">
+              <div class="mockup-stat"><div class="mockup-stat-label">Total Recipes</div><div class="mockup-stat-val">24</div><div class="mockup-stat-change">+12% this month</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-label">Active Orders</div><div class="mockup-stat-val">7</div><div class="mockup-stat-change">+2 since yesterday</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-label">Inventory Items</div><div class="mockup-stat-val">186</div><div class="mockup-stat-change">In stock</div></div>
+              <div class="mockup-stat"><div class="mockup-stat-label">Monthly Revenue</div><div class="mockup-stat-val" style="font-size:.82rem">$12,450</div><div class="mockup-stat-change">+18% this month</div></div>
             </div>
-            <div class="mockup-recipe-list">
-              <div class="mockup-recipe-item">
-                <span class="mockup-recipe-name">Whipped Body Butter</span>
-                <span class="mockup-recipe-badge">Face Care</span>
+            <div class="mockup-grid-2">
+              <div class="mockup-panel">
+                <div class="mockup-panel-title">Recent Orders</div>
+                <div class="mockup-order-row"><span class="mockup-order-name">Rose Body Butter</span><span class="mockup-badge badge-processing">Processing</span></div>
+                <div class="mockup-order-row"><span class="mockup-order-name">Lavender Sugar Scrub</span><span class="mockup-badge badge-shipped">Shipped</span></div>
+                <div class="mockup-order-row"><span class="mockup-order-name">Vanilla Body Oil</span><span class="mockup-badge badge-delivered">Delivered</span></div>
               </div>
-              <div class="mockup-recipe-item">
-                <span class="mockup-recipe-name">Rosehip Face Serum</span>
-                <span class="mockup-recipe-badge">Face Care</span>
-              </div>
-              <div class="mockup-recipe-item">
-                <span class="mockup-recipe-name">Volumizing Shampoo Bar</span>
-                <span class="mockup-recipe-badge">Hair Care</span>
-              </div>
-              <div class="mockup-recipe-item">
-                <span class="mockup-recipe-name">Lavender Sugar Scrub</span>
-                <span class="mockup-recipe-badge">Body Care</span>
+              <div class="mockup-panel">
+                <div class="mockup-panel-title">Low Stock Alerts</div>
+                <div class="mockup-alert-row"><span class="mockup-alert-name">Shea Butter</span><span class="mockup-alert-qty">8 left</span></div>
+                <div class="mockup-alert-row"><span class="mockup-alert-name">Rosehip Oil</span><span class="mockup-alert-qty">5 left</span></div>
+                <div class="mockup-alert-row"><span class="mockup-alert-name">Emulsifying Wax</span><span class="mockup-alert-qty">12 left</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="mockup-float">
+        <div class="mockup-float-label">Total Revenue</div>
+        <div class="mockup-float-val">$12,450</div>
+        <div class="mockup-float-change">↑ +18% this month</div>
+        <svg viewBox="0 0 130 28" fill="none" style="width:100%;height:28px;margin-top:8px;">
+          <polyline points="0,24 18,19 36,22 54,11 72,15 90,6 108,10 130,2" stroke="#C6A96B" stroke-width="1.5" fill="none" opacity=".7"/>
+          <polyline points="0,24 18,19 36,22 54,11 72,15 90,6 108,10 130,2 130,28 0,28" fill="rgba(198,169,107,.08)"/>
+        </svg>
+      </div>
+      <div class="mockup-float2">
+        <div class="mockup-float2-icon">🧪</div>
+        <div class="mockup-float2-title">Recipe Library</div>
+        <div class="mockup-float2-sub">24 Total · 4 this week</div>
+        <a href="https://app.auraformulate.com" class="mockup-float2-link">View library →</a>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PROBLEM -->
-  <section class="problem" id="about">
-    <div class="problem-inner">
-      <div class="reveal">
-        <span class="section-label">Sound familiar?</span>
-        <h2 class="section-title">You're drowning in<br/>spreadsheets & sticky notes</h2>
-        <p class="section-sub">You got into this because you love creating. But somewhere between taking custom orders, tracking supplies, pricing your products, and remembering what every client is allergic to — it got overwhelming. Sound familiar?</p>
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item">🧪 Formulate <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Create with precision</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">📖 Recipe Library <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Organize &amp; scale</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">📦 Orders <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Manage with ease</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🌿 Inventory <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Track &amp; restock</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🌸 Fragrance Blender <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Custom scent creation</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">👥 Clients <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Build lasting relationships</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🚚 Shipping <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Rates &amp; fulfillment</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🧪 Formulate <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Create with precision</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">📖 Recipe Library <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Organize &amp; scale</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">📦 Orders <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Manage with ease</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🌿 Inventory <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Track &amp; restock</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🌸 Fragrance Blender <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Custom scent creation</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">👥 Clients <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Build lasting relationships</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+    <div class="ticker-item">🚚 Shipping <span style="font-size:.62rem;color:rgba(245,240,228,.35);margin-left:6px;">Rates &amp; fulfillment</span></div>
+    <div class="ticker-item"><span class="ticker-dot">◆</span></div>
+  </div>
+</div>
 
-        <ul class="problem-list">
-          <li>
-            <div class="problem-icon">📋</div>
-            <span>Your recipes are scattered across notebooks, Google Docs, and your memory</span>
-          </li>
-          <li>
-            <div class="problem-icon">👥</div>
-            <span>A client's allergies are buried somewhere in your DMs from last year</span>
-          </li>
-          <li>
-            <div class="problem-icon">💸</div>
-            <span>You're guessing your prices because figuring out true cost takes forever</span>
-          </li>
-          <li>
-            <div class="problem-icon">📦</div>
-            <span>You don't know what supplies you have until you dig through everything</span>
-          </li>
-          <li>
-            <div class="problem-icon">🚚</div>
-            <span>Orders fall through the cracks because there's no system to track them</span>
-          </li>
+<section class="power" id="features">
+  <div class="power-inner">
+    <div class="power-left reveal">
+      <span class="section-label">Power your business</span>
+      <h2 class="section-title">Everything you need,<br/><em>all in one place.</em></h2>
+      <p class="section-sub">AuraFormulate is built specifically for cosmetic creators, small brands, and makers who want to grow without the chaos.</p>
+      <a href="https://app.auraformulate.com" class="power-explore">Explore Features →</a>
+    </div>
+    <div class="power-grid reveal">
+      <div class="power-card">
+        <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=600&q=80" alt="Formulator" class="power-card-img"/>
+        <div class="power-card-overlay"></div>
+        <div class="power-card-content">
+          <div class="power-card-title">Smart Formulator</div>
+          <p class="power-card-desc">Advanced formulation calculator with real-time costing and ingredient insights.</p>
+          <a href="https://app.auraformulate.com" class="power-card-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="power-card">
+        <img src="https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=600&q=80" alt="Orders" class="power-card-img"/>
+        <div class="power-card-overlay"></div>
+        <div class="power-card-content">
+          <div class="power-card-title">Order Management</div>
+          <p class="power-card-desc">Create, track, and fulfill orders seamlessly from start to finish.</p>
+          <a href="https://app.auraformulate.com" class="power-card-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="power-card">
+        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&q=80" alt="Inventory" class="power-card-img"/>
+        <div class="power-card-overlay"></div>
+        <div class="power-card-content">
+          <div class="power-card-title">Inventory Control</div>
+          <p class="power-card-desc">Know what you have, what you need, and what to restock.</p>
+          <a href="https://app.auraformulate.com" class="power-card-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="power-card">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80" alt="Clients" class="power-card-img"/>
+        <div class="power-card-overlay"></div>
+        <div class="power-card-content">
+          <div class="power-card-title">Client Management</div>
+          <p class="power-card-desc">Organize client details, order history, and communication.</p>
+          <a href="https://app.auraformulate.com" class="power-card-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="showcase-inner">
+    <div class="showcase-mockup reveal">
+      <div class="showcase-bar">
+        <div class="mockup-dot" style="background:#FF5F57"></div>
+        <div class="mockup-dot" style="background:#FEBC2E"></div>
+        <div class="mockup-dot" style="background:#28C840"></div>
+      </div>
+      <div class="showcase-content">
+        <div class="showcase-row">
+          <div class="showcase-field"><div class="showcase-field-label">Recipe Name</div><div class="showcase-field-val">Whipped Shea Body Butter</div></div>
+          <div class="showcase-field"><div class="showcase-field-label">Product Type</div><div class="showcase-field-val">Body Butter</div></div>
+          <div class="showcase-field"><div class="showcase-field-label">Batch Size</div><div class="showcase-field-val">100g</div></div>
+          <div class="showcase-field"><div class="showcase-field-label">Link to Client</div><div class="showcase-field-val">Sarah M.</div></div>
+        </div>
+        <div class="showcase-ing-header">
+          <div class="showcase-ing-title">Ingredients</div>
+          <div class="showcase-total">✓ Total: 100.00%</div>
+        </div>
+        <div class="showcase-ing-table">
+          <div class="showcase-ing-row header"><div>Ph.</div><div>Ingredient</div><div>%</div><div>Amount</div><div>Cost</div></div>
+          <div class="showcase-ing-row"><div class="showcase-phase">A</div><div>Shea Butter <span style="color:rgba(255,255,255,.28);font-size:.48rem">(Butyrospermum Parkii)</span></div><div>35%</div><div>35g</div><div>$1.25</div></div>
+          <div class="showcase-ing-row"><div class="showcase-phase">A</div><div>Mango Butter <span style="color:rgba(255,255,255,.28);font-size:.48rem">(Mangifera Indica)</span></div><div>15%</div><div>15g</div><div>$0.62</div></div>
+          <div class="showcase-ing-row"><div class="showcase-phase">A</div><div>Cocoa Butter <span style="color:rgba(255,255,255,.28);font-size:.48rem">(Theobroma Cacao)</span></div><div>10%</div><div>10g</div><div>$0.38</div></div>
+          <div class="showcase-ing-row"><div class="showcase-phase">B</div><div>Argan Oil <span style="color:rgba(255,255,255,.28);font-size:.48rem">(Argania Spinosa)</span></div><div>20%</div><div>20g</div><div>$1.80</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="section-label">Formulate with confidence</span>
+      <h2 class="section-title">Create better products<br/>and more <em>profitable formulas.</em></h2>
+      <p class="section-sub">Stop guessing. Our real-time formulator tracks percentages, costs, and phases as you build — so you always know exactly what you're making and what it costs.</p>
+      <div class="showcase-checkmarks">
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> Real-time cost calculations</div>
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> Save, version, and scale recipes</div>
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> Ingredient info &amp; usage guidelines</div>
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> Export formulas &amp; share with clients</div>
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> AI-powered recipe suggestions</div>
+        <div class="showcase-check"><div class="showcase-check-icon">✓</div> INCI name generation for labels</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audience" id="who">
+  <div class="audience-inner">
+    <div class="reveal">
+      <span class="section-label">Who it's for</span>
+      <h2 class="section-title">Whether you're just<br/>starting out or <em>scaling up</em><br/>— this is for you</h2>
+      <p class="section-sub">It doesn't matter if you're making your first batch or your hundredth. If you handcraft beauty and cosmetic products and want to run your business with more confidence — AuraFormulate is for you.</p>
+      <div class="audience-pills">
+        <span class="audience-pill">🛍️ Etsy Sellers</span>
+        <span class="audience-pill">🧴 Custom Product Makers</span>
+        <span class="audience-pill">🌿 Natural Beauty Creators</span>
+        <span class="audience-pill">💄 Small Beauty Brands</span>
+        <span class="audience-pill">🧼 Soap Makers</span>
+        <span class="audience-pill">💅 Lip &amp; Nail Artists</span>
+        <span class="audience-pill">🌺 Skincare Creators</span>
+        <span class="audience-pill">💇 Hair Care Makers</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="quote-card">
+        <span class="quote-mark">"</span>
+        <p class="quote-text">I used to dread the business side of things. Now I actually feel like I know what I'm doing. My recipes are all in one place, I know exactly what to charge, and my clients think I'm way more organized than I actually am.</p>
+        <div class="quote-author">
+          <div class="quote-avatar">S</div>
+          <div>
+            <div class="quote-name">Sarah M.</div>
+            <div class="quote-title-text">Small-batch skincare creator · Etsy seller since 2019</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <span class="section-label">Simple pricing</span>
+      <h2 class="section-title">Simple pricing for small businesses</h2>
+      <p class="section-sub">Start free and upgrade when you're ready. No pressure, no contracts, no surprises.</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free Forever</div>
+        <div class="pricing-price">$0</div>
+        <div class="pricing-period">No credit card needed</div>
+        <div class="pricing-annual">&nbsp;</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="included"><span class="check yes">✓</span> Up to 5 recipes</li>
+          <li class="included"><span class="check yes">✓</span> Up to 5 clients</li>
+          <li class="included"><span class="check yes">✓</span> Order tracking</li>
+          <li class="included"><span class="check yes">✓</span> Cost calculator</li>
+          <li class="included"><span class="check yes">✓</span> Inventory management</li>
+          <li><span class="check no">✗</span> AI recipe generation</li>
+          <li><span class="check no">✗</span> AI fragrance blender</li>
+          <li><span class="check no">✗</span> AI marketing tools</li>
+          <li><span class="check no">✗</span> Unlimited recipes &amp; clients</li>
         </ul>
+        <a href="https://app.auraformulate.com" class="pricing-btn free">Get started free</a>
       </div>
-
-      <div class="reveal">
-        <div class="solution-card">
-          <h3>You deserve tools that work as hard as you do.</h3>
-          <p>AuraFormulate was built specifically for people who make and sell handmade beauty products — at every stage of the journey. Whether you just took your first custom order or you're juggling twenty clients, every feature was designed around how you actually work.</p>
-          <p style="margin-top:16px;">No more spreadsheet chaos. No more pricing guesswork. No more losing track of custom orders.</p>
-          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C0392B,#5A1823);display:flex;align-items:center;justify-content:center;font-size:20px;">🌿</div>
-            <div>
-              <div style="font-size:0.85rem;font-weight:600;color:#F5F0E4;">Purpose-built for makers like you</div>
-              <div style="font-size:0.75rem;color:rgba(245,240,228,0.5);margin-top:2px;">Not corporate software. Not a spreadsheet. Something better.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="features-inner">
-      <div class="features-header reveal">
-        <span class="section-label">Everything you need</span>
-        <h2 class="section-title">Your entire handmade business,<br/>in one place</h2>
-        <p class="section-sub">Stop juggling six different tools. AuraFormulate brings together everything you need to run and grow your handmade beauty brand.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card reveal">
-          <div class="feature-icon">🧪</div>
-          <div class="feature-title">AI Recipe Builder</div>
-          <p class="feature-desc">Describe what you want to make and AI builds a complete, ready-to-use recipe — balanced percentages, phases, and step-by-step instructions.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon">👥</div>
-          <div class="feature-title">Client Management</div>
-          <p class="feature-desc">Remember everything about every client — their allergies, their preferences, what they've ordered before. Give every customer the kind of personal touch that keeps them coming back.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon">📦</div>
-          <div class="feature-title">Order Pipeline</div>
-          <p class="feature-desc">Keep every custom order organized from the moment it comes in to the moment it ships. Your clients will think you have a whole team behind you.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon">💰</div>
-          <div class="feature-title">Cost & Pricing Calculator</div>
-          <p class="feature-desc">Stop guessing what to charge. Calculate your true cost — ingredients, labor, overhead, packaging — and finally price your products so you're actually profitable.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon">🌸</div>
-          <div class="feature-title">Fragrance Blender</div>
-          <p class="feature-desc">Describe the vibe you're going for and AI creates fragrance blends using what you already have on hand — no guesswork, no wasted supplies.</p>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon">📢</div>
-          <div class="feature-title">Marketing & Labels</div>
-          <p class="feature-desc">Hate writing product descriptions? AI generates your Etsy listings, social captions, and emails straight from your recipes — so you can list faster and sell more.</p>
-        </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price">$19<span>/mo</span></div>
+        <div class="pricing-period">Billed monthly</div>
+        <div class="pricing-annual">Or $149/year — save $79 ✦</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="included"><span class="check yes">✓</span> Unlimited recipes</li>
+          <li class="included"><span class="check yes">✓</span> Unlimited clients</li>
+          <li class="included"><span class="check yes">✓</span> Order tracking &amp; archive</li>
+          <li class="included"><span class="check yes">✓</span> Cost calculator &amp; pricing</li>
+          <li class="included"><span class="check yes">✓</span> Full inventory management</li>
+          <li class="included"><span class="check yes">✓</span> AI recipe generation</li>
+          <li class="included"><span class="check yes">✓</span> AI fragrance blender</li>
+          <li class="included"><span class="check yes">✓</span> AI marketing &amp; labels</li>
+          <li class="included"><span class="check yes">✓</span> Priority support</li>
+        </ul>
+        <a href="https://app.auraformulate.com" class="pricing-btn pro">Start Pro free trial →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- WHO IT'S FOR -->
-  <section class="audience" id="who">
-    <div class="audience-inner">
-      <div class="reveal">
-        <span class="section-label">Who it's for</span>
-        <h2 class="section-title">Whether you're just starting out<br/>or <em>scaling up</em> — this is for you</h2>
-        <p class="section-sub">It doesn't matter if you're making your first batch or your hundredth. If you handcraft beauty and cosmetic products and want to run your business with more confidence — AuraFormulate is for you.</p>
-        <div class="audience-pills">
-          <span class="audience-pill">🛍️ Etsy Sellers</span>
-          <span class="audience-pill">🧴 Custom Product Makers</span>
-          <span class="audience-pill">🌿 Natural Beauty Creators</span>
-          <span class="audience-pill">💄 Small Beauty Brands</span>
-          <span class="audience-pill">🧼 Soap Makers</span>
-          <span class="audience-pill">💅 Lip & Nail Artists</span>
-          <span class="audience-pill">🌺 Skincare Creators</span>
-          <span class="audience-pill">💇 Hair Care Makers</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="quote-card">
-          <span class="quote-mark">"</span>
-          <p class="quote-text">I used to dread the business side of things. Now I actually feel like I know what I'm doing. My recipes are all in one place, I know exactly what to charge, and my clients think I'm way more organized than I actually am.</p>
-          <div class="quote-author">
-            <div class="quote-avatar">S</div>
-            <div>
-              <div class="quote-name">Sarah M.</div>
-              <div class="quote-title">Small-batch skincare creator · Etsy seller since 2019</div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <span class="section-label">Get early access</span>
+    <h2 class="section-title">Ready to take your craft<br/><em>seriously?</em></h2>
+    <p class="section-sub">Thousands of makers just like you are juggling too many tools, undercharging for their work, and burning out on admin. AuraFormulate fixes all of that.</p>
+    <div class="email-form">
+      <input type="email" class="email-input" placeholder="your@email.com"/>
+      <a href="https://app.auraformulate.com" class="btn-primary">Get started →</a>
     </div>
-  </section>
+    <p class="cta-note">Free to start. No credit card required. Cancel anytime.</p>
+  </div>
+</section>
 
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <div class="pricing-inner">
-      <div class="pricing-header reveal">
-        <span class="section-label">Simple pricing</span>
-        <h2 class="section-title">Simple pricing for small businesses</h2>
-        <p class="section-sub">Start free and upgrade when you're ready. No pressure, no contracts, no surprises.</p>
-      </div>
+<footer>
+  <div>
+    <div class="footer-logo">🌿 AuraFormulate</div>
+    <div class="footer-text">© 2026 AuraFormulate. All rights reserved.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="/terms-of-service.html">Terms</a></li>
+    <li><a href="https://app.auraformulate.com">Launch App</a></li>
+  </ul>
+</footer>
 
-      <div class="pricing-grid reveal">
-        <!-- FREE -->
-        <div class="pricing-card">
-          <div class="pricing-tier">Free Forever</div>
-          <div class="pricing-price">$0</div>
-          <div class="pricing-period">No credit card needed</div>
-          <div class="pricing-annual">&nbsp;</div>
-          <div class="pricing-divider"></div>
-          <ul class="pricing-features">
-            <li class="included"><span class="check yes">✓</span> Up to 5 recipes</li>
-            <li class="included"><span class="check yes">✓</span> Up to 5 clients</li>
-            <li class="included"><span class="check yes">✓</span> Order tracking</li>
-            <li class="included"><span class="check yes">✓</span> Cost calculator</li>
-            <li class="included"><span class="check yes">✓</span> Inventory management</li>
-            <li><span class="check no">✗</span> AI recipe generation</li>
-            <li><span class="check no">✗</span> AI fragrance blender</li>
-            <li><span class="check no">✗</span> AI marketing tools</li>
-            <li><span class="check no">✗</span> Unlimited recipes & clients</li>
-          </ul>
-          <a href="https://app.auraformulate.com" class="pricing-btn free">Get started free</a>
-        </div>
-
-        <!-- PRO -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Most Popular</div>
-          <div class="pricing-tier">Pro</div>
-          <div class="pricing-price">$19<span>/mo</span></div>
-          <div class="pricing-period">Billed monthly</div>
-          <div class="pricing-annual">Or $149/year — save $79 ✦</div>
-          <div class="pricing-divider"></div>
-          <ul class="pricing-features">
-            <li class="included"><span class="check yes">✓</span> Unlimited recipes</li>
-            <li class="included"><span class="check yes">✓</span> Unlimited clients</li>
-            <li class="included"><span class="check yes">✓</span> Order tracking & archive</li>
-            <li class="included"><span class="check yes">✓</span> Cost calculator & pricing</li>
-            <li class="included"><span class="check yes">✓</span> Full inventory management</li>
-            <li class="included"><span class="check yes">✓</span> AI recipe generation</li>
-            <li class="included"><span class="check yes">✓</span> AI fragrance blender</li>
-            <li class="included"><span class="check yes">✓</span> AI marketing & labels</li>
-            <li class="included"><span class="check yes">✓</span> Priority support</li>
-          </ul>
-          <a href="https://app.auraformulate.com" class="pricing-btn pro">Start Pro free trial →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="cta-section">
-    <div class="cta-inner reveal">
-      <span class="section-label">Get early access</span>
-      <h2 class="section-title">Ready to take your craft<br/><em>seriously?</em></h2>
-      <p class="section-sub">Thousands of makers just like you are juggling too many tools, undercharging for their work, and burning out on admin. AuraFormulate fixes all of that — so you can focus on what you actually love doing.</p>
-
-      <div class="email-form">
-        <input type="email" class="email-input" placeholder="your@email.com" />
-        <a href="https://app.auraformulate.com" class="btn-primary">Get started →</a>
-      </div>
-      <p class="cta-note">Free to start. No credit card required. Cancel anytime.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div>
-      <div class="footer-logo">🌿 AuraFormulate</div>
-      <div class="footer-text" style="margin-top:4px">© 2026 AuraFormulate. All rights reserved.</div>
-    </div>
-    <ul class="footer-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="https://app.auraformulate.com">Launch App</a></li>
-    </ul>
-  </footer>
-
-  <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Email form
-    document.querySelector('.email-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-    });
-
-    // Stagger feature cards
-    document.querySelectorAll('.feature-card').forEach((card, i) => {
-      card.style.transitionDelay = (i * 0.08) + 's';
-    });
-  </script>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.power-card').forEach((c,i) => { c.style.transitionDelay=(i*.06)+'s'; });
+</script>
 </body>
 </html>
