@@ -272,21 +272,6 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-              variants={fadeUp}
-              whileHover={{ y: -4, scale: 1.01 }}
-              className="rounded-xl overflow-hidden border border-[#B89A5D]/15 shadow-xl"
-              style={{background:"#10261F"}}
-            >
-              <img src={s.img} alt={s.label} className="w-full object-cover object-top" style={{height:'200px'}}/>
-              <div className="px-4 py-3 border-t border-[#10261F]">
-                <div className="text-sm text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{s.label}</div>
-                <div className="text-xs text-white/40 mt-0.5">{s.desc}</div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
 
       <section className="px-10 py-20 border-t border-[#10261F] bg-[#10261F]" id="features">
         <div className="max-w-6xl mx-auto">
