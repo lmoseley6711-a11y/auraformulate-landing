@@ -47,7 +47,8 @@ export default function LandingPage() {
           href="https://app.auraformulate.com"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
-          className="bg-[#C6A96B] text-[#071B14] px-5 py-2 rounded-lg font-medium hover:opacity-90 transition"
+          className="px-5 py-2 rounded-lg font-medium hover:opacity-90 transition text-[#071B14]"
+          style={{background:"linear-gradient(135deg, #C6A96B, #D9C9A3)"}}
         >
           Try Free
         </motion.a>
@@ -68,7 +69,7 @@ export default function LandingPage() {
             <br />
             for making
             <br />
-            <span className="italic" style={{color:"#7A1E2C"}}>
+            <span className="italic" style={{color:"#C6A96B"}}>
               into a real business
             </span>
           </motion.h1>
@@ -83,7 +84,8 @@ export default function LandingPage() {
               href="https://app.auraformulate.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="bg-[#7A1E2C] px-6 py-3 rounded-lg font-medium hover:opacity-90 transition text-[#E8E3D9]"
+              className="px-6 py-3 rounded-lg font-medium hover:opacity-90 transition text-white"
+              style={{background:"linear-gradient(135deg, #7A1E2C, #9B2535)"}}
             >
               Start free today →
             </motion.a>
@@ -433,7 +435,7 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              <motion.a href="https://app.auraformulate.com" whileHover={{scale:1.02}} whileTap={{scale:0.97}} className="block text-center py-3 rounded-lg text-sm font-semibold text-[#071B14] transition" style={{background:"linear-gradient(135deg, #C6A96B, #D9C9A3)"}}>
+              <motion.a href="https://app.auraformulate.com" whileHover={{scale:1.02}} whileTap={{scale:0.97}} className="block text-center py-3 rounded-lg text-sm font-semibold text-white transition" style={{background:"linear-gradient(135deg, #7A1E2C, #9B2535)"}}>
                 Start Pro free trial →
               </motion.a>
             </motion.div>
@@ -468,8 +470,8 @@ export default function LandingPage() {
               href="https://app.auraformulate.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="px-5 py-3 rounded-lg text-sm font-semibold text-[#071B14]"
-              style={{background:"linear-gradient(135deg, #C6A96B, #D9C9A3)"}}
+              className="px-5 py-3 rounded-lg text-sm font-semibold text-white"
+              style={{background:"linear-gradient(135deg, #7A1E2C, #9B2535)"}}
             >
               Get started →
             </motion.a>
