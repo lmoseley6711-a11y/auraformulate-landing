@@ -134,13 +134,6 @@ export default function LandingPage() {
 
           {/* Real app screenshot */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#B89A5D]/20">
-            {/* Window bar */}
-            <div className="bg-[#071A14] px-4 py-2.5 flex items-center gap-2 border-b border-[#10261F]">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#FEBC2E]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
-              <div className="ml-3 bg-white/5 rounded px-3 py-1 text-xs text-white/30 font-mono">app.auraformulate.com</div>
-            </div>
             <img
               src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png"
               alt="AuraFormulate Dashboard"
@@ -150,35 +143,6 @@ export default function LandingPage() {
           </div>
 
           {/* Floating revenue card */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="absolute -bottom-5 -right-5 bg-[#071A14] border border-[#B89A5D]/25 rounded-xl p-3 shadow-2xl min-w-[140px]"
-          >
-            <div className="text-[10px] text-white/35 mb-1">Total Recipes</div>
-            <div className="text-lg text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>16</div>
-            <div className="text-[10px] text-green-400 mt-0.5">↑ Growing this month</div>
-            <svg viewBox="0 0 120 24" fill="none" className="w-full mt-2" style={{height:24}}>
-              <polyline points="0,20 16,16 32,18 48,9 64,13 80,5 96,8 120,2" stroke="#B89A5D" strokeWidth="1.5" fill="none" opacity="0.7"/>
-              <polyline points="0,20 16,16 32,18 48,9 64,13 80,5 96,8 120,2 120,24 0,24" fill="rgba(198,169,107,0.08)"/>
-            </svg>
-          </motion.div>
-
-          {/* Floating Formulator preview */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="absolute bottom-14 -left-6 bg-[#071A14] border border-[#B89A5D]/20 rounded-xl shadow-xl overflow-hidden"
-            style={{width: '160px'}}
-          >
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png" alt="Formulator" className="w-full object-cover object-top" style={{height:'90px'}}/>
-            <div className="px-3 py-2">
-              <div className="text-[10px] text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>Formulator</div>
-              <div className="text-[9px] text-white/35">AI-powered recipes</div>
-            </div>
-          </motion.div>
 
         </motion.div>
       </section>
@@ -251,12 +215,6 @@ export default function LandingPage() {
                 boxShadow:"0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
               }}
             >
-              {/* Screenshot with browser chrome */}
-              <div style={{background:"#071A14", borderBottom:"1px solid rgba(184,154,93,0.1)", padding:"8px 12px", display:"flex", alignItems:"center", gap:"6px"}}>
-                <div style={{width:8,height:8,borderRadius:"50%",background:"#FF5F57"}}></div>
-                <div style={{width:8,height:8,borderRadius:"50%",background:"#FEBC2E"}}></div>
-                <div style={{width:8,height:8,borderRadius:"50%",background:"#28C840"}}></div>
-              </div>
               <div className="overflow-hidden" style={{height:"200px"}}>
                 <img src={s.img} alt={s.label} className="w-full object-cover object-top transition-transform duration-700 hover:scale-105" style={{height:"200px"}}/>
               </div>
@@ -308,9 +266,9 @@ export default function LandingPage() {
               className="grid grid-cols-2 gap-0.5 rounded-xl overflow-hidden"
             >
               {[
-                {title:"Smart Formulator", desc:"Real-time cost calculations and ingredient insights.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png"},
-                {title:"Order Management", desc:"Track and fulfill orders from start to finish.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Cost-PricingSS.png"},
-                {title:"Fragrance Blender", desc:"AI-powered scent blends from your library.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance_BlenderSS.png"},
+                {title:"Smart Formulator", desc:"Real-time cost calculations and ingredient insights.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Formulator-zoom.png"},
+                {title:"Order Management", desc:"Track and fulfill orders from start to finish.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/OrdersSS.png"},
+                {title:"Fragrance Blender", desc:"AI-powered scent blends from your library.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png"},
                 {title:"Education Hub", desc:"Learn formulation techniques and best practices.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png"},
               ].map((card) => (
                 <motion.div
@@ -325,14 +283,8 @@ export default function LandingPage() {
                     aspectRatio:"4/3"
                   }}
                 >
-                  {/* Browser chrome */}
-                  <div style={{background:"#071A14", padding:"6px 10px", display:"flex", gap:"4px", alignItems:"center", borderBottom:"1px solid rgba(184,154,93,0.1)", flexShrink:0}}>
-                    <div style={{width:7,height:7,borderRadius:"50%",background:"#FF5F57"}}></div>
-                    <div style={{width:7,height:7,borderRadius:"50%",background:"#FEBC2E"}}></div>
-                    <div style={{width:7,height:7,borderRadius:"50%",background:"#28C840"}}></div>
-                  </div>
-                  <img src={card.img} alt={card.title} className="w-full object-cover object-top transition-transform duration-500 hover:scale-105" style={{height:"calc(100% - 24px)"}} />
-                  <div className="absolute inset-0" style={{background:"linear-gradient(180deg, transparent 50%, rgba(7,20,16,0.95) 100%)", top:"24px"}} />
+                  <img src={card.img} alt={card.title} className="w-full object-cover object-top transition-transform duration-500 hover:scale-105" style={{height:"100%"}} />
+                  <div className="absolute inset-0" style={{background:"linear-gradient(180deg, transparent 50%, rgba(7,20,16,0.95) 100%)"}} />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="text-sm font-medium text-[#D9C9A3]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{card.title}</div>
                     <p className="text-[10px] text-white/45 mt-1 leading-snug">{card.desc}</p>
