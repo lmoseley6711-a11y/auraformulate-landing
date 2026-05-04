@@ -35,8 +35,9 @@ export default function LandingPage() {
 
       {/* NAVBAR */}
       <header className="flex items-center justify-between px-10 py-6 border-b border-[#10261F]">
-        <div className="text-lg font-semibold tracking-wide text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>
-          AuraFormulate
+        <div className="flex flex-col" style={{fontFamily:"'Cormorant Garamond', serif"}}>
+          <span className="text-3xl font-semibold tracking-wide text-[#B89A5D]" style={{lineHeight:1}}>AuraFormulate</span>
+          <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">Made for Makers</span>
         </div>
         <nav className="hidden md:flex gap-8 text-sm text-[#A8B5AC]">
           <a href="#features" className="hover:text-[#B89A5D] transition-colors">Features</a>
@@ -55,7 +56,7 @@ export default function LandingPage() {
       </header>
 
       {/* HERO */}
-      <section className="relative px-10 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <section className="relative px-10 py-20 grid md:grid-cols-2 gap-12 items-center" style={{background:"radial-gradient(ellipse 80% 60% at 70% 50%, rgba(90,24,35,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 0% 100%, rgba(184,154,93,0.05) 0%, transparent 50%), #071A14", minHeight:"100vh"}}>
 
         {/* LEFT */}
         <motion.div variants={stagger} initial="hidden" animate="show">
@@ -182,51 +183,95 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* TICKER */}
-      <div className="bg-[#5A6B56] border-t border-b border-[#B89A5D]/12 overflow-hidden">
+      {/* PREMIUM FEATURE STRIP - replaces ticker */}
+      <section style={{background:"linear-gradient(180deg, #071A14 0%, #10261F 50%, #071A14 100%)", borderTop:"1px solid rgba(184,154,93,0.15)", borderBottom:"1px solid rgba(184,154,93,0.15)", padding:"40px 6%"}}>
         <motion.div
-          animate={{ x: [0, -1400] }}
-          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto grid grid-cols-3 md:grid-cols-7 gap-6"
         >
-          {[...Array(2)].map((_, di) => (
-            <div key={di} className="flex">
-              {["🧪 Formulate", "📖 Recipe Library", "📦 Orders", "🌿 Inventory", "🌸 Fragrance Blender", "👥 Clients", "🚚 Shipping"].map((item) => (
-                <div key={item} className="flex items-center gap-3 px-10 py-4 text-sm text-white/70 flex-shrink-0">
-                  {item}
-                  <span className="text-[#8A7040] text-xs">◆</span>
-                </div>
-              ))}
-            </div>
+          {[
+            {icon:"⚗️", label:"Formulator", sub:"AI-powered"},
+            {icon:"📖", label:"Recipe Library", sub:"Organized"},
+            {icon:"📦", label:"Orders", sub:"Tracked"},
+            {icon:"🌿", label:"Inventory", sub:"Managed"},
+            {icon:"🌸", label:"Fragrance", sub:"Blended"},
+            {icon:"👥", label:"Clients", sub:"Connected"},
+            {icon:"🚚", label:"Shipping", sub:"Calculated"},
+          ].map((f) => (
+            <motion.div
+              key={f.label}
+              variants={fadeUp}
+              className="flex flex-col items-center text-center group"
+            >
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 text-xl transition-all duration-300 group-hover:scale-110"
+                style={{background:"linear-gradient(135deg, rgba(184,154,93,0.15), rgba(184,154,93,0.05))", border:"1px solid rgba(184,154,93,0.25)", boxShadow:"0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)"}}>
+                {f.icon}
+              </div>
+              <div className="text-xs font-medium text-[#D9C9A3]">{f.label}</div>
+              <div className="text-[10px] text-white/30 mt-0.5">{f.sub}</div>
+            </motion.div>
           ))}
         </motion.div>
-      </div>
+      </section>
 
       {/* SCREENSHOT SHOWCASE */}
-      <section className="py-16 px-6 bg-[#071A14] overflow-hidden">
+      <section className="py-20 px-6" style={{background:"linear-gradient(180deg, #071A14 0%, #10261F 100%)"}}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-12"
         >
-          <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-2">See it in action</div>
-          <h3 className="text-2xl text-[#E8E3D9]" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>Every tool you need, beautifully designed</h3>
+          <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">See it in action</div>
+          <h3 className="text-3xl text-[#E8E3D9]" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>Every tool you need,<br/><em className="italic text-[#B89A5D]">beautifully designed</em></h3>
         </motion.div>
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
         >
           {[
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png", label:"Formulator", desc:"Build recipes with AI precision"},
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance_BlenderSS.png", label:"Fragrance Blender", desc:"Create signature scent blends"},
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/LabelingSS.png", label:"Labeling & Compliance", desc:"INCI lists and label copy instantly"},
+            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png", label:"Formulator", desc:"Build AI-powered recipes with real-time cost tracking and ingredient analysis.", icon:"⚗️"},
+            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance_BlenderSS.png", label:"Fragrance Blender", desc:"Create signature scent blends with AI-guided combinations from your library.", icon:"🌸"},
+            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/LabelingSS.png", label:"Labeling & Compliance", desc:"Generate INCI lists and professional label copy instantly.", icon:"🏷️"},
           ].map((s) => (
             <motion.div
               key={s.label}
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                background:"linear-gradient(180deg, #10261F, #071A14)",
+                border:"1px solid rgba(184,154,93,0.2)",
+                boxShadow:"0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
+              }}
+            >
+              {/* Screenshot with browser chrome */}
+              <div style={{background:"#071A14", borderBottom:"1px solid rgba(184,154,93,0.1)", padding:"8px 12px", display:"flex", alignItems:"center", gap:"6px"}}>
+                <div style={{width:8,height:8,borderRadius:"50%",background:"#FF5F57"}}></div>
+                <div style={{width:8,height:8,borderRadius:"50%",background:"#FEBC2E"}}></div>
+                <div style={{width:8,height:8,borderRadius:"50%",background:"#28C840"}}></div>
+              </div>
+              <div className="overflow-hidden" style={{height:"200px"}}>
+                <img src={s.img} alt={s.label} className="w-full object-cover object-top transition-transform duration-700 hover:scale-105" style={{height:"200px"}}/>
+              </div>
+              <div className="p-5" style={{background:"linear-gradient(180deg, rgba(16,38,31,0.9), rgba(7,26,20,0.95))"}}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">{s.icon}</span>
+                  <span className="text-base font-medium text-[#D9C9A3]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{s.label}</span>
+                </div>
+                <p className="text-xs text-white/45 leading-relaxed">{s.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
               variants={fadeUp}
               whileHover={{ y: -4, scale: 1.01 }}
               className="rounded-xl overflow-hidden border border-[#B89A5D]/15 shadow-xl"
@@ -278,23 +323,34 @@ export default function LandingPage() {
               className="grid grid-cols-2 gap-0.5 rounded-xl overflow-hidden"
             >
               {[
-                {title:"Smart Formulator", desc:"Real-time cost calculations and ingredient insights.", img:"https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=400&q=80"},
-                {title:"Order Management", desc:"Track and fulfill orders from start to finish.", img:"https://images.unsplash.com/photo-1583947581924-860bda6a26df?w=400&q=80"},
-                {title:"Inventory Control", desc:"Know what you have and what to restock.", img:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&q=80"},
-                {title:"Client Management", desc:"Organize details, history, and communication.", img:"https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80"},
+                {title:"Smart Formulator", desc:"Real-time cost calculations and ingredient insights.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png"},
+                {title:"Order Management", desc:"Track and fulfill orders from start to finish.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Cost-PricingSS.png"},
+                {title:"Fragrance Blender", desc:"AI-powered scent blends from your library.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance_BlenderSS.png"},
+                {title:"Education Hub", desc:"Learn formulation techniques and best practices.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png"},
               ].map((card) => (
                 <motion.div
                   key={card.title}
                   variants={fadeUp}
-                  whileHover={{ scale: 1.02, zIndex: 2 }}
-                  className="relative aspect-square overflow-hidden cursor-default"
-                  style={{background:"rgba(50,75,45,0.45)"}}
+                  whileHover={{ scale: 1.03, y: -4, zIndex: 2 }}
+                  className="relative overflow-hidden cursor-default rounded-xl"
+                  style={{
+                    background:"#071A14",
+                    border:"1px solid rgba(184,154,93,0.2)",
+                    boxShadow:"0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
+                    aspectRatio:"4/3"
+                  }}
                 >
-                  <img src={card.img} alt={card.title} className="absolute inset-0 w-full h-full object-cover opacity-50 transition-opacity duration-300 hover:opacity-65" />
-                  <div className="absolute inset-0" style={{background:"linear-gradient(180deg, transparent 30%, rgba(7,20,16,0.88) 100%)"}} />
+                  {/* Browser chrome */}
+                  <div style={{background:"#071A14", padding:"6px 10px", display:"flex", gap:"4px", alignItems:"center", borderBottom:"1px solid rgba(184,154,93,0.1)", flexShrink:0}}>
+                    <div style={{width:7,height:7,borderRadius:"50%",background:"#FF5F57"}}></div>
+                    <div style={{width:7,height:7,borderRadius:"50%",background:"#FEBC2E"}}></div>
+                    <div style={{width:7,height:7,borderRadius:"50%",background:"#28C840"}}></div>
+                  </div>
+                  <img src={card.img} alt={card.title} className="w-full object-cover object-top transition-transform duration-500 hover:scale-105" style={{height:"calc(100% - 24px)"}} />
+                  <div className="absolute inset-0" style={{background:"linear-gradient(180deg, transparent 50%, rgba(7,20,16,0.95) 100%)", top:"24px"}} />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="text-sm font-medium text-[#E8E3D9]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{card.title}</div>
-                    <p className="text-[10px] text-white/55 mt-0.5 leading-snug">{card.desc}</p>
+                    <div className="text-sm font-medium text-[#D9C9A3]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{card.title}</div>
+                    <p className="text-[10px] text-white/45 mt-1 leading-snug">{card.desc}</p>
                   </div>
                 </motion.div>
               ))}
