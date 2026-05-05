@@ -1,293 +1,313 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const }
+    transition: { duration: 0.7, ease: "easeOut" as const }
   }
 };
 
 const stagger = {
   hidden: {},
   show: {
-    transition: {
-      staggerChildren: 0.15
-    }
+    transition: { staggerChildren: 0.12 }
   }
 };
 
 const glowPulse = {
   animate: {
-    opacity: [0.4, 0.7, 0.4],
-    scale: [1, 1.05, 1],
-    transition: {
-      duration: 4,
-      repeat: Infinity
-    }
+    opacity: [0.3, 0.6, 0.3],
+    scale: [1, 1.08, 1],
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" as const }
   }
 };
 
 export default function LandingPage() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const mockupY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+
   return (
-    <div className="min-h-screen bg-[#071A14] text-[#E8E3D9] overflow-hidden">
+    <div className="min-h-screen text-[#E8E3D9] overflow-hidden" style={{ background: "#071A14", fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+
+      {/* GRAIN TEXTURE OVERLAY */}
+      <div className="fixed inset-0 pointer-events-none z-50" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "256px 256px",
+        opacity: 0.025,
+        mixBlendMode: "overlay"
+      }} />
 
       {/* NAVBAR */}
-      <header className="flex items-center justify-between px-10 py-6 border-b border-[#10261F]">
-        <div className="flex flex-col" style={{fontFamily:"'Cormorant Garamond', serif"}}>
-          <span className="text-3xl font-semibold tracking-wide text-[#B89A5D]" style={{lineHeight:1}}>AuraFormulate</span>
-          <span className="text-[10px] tracking-[0.2em] uppercase text-white/35">Made for Makers</span>
+      <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 md:px-14 py-5"
+        style={{ background: "rgba(7,26,20,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(184,154,93,0.12)" }}>
+        <div className="flex flex-col">
+          <span className="text-2xl font-semibold tracking-wide text-[#B89A5D]" style={{ lineHeight: 1.1 }}>AuraFormulate</span>
+          <span className="text-[9px] tracking-[0.25em] uppercase text-white/30">Made for Makers</span>
         </div>
-        <nav className="hidden md:flex gap-8 text-sm text-[#A8B5AC]">
-          <a href="#features" className="hover:text-[#B89A5D] transition-colors">Features</a>
-          <a href="#pricing" className="hover:text-[#B89A5D] transition-colors">Pricing</a>
-          <a href="#who" className="hover:text-[#B89A5D] transition-colors">About</a>
+        <nav className="hidden md:flex gap-8 text-sm text-[#A8B5AC]/80">
+          <a href="#features" className="hover:text-[#B89A5D] transition-colors duration-200">Features</a>
+          <a href="#pricing" className="hover:text-[#B89A5D] transition-colors duration-200">Pricing</a>
+          <a href="#who" className="hover:text-[#B89A5D] transition-colors duration-200">About</a>
         </nav>
-        <motion.a
-          href="https://app.auraformulate.com"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="px-5 py-2 rounded-lg font-medium hover:opacity-90 transition text-[#071A14]"
-          style={{background:"linear-gradient(135deg, #B89A5D, #D9C9A3)"}}
-        >
+        <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+          className="px-5 py-2 rounded-lg text-sm font-medium text-[#071A14] transition"
+          style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>
           Try Free
         </motion.a>
       </header>
 
       {/* HERO */}
-      <section className="relative px-10 py-20 grid md:grid-cols-2 gap-12 items-center" style={{background:"radial-gradient(ellipse 80% 60% at 70% 50%, rgba(90,24,35,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 0% 100%, rgba(184,154,93,0.05) 0%, transparent 50%), #071A14", minHeight:"100vh"}}>
+      <section ref={heroRef} className="relative min-h-screen flex items-center pt-24" style={{ overflow: "hidden" }}>
+        <div className="absolute inset-0" style={{
+          background: "radial-gradient(ellipse 90% 70% at 75% 40%, rgba(106,18,34,0.18) 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 5% 80%, rgba(184,154,93,0.07) 0%, transparent 50%), #071A14"
+        }} />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "linear-gradient(135deg, rgba(7,26,20,0.7) 0%, transparent 50%, rgba(7,26,20,0.5) 100%)"
+        }} />
+        <div className="absolute left-0 top-0 bottom-0 w-[3px] opacity-25" style={{
+          background: "linear-gradient(180deg, transparent, #B89A5D 30%, #B89A5D 70%, transparent)"
+        }} />
 
-        {/* LEFT */}
-        <motion.div variants={stagger} initial="hidden" animate="show">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 grid md:grid-cols-2 gap-12 lg:gap-20 items-center py-16">
 
-          <motion.div variants={fadeUp} className="mb-4 inline-block text-xs px-3 py-1 rounded-full bg-[#0F2A22] text-[#B89A5D] border border-[#10261F]">
-            NOW LIVE — MADE FOR MAKERS
+          {/* LEFT */}
+          <motion.div variants={stagger} initial="hidden" animate="show">
+
+            {/* LIFESTYLE IMAGE PLACEHOLDER — replace with img tag + Supabase URL when ready */}
+            <motion.div variants={fadeUp} className="mb-8 rounded-2xl overflow-hidden relative"
+              style={{
+                height: "200px",
+                background: "linear-gradient(135deg, #0F2A22, #1a3828)",
+                border: "1px solid rgba(184,154,93,0.2)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
+              }}>
+              <div className="absolute inset-0 flex items-center justify-center"
+                style={{ color: "rgba(184,154,93,0.25)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                Hero lifestyle image goes here
+              </div>
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, transparent 30%, rgba(184,154,93,0.04) 100%)" }} />
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="mb-4 inline-flex items-center gap-2 text-[10px] px-3 py-1.5 rounded-full border"
+              style={{ background: "rgba(15,42,34,0.8)", borderColor: "rgba(184,154,93,0.2)", color: "#B89A5D", letterSpacing: "0.18em" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6A1222] animate-pulse" />
+              NOW LIVE — MADE FOR MAKERS
+            </motion.div>
+
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl leading-[1.08]" style={{ fontWeight: 500 }}>
+              Turn your passion
+              <br />for making
+              <br />
+              <em style={{ color: "#B89A5D" }}>into a real business</em>
+            </motion.h1>
+
+            <motion.p variants={fadeUp} className="mt-5 text-[#A8B5AC] text-base leading-relaxed max-w-md"
+              style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+              Recipes, clients, orders, AI-powered formulation, cost calculations, and shipping — all in one beautiful tool built for makers like you.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
+              <motion.a href="https://app.auraformulate.com"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }}
+                whileTap={{ scale: 0.97 }}
+                className="px-7 py-3.5 rounded-lg font-medium text-white text-sm transition"
+                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
+                Start free today →
+              </motion.a>
+              <motion.a href="#features"
+                className="px-7 py-3.5 rounded-lg text-sm border transition"
+                style={{ color: "#B89A5D", borderColor: "rgba(184,154,93,0.25)", background: "rgba(184,154,93,0.06)" }}
+                whileHover={{ background: "rgba(184,154,93,0.12)" }}>
+                See what's inside ↓
+              </motion.a>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="mt-12 flex gap-8 text-sm">
+              {[{ n: "13", label: "Built-in tools" }, { n: "AI", label: "Recipe generator" }, { n: "Free", label: "To get started" }].map(s => (
+                <div key={s.n}>
+                  <div className="text-2xl text-[#B89A5D]" style={{ lineHeight: 1 }}>{s.n}</div>
+                  <div className="text-[10px] text-white/30 mt-1 uppercase tracking-widest">{s.label}</div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl leading-tight" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>
-            Turn your passion
-            <br />
-            for making
-            <br />
-            <span className="italic" style={{color:"#B89A5D"}}>
-              into a real business
-            </span>
-          </motion.h1>
-
-          <motion.p variants={fadeUp} className="mt-6 text-[#A8B5AC] max-w-lg" style={{fontWeight:300}}>
-            Recipes, clients, orders, AI-powered formulation, cost calculations,
-            and shipping — all in one beautiful tool.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="mt-8 flex gap-4">
-            <motion.a
-              href="https://app.auraformulate.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="px-6 py-3 rounded-lg font-medium hover:opacity-90 transition text-white"
-              style={{background:"linear-gradient(135deg, #5A1823, #5A1823)"}}
-            >
-              Start free today →
-            </motion.a>
-            <motion.a
-              href="#features"
-              whileHover={{ color: "#B89A5D" }}
-              className="text-[#B89A5D] flex items-center"
-            >
-              See what's inside ↓
-            </motion.a>
+          {/* RIGHT — App Screenshot */}
+          <motion.div style={{ y: mockupY }}
+            initial={{ opacity: 0, scale: 0.94, x: 30 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative">
+            <motion.div variants={glowPulse} animate="animate"
+              className="absolute -inset-16 blur-3xl pointer-events-none"
+              style={{ background: "radial-gradient(circle, rgba(106,18,34,0.2), rgba(184,154,93,0.05) 50%, transparent 70%)" }} />
+            <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full pointer-events-none"
+              style={{ background: "radial-gradient(circle, rgba(184,154,93,0.1), transparent 70%)", border: "1px solid rgba(184,154,93,0.08)" }} />
+            <div className="relative rounded-2xl overflow-hidden"
+              style={{
+                border: "1px solid rgba(184,154,93,0.25)",
+                boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)"
+              }}>
+              <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png"
+                alt="AuraFormulate Dashboard" className="w-full object-cover object-top" style={{ maxHeight: "460px" }} />
+              <div className="absolute bottom-0 left-0 right-0 h-16"
+                style={{ background: "linear-gradient(to top, rgba(7,26,20,0.6), transparent)" }} />
+            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+              className="absolute -bottom-5 -left-5 rounded-xl p-4 flex items-center gap-3"
+              style={{
+                background: "rgba(11,28,20,0.95)",
+                border: "1px solid rgba(184,154,93,0.2)",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+                backdropFilter: "blur(12px)"
+              }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base"
+                style={{ background: "rgba(184,154,93,0.12)", border: "1px solid rgba(184,154,93,0.2)" }}>⚗️</div>
+              <div>
+                <div className="text-xs font-medium text-[#D9C9A3]">AI Formulator</div>
+                <div className="text-[10px] text-white/35">Ready to use</div>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />
+            </motion.div>
           </motion.div>
-
-          {/* STATS */}
-          <motion.div variants={fadeUp} className="mt-12 flex gap-10 text-sm text-[#A8B5AC]">
-            <div>
-              <div className="text-xl text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>13</div>
-              BUILT-IN TOOLS
-            </div>
-            <div>
-              <div className="text-xl text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>AI</div>
-              RECIPE GENERATOR
-            </div>
-            <div>
-              <div className="text-xl text-[#B89A5D]" style={{fontFamily:"'Cormorant Garamond', serif"}}>FREE</div>
-              TO GET STARTED
-            </div>
-          </motion.div>
-
-        </motion.div>
-
-        {/* RIGHT (APP MOCKUP) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
-          className="relative"
-        >
-          {/* Glow pulse */}
-          <motion.div
-            variants={glowPulse}
-            animate="animate"
-            className="absolute -inset-12 blur-3xl"
-            style={{background:"radial-gradient(circle, rgba(122,30,44,0.15), transparent 70%)"}}
-          />
-
-          {/* Real app screenshot */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#B89A5D]/20">
-            <img
-              src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png"
-              alt="AuraFormulate Dashboard"
-              className="w-full object-cover"
-              style={{maxHeight: '420px', objectPosition: 'top'}}
-            />
-          </div>
-
-          {/* Floating revenue card */}
-
-        </motion.div>
+        </div>
       </section>
 
-      {/* PREMIUM FEATURE STRIP - replaces ticker */}
-      <section style={{background:"linear-gradient(180deg, #071A14 0%, #10261F 50%, #071A14 100%)", borderTop:"1px solid rgba(184,154,93,0.15)", borderBottom:"1px solid rgba(184,154,93,0.15)", padding:"40px 6%"}}>
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto grid grid-cols-3 md:grid-cols-7 gap-6"
-        >
+      {/* FEATURES ICON STRIP */}
+      <section style={{
+        background: "linear-gradient(180deg, #071A14 0%, #0C2218 50%, #071A14 100%)",
+        borderTop: "1px solid rgba(184,154,93,0.1)",
+        borderBottom: "1px solid rgba(184,154,93,0.1)",
+        padding: "48px 6%",
+        position: "relative"
+      }}>
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.06), transparent)" }} />
+        <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+          className="max-w-5xl mx-auto grid grid-cols-4 md:grid-cols-7 gap-4 md:gap-6">
           {[
-            {icon:"⚗️", label:"Formulator", sub:"AI-powered"},
-            {icon:"📖", label:"Recipe Library", sub:"Organized"},
-            {icon:"📦", label:"Orders", sub:"Tracked"},
-            {icon:"🌿", label:"Inventory", sub:"Managed"},
-            {icon:"🌸", label:"Fragrance", sub:"Blended"},
-            {icon:"👥", label:"Clients", sub:"Connected"},
-            {icon:"🚚", label:"Shipping", sub:"Calculated"},
+            { icon: "⚗️", label: "Formulator" }, { icon: "📖", label: "Recipes" },
+            { icon: "📦", label: "Orders" }, { icon: "🌿", label: "Inventory" },
+            { icon: "🌸", label: "Fragrance" }, { icon: "👥", label: "Clients" },
+            { icon: "🚚", label: "Shipping" },
           ].map((f) => (
-            <motion.div
-              key={f.label}
-              variants={fadeUp}
-              className="flex flex-col items-center text-center group"
-            >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 text-xl transition-all duration-300 group-hover:scale-110"
-                style={{background:"linear-gradient(135deg, rgba(184,154,93,0.15), rgba(184,154,93,0.05))", border:"1px solid rgba(184,154,93,0.25)", boxShadow:"0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)"}}>
+            <motion.div key={f.label} variants={fadeUp} whileHover={{ y: -4, scale: 1.05 }}
+              className="flex flex-col items-center text-center group cursor-default">
+              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-2.5 text-lg transition-all duration-300"
+                style={{
+                  background: "linear-gradient(135deg, rgba(184,154,93,0.12), rgba(184,154,93,0.04))",
+                  border: "1px solid rgba(184,154,93,0.18)",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)"
+                }}>
                 {f.icon}
               </div>
-              <div className="text-xs font-medium text-[#D9C9A3]">{f.label}</div>
-              <div className="text-[10px] text-white/30 mt-0.5">{f.sub}</div>
+              <div className="text-[10px] font-medium text-[#D9C9A3]/70 tracking-wide">{f.label}</div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
       {/* SCREENSHOT SHOWCASE */}
-      <section className="py-20 px-6" style={{background:"linear-gradient(180deg, #071A14 0%, #10261F 100%)"}}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">See it in action</div>
-          <h3 className="text-3xl text-[#E8E3D9]" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>Every tool you need,<br/><em className="italic text-[#B89A5D]">beautifully designed</em></h3>
+      <section className="py-24 px-8 md:px-14" style={{
+        background: "linear-gradient(180deg, #071A14 0%, #0C2218 60%, #071A14 100%)", position: "relative"
+      }}>
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(184,154,93,0.03) 0%, transparent 70%)" }} />
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="text-center mb-14 relative z-10">
+          <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">See it in action</div>
+          <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 500 }}>
+            Every tool you need, <em className="italic" style={{ color: "#B89A5D" }}>beautifully designed</em>
+          </h2>
+          <div className="mx-auto mt-5 h-px w-24"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
         </motion.div>
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
-        >
+        <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
           {[
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png", label:"Formulator", desc:"Build AI-powered recipes with real-time cost tracking and ingredient analysis.", icon:"⚗️"},
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance_BlenderSS.png", label:"Fragrance Blender", desc:"Create signature scent blends with AI-guided combinations from your library.", icon:"🌸"},
-            {img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/LabelingSS.png", label:"Labeling & Compliance", desc:"Generate INCI lists and professional label copy instantly.", icon:"🏷️"},
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Formulator-zoom.png", label: "Smart Formulator", desc: "Build AI-powered recipes with real-time cost tracking and ingredient analysis.", icon: "⚗️" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png", label: "Fragrance Blender", desc: "Create signature scent blends with AI-guided combinations.", icon: "🌸" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/LabelingSS.png", label: "Labeling & Compliance", desc: "Generate INCI lists and professional label copy instantly.", icon: "🏷️" },
           ].map((s) => (
-            <motion.div
-              key={s.label}
-              variants={fadeUp}
-              whileHover={{ y: -6 }}
-              className="rounded-2xl overflow-hidden"
+            <motion.div key={s.label} variants={fadeUp} whileHover={{ y: -8 }} className="rounded-2xl overflow-hidden cursor-default"
               style={{
-                background:"linear-gradient(180deg, #10261F, #071A14)",
-                border:"1px solid rgba(184,154,93,0.2)",
-                boxShadow:"0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
-              }}
-            >
-              <div className="overflow-hidden" style={{height:"200px"}}>
-                <img src={s.img} alt={s.label} className="w-full object-cover object-top transition-transform duration-700 hover:scale-105" style={{height:"200px"}}/>
+                background: "linear-gradient(180deg, #0F2520 0%, #071A14 100%)",
+                border: "1px solid rgba(184,154,93,0.18)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
+              }}>
+              <div className="overflow-hidden" style={{ height: "200px", position: "relative" }}>
+                <img src={s.img} alt={s.label} className="w-full object-cover object-top transition-transform duration-700 hover:scale-105" style={{ height: "200px" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,37,32,0.1) 0%, rgba(7,26,20,0.5) 100%)" }} />
               </div>
-              <div className="p-5" style={{background:"linear-gradient(180deg, rgba(16,38,31,0.9), rgba(7,26,20,0.95))"}}>
+              <div className="p-5 relative">
+                <div className="absolute top-0 left-5 right-5 h-px"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.2), transparent)" }} />
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-lg">{s.icon}</span>
-                  <span className="text-base font-medium text-[#D9C9A3]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{s.label}</span>
+                  <span className="text-base">{s.icon}</span>
+                  <span className="text-base font-medium text-[#D9C9A3]">{s.label}</span>
                 </div>
-                <p className="text-xs text-white/45 leading-relaxed">{s.desc}</p>
+                <p className="text-xs text-white/40 leading-relaxed">{s.desc}</p>
               </div>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-
-      <section className="px-10 py-20 border-t border-[#10261F] bg-[#10261F]" id="features">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-start mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">Power your business</div>
-              <h2 className="text-4xl leading-tight" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>
-                Everything you need,{" "}
-                <span className="italic" style={{color:"#B89A5D"}}>all in one place.</span>
+      {/* FEATURES — text left, 2x2 grid right */}
+      <section className="px-8 md:px-14 py-24 border-t" id="features" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #071A14 0%, #0D2118 100%)",
+        position: "relative"
+      }}>
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(90deg, rgba(7,26,20,0.6) 0%, transparent 20%, transparent 80%, rgba(7,26,20,0.6) 100%)" }} />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-4">Power your business</div>
+              <h2 className="text-4xl md:text-5xl leading-tight" style={{ fontWeight: 500 }}>
+                Everything you need, <em className="italic" style={{ color: "#B89A5D" }}>all in one place.</em>
               </h2>
-              <p className="mt-4 text-[#A8B5AC] text-sm leading-relaxed" style={{fontWeight:300}}>
-                AuraFormulate is built specifically for cosmetic creators, small brands, and makers who want to grow without the chaos.
+              <p className="mt-5 text-[#A8B5AC] text-base leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+                Built specifically for cosmetic creators, small brands, and makers who want to grow without the chaos.
               </p>
-              <motion.a
-                href="https://app.auraformulate.com"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg text-sm text-[#B89A5D] border border-[#B89A5D]/25 bg-[#B89A5D]/10 hover:bg-[#B89A5D]/18 transition"
-              >
-                Explore Features →
+              <motion.ul variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="mt-8 space-y-3">
+                {["Real-time ingredient cost calculations", "AI-powered recipe generation", "Client management & order tracking", "Fragrance blending with AI guidance", "INCI labeling & compliance tools", "Shipping rate calculator"].map(item => (
+                  <motion.li key={item} variants={fadeUp} className="flex items-start gap-3 text-sm text-[#A8B5AC]">
+                    <span className="mt-0.5 w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] text-[#B89A5D]"
+                      style={{ background: "rgba(184,154,93,0.12)", border: "1px solid rgba(184,154,93,0.2)" }}>✓</span>
+                    {item}
+                  </motion.li>
+                ))}
+              </motion.ul>
+              <motion.a href="https://app.auraformulate.com"
+                whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(106,18,34,0.3)" }} whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-lg text-sm text-white font-medium transition"
+                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.25)" }}>
+                Explore all features →
               </motion.a>
             </motion.div>
 
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-0.5 rounded-xl overflow-hidden"
-            >
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 gap-3">
               {[
-                {title:"Smart Formulator", desc:"Real-time cost calculations and ingredient insights.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Formulator-zoom.png"},
-                {title:"Order Management", desc:"Track and fulfill orders from start to finish.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/OrdersSS.png"},
-                {title:"Fragrance Blender", desc:"AI-powered scent blends from your library.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png"},
-                {title:"Education Hub", desc:"Learn formulation techniques and best practices.", img:"https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png"},
+                { title: "Smart Formulator", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png" },
+                { title: "Order Management", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/OrdersSS.png" },
+                { title: "Fragrance Blender", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png" },
+                { title: "Education Hub", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png" },
               ].map((card) => (
-                <motion.div
-                  key={card.title}
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.03, y: -4, zIndex: 2 }}
-                  className="relative overflow-hidden cursor-default rounded-xl"
-                  style={{
-                    background:"#071A14",
-                    border:"1px solid rgba(184,154,93,0.2)",
-                    boxShadow:"0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
-                    aspectRatio:"4/3"
-                  }}
-                >
-                  <img src={card.img} alt={card.title} className="w-full object-cover object-top transition-transform duration-500 hover:scale-105" style={{height:"100%"}} />
-                  <div className="absolute inset-0" style={{background:"linear-gradient(180deg, transparent 50%, rgba(7,20,16,0.95) 100%)"}} />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="text-sm font-medium text-[#D9C9A3]" style={{fontFamily:"'Cormorant Garamond', serif"}}>{card.title}</div>
-                    <p className="text-[10px] text-white/45 mt-1 leading-snug">{card.desc}</p>
+                <motion.div key={card.title} variants={fadeUp} whileHover={{ scale: 1.03, y: -4, zIndex: 2 }}
+                  className="relative overflow-hidden rounded-xl cursor-default"
+                  style={{ aspectRatio: "4/3", border: "1px solid rgba(184,154,93,0.18)", boxShadow: "0 16px 50px rgba(0,0,0,0.5)" }}>
+                  <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105" />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(7,20,16,0.95) 100%)" }} />
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <div className="text-xs font-medium text-[#D9C9A3]">{card.title}</div>
                   </div>
                 </motion.div>
               ))}
@@ -296,59 +316,86 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* WHO IT'S FOR */}
-      <section className="px-10 py-20 border-t border-[#10261F]" id="who">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">Who it's for</div>
-            <h2 className="text-4xl leading-tight" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>
-              Whether you're just starting out<br/>or <em style={{color:"#B89A5D"}}>scaling up</em> — this is for you
+      {/* MID-PAGE EMOTIONAL SECTION */}
+      <section className="relative py-28 px-8 md:px-14 overflow-hidden" style={{ background: "#071A14" }}>
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 70% 60% at 80% 50%, rgba(106,18,34,0.1) 0%, transparent 60%), radial-gradient(ellipse 50% 80% at 20% 50%, rgba(184,154,93,0.05) 0%, transparent 60%)" }} />
+        {/* PLACEHOLDER — replace with lifestyle image once available */}
+        {/* <img src="YOUR_LIFESTYLE_IMAGE_URL" className="absolute inset-0 w-full h-full object-cover opacity-20" /> */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
+              <span className="text-[#B89A5D] text-xl">✦</span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, #B89A5D, transparent)" }} />
+            </div>
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-4">Built for people like you</div>
+            <h2 className="text-4xl md:text-5xl leading-tight mb-6" style={{ fontWeight: 500 }}>
+              Your craft deserves
+              <br /><em style={{ color: "#B89A5D" }}>a serious business behind it</em>
             </h2>
-            <p className="mt-4 text-[#A8B5AC] text-sm leading-relaxed" style={{fontWeight:300}}>
+            <p className="text-[#A8B5AC] text-base leading-relaxed max-w-2xl mx-auto" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+              You put love, knowledge, and skill into every product you make. AuraFormulate gives you the business infrastructure to match — so you can charge what you're worth, serve your clients beautifully, and never lose a formula again.
+            </p>
+            <div className="flex items-center justify-center gap-4 mt-10">
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
+              <span className="text-[#B89A5D] text-xl">✦</span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, #B89A5D, transparent)" }} />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WHO IT'S FOR + TESTIMONIAL */}
+      <section className="px-8 md:px-14 py-24 border-t" id="who" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #0C2218 0%, #071A14 100%)",
+        position: "relative"
+      }}>
+        <div className="absolute right-0 top-1/4 w-64 h-64 pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(106,18,34,0.1), transparent 70%)", filter: "blur(40px)" }} />
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-4">Who it's for</div>
+            <h2 className="text-4xl md:text-5xl leading-tight" style={{ fontWeight: 500 }}>
+              Whether you're just starting
+              <br />or <em style={{ color: "#B89A5D" }}>scaling up</em>
+            </h2>
+            <p className="mt-5 text-[#A8B5AC] text-sm leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
               It doesn't matter if you're making your first batch or your hundredth. If you handcraft beauty and cosmetic products and want to run your business with more confidence — AuraFormulate is for you.
             </p>
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="flex flex-wrap gap-2 mt-6"
-            >
-              {["🛍️ Etsy Sellers","🧴 Custom Product Makers","🌿 Natural Beauty Creators","💄 Small Beauty Brands","🧼 Soap Makers","💅 Lip & Nail Artists","🌺 Skincare Creators","💇 Hair Care Makers"].map((pill) => (
-                <motion.span
-                  key={pill}
-                  variants={fadeUp}
-                  whileHover={{ background: "rgba(122,30,44,0.2)", borderColor: "rgba(155,37,53,0.4)" }}
-                  className="px-3 py-1.5 rounded-full text-xs text-[#A8B5AC] border border-[#B89A5D]/20"
-                  style={{background:"rgba(61,90,56,0.3)"}}
-                >
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex flex-wrap gap-2 mt-7">
+              {["Etsy Sellers", "Custom Product Makers", "Natural Beauty Creators", "Small Beauty Brands", "Soap Makers", "Lip & Nail Artists", "Skincare Creators", "Hair Care Makers"].map((pill) => (
+                <motion.span key={pill} variants={fadeUp}
+                  whileHover={{ borderColor: "rgba(184,154,93,0.4)", background: "rgba(106,18,34,0.15)" }}
+                  className="px-3 py-1.5 rounded-full text-xs text-[#A8B5AC] border cursor-default transition"
+                  style={{ background: "rgba(15,42,34,0.5)", borderColor: "rgba(184,154,93,0.15)" }}>
                   {pill}
                 </motion.span>
               ))}
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="rounded-2xl p-9 border border-[#B89A5D]/15" style={{background:"rgba(50,75,45,0.45)"}}>
-              <div className="text-5xl text-[#B89A5D] leading-none mb-4" style={{fontFamily:"'Cormorant Garamond', serif"}}>"</div>
-              <p className="text-lg italic text-[#E8E3D9] leading-relaxed mb-6" style={{fontFamily:"'Cormorant Garamond', serif"}}>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <div className="rounded-2xl p-9 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(15,42,34,0.8), rgba(11,28,20,0.9))",
+                border: "1px solid rgba(184,154,93,0.18)",
+                boxShadow: "0 30px 80px rgba(0,0,0,0.4)"
+              }}>
+              <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none"
+                style={{ background: "radial-gradient(circle at top right, rgba(184,154,93,0.08), transparent 70%)" }} />
+              <div className="text-5xl text-[#B89A5D] leading-none mb-4" style={{ opacity: 0.5 }}>"</div>
+              <p className="text-lg italic text-[#E8E3D9] leading-relaxed mb-6">
                 I used to dread the business side of things. Now I actually feel like I know what I'm doing. My recipes are all in one place, I know exactly what to charge, and my clients think I'm way more organized than I actually am.
               </p>
+              <div className="h-px mb-6" style={{ background: "linear-gradient(90deg, rgba(184,154,93,0.2), transparent)" }} />
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-[#B89A5D] font-semibold border border-[#B89A5D]/25" style={{background:"linear-gradient(135deg, #071A14, #1a3020)", fontFamily:"'Cormorant Garamond', serif"}}>S</div>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-[#B89A5D] font-semibold border"
+                  style={{ background: "linear-gradient(135deg, #071A14, #1a3020)", borderColor: "rgba(184,154,93,0.2)" }}>S</div>
                 <div>
                   <div className="text-sm font-medium text-[#E8E3D9]">Sarah M.</div>
-                  <div className="text-xs text-white/35 mt-0.5">Small-batch skincare creator · Etsy seller since 2019</div>
+                  <div className="text-[10px] text-white/30 mt-0.5">Small-batch skincare creator · Etsy seller since 2019</div>
                 </div>
               </div>
             </div>
@@ -357,68 +404,65 @@ export default function LandingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="px-10 py-20 border-t border-[#10261F] bg-[#10261F]" id="pricing">
+      <section className="px-8 md:px-14 py-24 border-t" id="pricing" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #0D2118 0%, #071A14 100%)"
+      }}>
         <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">Simple pricing</div>
-            <h2 className="text-4xl" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>Simple pricing for small businesses</h2>
-            <p className="mt-3 text-[#A8B5AC] text-sm" style={{fontWeight:300}}>Start free and upgrade when you're ready. No pressure, no contracts, no surprises.</p>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Simple pricing</div>
+            <h2 className="text-4xl" style={{ fontWeight: 500 }}>Simple pricing for small businesses</h2>
+            <p className="mt-3 text-[#A8B5AC] text-sm" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>Start free and upgrade when you're ready. No pressure, no contracts, no surprises.</p>
+            <div className="mx-auto mt-5 h-px w-24" style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
           </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-6"
-          >
-            {/* Free */}
-            <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="rounded-2xl p-8 border border-[#B89A5D]/15" style={{background:"rgba(50,75,45,0.2)"}}>
-              <div className="text-xs uppercase tracking-widest text-[#B89A5D] mb-3">Free Forever</div>
-              <div className="text-5xl text-[#E8E3D9] mb-1" style={{fontFamily:"'Cormorant Garamond', serif"}}>$0</div>
-              <div className="text-xs text-white/35 mb-6">No credit card needed</div>
-              <div className="h-px bg-[#B89A5D]/15 mb-6"></div>
-              <ul className="space-y-2 mb-8">
-                {["Up to 5 recipes","Up to 5 clients","Order tracking","Cost calculator","Inventory management"].map(f => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-[#E8E3D9]">
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-[#B89A5D]" style={{background:"rgba(198,169,107,0.2)"}}>✓</span>
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid md:grid-cols-2 gap-6">
+            <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="rounded-2xl p-8"
+              style={{ background: "linear-gradient(135deg, rgba(15,42,34,0.5), rgba(11,28,20,0.6))", border: "1px solid rgba(184,154,93,0.15)", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
+              <div className="text-[10px] uppercase tracking-widest text-[#B89A5D] mb-3">Free Forever</div>
+              <div className="text-5xl text-[#E8E3D9] mb-1">$0</div>
+              <div className="text-xs text-white/30 mb-6">No credit card needed</div>
+              <div className="h-px mb-6" style={{ background: "rgba(184,154,93,0.12)" }} />
+              <ul className="space-y-2.5 mb-8">
+                {["Up to 5 recipes", "Up to 5 clients", "Order tracking", "Cost calculator", "Inventory management"].map(f => (
+                  <li key={f} className="flex items-center gap-2.5 text-sm text-[#E8E3D9]">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-[#B89A5D] flex-shrink-0" style={{ background: "rgba(184,154,93,0.12)" }}>✓</span>
                     {f}
                   </li>
                 ))}
-                {["AI recipe generation","AI fragrance blender","Unlimited recipes & clients"].map(f => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-white/25">
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px]" style={{background:"rgba(255,255,255,0.04)"}}>✗</span>
+                {["AI recipe generation", "AI fragrance blender", "Unlimited recipes & clients"].map(f => (
+                  <li key={f} className="flex items-center gap-2.5 text-sm text-white/20">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] flex-shrink-0" style={{ background: "rgba(255,255,255,0.04)" }}>✗</span>
                     {f}
                   </li>
                 ))}
               </ul>
-              <motion.a href="https://app.auraformulate.com" whileHover={{scale:1.02}} whileTap={{scale:0.97}} className="block text-center py-3 rounded-lg text-sm font-medium text-[#B89A5D] border border-[#B89A5D]/30 hover:bg-[#B89A5D]/10 transition">
+              <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+                className="block text-center py-3 rounded-lg text-sm font-medium transition"
+                style={{ color: "#B89A5D", border: "1px solid rgba(184,154,93,0.25)", background: "rgba(184,154,93,0.06)" }}>
                 Get started free
               </motion.a>
             </motion.div>
 
-            {/* Pro */}
-            <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="rounded-2xl p-8 border border-[#B89A5D]/35 relative" style={{background:"rgba(61,90,56,0.35)"}}>
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#071A14]" style={{background:"linear-gradient(135deg, #B89A5D, #D9C9A3)"}}>Most Popular</div>
-              <div className="text-xs uppercase tracking-widest text-[#B89A5D] mb-3">Pro</div>
-              <div className="text-5xl text-[#E8E3D9] mb-1" style={{fontFamily:"'Cormorant Garamond', serif"}}>$19<span className="text-xl text-white/35">/mo</span></div>
-              <div className="text-xs text-white/35 mb-1">Billed monthly</div>
+            <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="rounded-2xl p-8 relative"
+              style={{ background: "linear-gradient(135deg, rgba(20,55,40,0.7), rgba(15,42,34,0.8))", border: "1px solid rgba(184,154,93,0.3)", boxShadow: "0 30px 80px rgba(0,0,0,0.4)" }}>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#071A14]"
+                style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Most Popular</div>
+              <div className="text-[10px] uppercase tracking-widest text-[#B89A5D] mb-3">Pro</div>
+              <div className="text-5xl text-[#E8E3D9] mb-1">$19<span className="text-xl text-white/30">/mo</span></div>
+              <div className="text-xs text-white/30 mb-1">Billed monthly</div>
               <div className="text-xs text-[#B89A5D] mb-6">Or $149/year — save $79 ✦</div>
-              <div className="h-px bg-[#B89A5D]/15 mb-6"></div>
-              <ul className="space-y-2 mb-8">
-                {["Unlimited recipes","Unlimited clients","Order tracking & archive","Full inventory management","AI recipe generation","AI fragrance blender","AI marketing & labels","Priority support"].map(f => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-[#E8E3D9]">
-                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-[#B89A5D]" style={{background:"rgba(198,169,107,0.2)"}}>✓</span>
+              <div className="h-px mb-6" style={{ background: "rgba(184,154,93,0.15)" }} />
+              <ul className="space-y-2.5 mb-8">
+                {["Unlimited recipes", "Unlimited clients", "Order tracking & archive", "Full inventory management", "AI recipe generation", "AI fragrance blender", "AI marketing & labels", "Priority support"].map(f => (
+                  <li key={f} className="flex items-center gap-2.5 text-sm text-[#E8E3D9]">
+                    <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-[#B89A5D] flex-shrink-0" style={{ background: "rgba(184,154,93,0.15)" }}>✓</span>
                     {f}
                   </li>
                 ))}
               </ul>
-              <motion.a href="https://app.auraformulate.com" whileHover={{scale:1.02}} whileTap={{scale:0.97}} className="block text-center py-3 rounded-lg text-sm font-semibold text-white transition" style={{background:"linear-gradient(135deg, #5A1823, #5A1823)"}}>
+              <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
+                className="block text-center py-3 rounded-lg text-sm font-semibold text-white transition"
+                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
                 Start Pro free trial →
               </motion.a>
             </motion.div>
@@ -426,50 +470,88 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* BOTTOM: BRAND FEEL — product photo grid placeholder */}
+      <section className="relative py-20 px-8 md:px-14 overflow-hidden border-t" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #071A14 0%, #0A1E12 100%)"
+      }}>
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(106,18,34,0.1) 0%, transparent 60%)" }} />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Your work, elevated</div>
+            <h2 className="text-4xl" style={{ fontWeight: 500 }}>Professional results, <em style={{ color: "#B89A5D" }}>maker-made</em></h2>
+            <div className="mx-auto mt-5 h-px w-24" style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
+          </motion.div>
+          {/* PLACEHOLDER GRID — replace each div with <img src="..." /> + your Supabase lifestyle/product image URLs */}
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: "Product shot", sub: "Finished cosmetics" },
+              { label: "Lifestyle image", sub: "Making process" },
+              { label: "Product shot", sub: "Packaging & brand" },
+              { label: "Lifestyle image", sub: "Creator at work" },
+            ].map((p, i) => (
+              <motion.div key={i} variants={fadeUp} whileHover={{ y: -6, scale: 1.02 }}
+                className="rounded-xl overflow-hidden relative cursor-default"
+                style={{
+                  aspectRatio: "3/4",
+                  background: "linear-gradient(135deg, #0F2520, #0A1A10)",
+                  border: "1px solid rgba(184,154,93,0.15)",
+                  boxShadow: "0 16px 50px rgba(0,0,0,0.4)"
+                }}>
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-4"
+                  style={{ background: "linear-gradient(180deg, rgba(15,37,32,0.3) 0%, rgba(7,26,20,0.8) 100%)" }}>
+                  <div className="text-[10px] text-[#B89A5D]/40 text-center">{p.label}</div>
+                  <div className="text-[9px] text-white/15 mt-0.5 text-center">{p.sub}</div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="px-10 py-24 text-center border-t border-[#10261F]"
-      >
-        <div className="max-w-lg mx-auto">
-          <div className="text-xs text-[#B89A5D] uppercase tracking-widest mb-3">Get early access</div>
-          <h2 className="text-4xl mb-4" style={{fontFamily:"'Cormorant Garamond', serif", fontWeight:500}}>
-            Ready to take your craft<br/><em style={{color:"#B89A5D"}}>seriously?</em>
+      <motion.section initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
+        className="px-8 md:px-14 py-28 text-center border-t relative overflow-hidden"
+        style={{ borderColor: "rgba(184,154,93,0.1)", background: "#071A14" }}>
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(106,18,34,0.12) 0%, transparent 65%)" }} />
+        <div className="max-w-lg mx-auto relative z-10">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
+            <span className="text-[#B89A5D] text-xl">✦</span>
+            <div className="h-px w-16" style={{ background: "linear-gradient(90deg, #B89A5D, transparent)" }} />
+          </div>
+          <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Get early access</div>
+          <h2 className="text-4xl md:text-5xl mb-5" style={{ fontWeight: 500 }}>
+            Ready to take your craft<br /><em style={{ color: "#B89A5D" }}>seriously?</em>
           </h2>
-          <p className="text-[#A8B5AC] text-sm mb-8 leading-relaxed" style={{fontWeight:300}}>
-            Thousands of makers just like you are juggling too many tools, undercharging for their work, and burning out on admin. AuraFormulate fixes all of that.
+          <p className="text-[#A8B5AC] text-sm mb-10 leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+            Stop juggling spreadsheets, undercharging for your work, and losing formulas. AuraFormulate gives you everything you need to run a real business.
           </p>
           <div className="flex gap-3 max-w-sm mx-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 px-4 py-3 rounded-lg text-sm text-[#E8E3D9] placeholder-white/25 outline-none border border-[#B89A5D]/20 focus:border-[#B89A5D] transition"
-              style={{background:"rgba(7,20,16,0.6)"}}
-            />
-            <motion.a
-              href="https://app.auraformulate.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="px-5 py-3 rounded-lg text-sm font-semibold text-white"
-              style={{background:"linear-gradient(135deg, #5A1823, #5A1823)"}}
-            >
+            <input type="email" placeholder="your@email.com"
+              className="flex-1 px-4 py-3 rounded-lg text-sm text-[#E8E3D9] outline-none transition"
+              style={{ background: "rgba(7,20,16,0.8)", border: "1px solid rgba(184,154,93,0.2)" }} />
+            <motion.a href="https://app.auraformulate.com"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
+              className="px-5 py-3 rounded-lg text-sm font-semibold text-white whitespace-nowrap"
+              style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
               Get started →
             </motion.a>
           </div>
-          <p className="text-xs text-white/25 mt-3">Free to start. No credit card required. Cancel anytime.</p>
+          <p className="text-[10px] text-white/20 mt-4 tracking-wide">Free to start · No credit card required · Cancel anytime</p>
         </div>
       </motion.section>
 
       {/* FOOTER */}
-      <footer className="px-10 py-8 border-t border-[#10261F] flex items-center justify-between" style={{background:"#071A14"}}>
+      <footer className="px-8 md:px-14 py-8 border-t flex flex-col md:flex-row items-center justify-between gap-4"
+        style={{ background: "#071A14", borderColor: "rgba(184,154,93,0.1)" }}>
         <div>
-          <div className="text-base text-[#E8E3D9]" style={{fontFamily:"'Cormorant Garamond', serif"}}>🌿 AuraFormulate</div>
-          <div className="text-xs text-white/25 mt-1">© 2026 AuraFormulate. All rights reserved.</div>
+          <div className="text-base text-[#B89A5D]">🌿 AuraFormulate</div>
+          <div className="text-xs text-white/20 mt-1">© 2026 AuraFormulate. All rights reserved.</div>
         </div>
-        <div className="flex gap-6 text-xs text-white/35">
+        <div className="flex gap-6 text-xs text-white/30">
           <a href="#features" className="hover:text-[#B89A5D] transition">Features</a>
           <a href="#pricing" className="hover:text-[#B89A5D] transition">Pricing</a>
           <a href="/terms-of-service.html" className="hover:text-[#B89A5D] transition">Terms</a>
