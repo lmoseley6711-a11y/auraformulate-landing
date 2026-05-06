@@ -54,9 +54,9 @@ export default function LandingPage() {
           <a href="#pricing" className="hover:text-[#B89A5D] transition-colors duration-200">Pricing</a>
           <a href="#who" className="hover:text-[#B89A5D] transition-colors duration-200">About</a>
         </nav>
-        <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-          className="px-5 py-2 rounded-lg text-sm font-medium text-[#071A14] transition"
-          style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>
+        <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
+          className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition"
+          style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 2px 12px rgba(106,18,34,0.35)", letterSpacing: "0.04em" }}>
           Try Free
         </motion.a>
       </header>
@@ -146,35 +146,50 @@ export default function LandingPage() {
             <motion.div variants={glowPulse} animate="animate"
               className="absolute -inset-16 blur-3xl pointer-events-none"
               style={{ background: "radial-gradient(circle, rgba(106,18,34,0.2), rgba(184,154,93,0.05) 50%, transparent 70%)" }} />
-            <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(184,154,93,0.1), transparent 70%)", border: "1px solid rgba(184,154,93,0.08)" }} />
-            <div className="relative rounded-2xl overflow-hidden"
+
+            {/* Shared visual wrapper — ties the two elements together */}
+            <div className="relative rounded-2xl overflow-hidden p-3"
               style={{
-                border: "1px solid rgba(184,154,93,0.25)",
-                boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06)"
-              }}>
-              <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png"
-                alt="AuraFormulate Dashboard" className="w-full object-cover object-top" style={{ maxHeight: "460px" }} />
-              <div className="absolute bottom-0 left-0 right-0 h-16"
-                style={{ background: "linear-gradient(to top, rgba(7,26,20,0.6), transparent)" }} />
-            </div>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-              className="absolute -bottom-5 -left-5 rounded-xl p-4 flex items-center gap-3"
-              style={{
-                background: "rgba(11,28,20,0.95)",
+                background: "linear-gradient(145deg, rgba(15,37,28,0.9), rgba(7,26,20,0.95))",
                 border: "1px solid rgba(184,154,93,0.2)",
-                boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
-                backdropFilter: "blur(12px)"
+                boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.03)"
               }}>
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base"
-                style={{ background: "rgba(184,154,93,0.12)", border: "1px solid rgba(184,154,93,0.2)" }}>⚗️</div>
-              <div>
-                <div className="text-xs font-medium text-[#D9C9A3]">AI Formulator</div>
-                <div className="text-[10px] text-white/35">Ready to use</div>
+
+              {/* Gold connector line + label at top */}
+              <div className="flex items-center gap-3 mb-3 px-1">
+                <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, rgba(184,154,93,0.4), transparent)" }} />
+                <span className="text-[9px] text-[#B89A5D]/60 tracking-[0.2em] uppercase">Live Preview</span>
+                <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4))" }} />
               </div>
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />
-            </motion.div>
+
+              {/* Dashboard screenshot */}
+              <div className="rounded-xl overflow-hidden"
+                style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png"
+                  alt="AuraFormulate Dashboard" className="w-full object-cover object-top" style={{ maxHeight: "420px" }} />
+              </div>
+
+              {/* Bottom connector — floating badge sits inside the wrapper */}
+              <div className="flex items-center gap-3 mt-3 px-1">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                  style={{ background: "rgba(184,154,93,0.07)", border: "1px solid rgba(184,154,93,0.15)" }}>
+                  <span className="text-sm">⚗️</span>
+                  <div>
+                    <div className="text-[10px] font-medium text-[#D9C9A3]">AI Formulator</div>
+                    <div className="text-[9px] text-white/30">Ready to use</div>
+                  </div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-1" />
+                </div>
+                <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
+                  style={{ background: "rgba(184,154,93,0.07)", border: "1px solid rgba(184,154,93,0.15)" }}>
+                  <span className="text-sm">📖</span>
+                  <div>
+                    <div className="text-[10px] font-medium text-[#D9C9A3]">Recipe Library</div>
+                    <div className="text-[9px] text-white/30">24 saved</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -498,7 +513,7 @@ export default function LandingPage() {
               <motion.div key={i} variants={fadeUp} whileHover={{ y: -6, scale: 1.02 }}
                 className="rounded-xl overflow-hidden relative cursor-default"
                 style={{
-                  aspectRatio: "3/4",
+                  aspectRatio: "2/3",
                   border: "1px solid rgba(184,154,93,0.15)",
                   boxShadow: "0 16px 50px rgba(0,0,0,0.4)"
                 }}>
