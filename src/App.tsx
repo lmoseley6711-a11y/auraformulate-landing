@@ -78,19 +78,19 @@ export default function LandingPage() {
           {/* LEFT */}
           <motion.div variants={stagger} initial="hidden" animate="show">
 
-            {/* LIFESTYLE IMAGE PLACEHOLDER — replace with img tag + Supabase URL when ready */}
             <motion.div variants={fadeUp} className="mb-8 rounded-2xl overflow-hidden relative"
               style={{
                 height: "200px",
-                background: "linear-gradient(135deg, #0F2A22, #1a3828)",
                 border: "1px solid rgba(184,154,93,0.2)",
                 boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
               }}>
-              <div className="absolute inset-0 flex items-center justify-center"
-                style={{ color: "rgba(184,154,93,0.25)", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                Hero lifestyle image goes here
-              </div>
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, transparent 30%, rgba(184,154,93,0.04) 100%)" }} />
+              <img
+                src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/hero2.jpg"
+                alt="Luxury oil pour"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "center" }}
+              />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(7,26,20,0.2) 0%, transparent 60%, rgba(7,26,20,0.3) 100%)" }} />
             </motion.div>
 
             <motion.div variants={fadeUp} className="mb-4 inline-flex items-center gap-2 text-[10px] px-3 py-1.5 rounded-full border"
@@ -318,10 +318,14 @@ export default function LandingPage() {
 
       {/* MID-PAGE EMOTIONAL SECTION */}
       <section className="relative py-28 px-8 md:px-14 overflow-hidden" style={{ background: "#071A14" }}>
+        <img
+          src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/midpage2.jpg"
+          alt="Luxury bathroom scene"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: "center", opacity: 0.18 }}
+        />
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 70% 60% at 80% 50%, rgba(106,18,34,0.1) 0%, transparent 60%), radial-gradient(ellipse 50% 80% at 20% 50%, rgba(184,154,93,0.05) 0%, transparent 60%)" }} />
-        {/* PLACEHOLDER — replace with lifestyle image once available */}
-        {/* <img src="YOUR_LIFESTYLE_IMAGE_URL" className="absolute inset-0 w-full h-full object-cover opacity-20" /> */}
+          style={{ background: "radial-gradient(ellipse 70% 60% at 80% 50%, rgba(106,18,34,0.15) 0%, transparent 60%), radial-gradient(ellipse 50% 80% at 20% 50%, rgba(184,154,93,0.08) 0%, transparent 60%), rgba(7,26,20,0.72)" }} />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
             <div className="flex items-center justify-center gap-4 mb-8">
@@ -486,23 +490,24 @@ export default function LandingPage() {
           {/* PLACEHOLDER GRID — replace each div with <img src="..." /> + your Supabase lifestyle/product image URLs */}
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: "Product shot", sub: "Finished cosmetics" },
-              { label: "Lifestyle image", sub: "Making process" },
-              { label: "Product shot", sub: "Packaging & brand" },
-              { label: "Lifestyle image", sub: "Creator at work" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/banner-labeling.jpg", label: "Labeling & Compliance", pos: "center top" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle1.jpg", label: "The Craft", pos: "center" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/product2.jpg", label: "Your Products", pos: "center" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle2.jpg", label: "The Process", pos: "center" },
             ].map((p, i) => (
               <motion.div key={i} variants={fadeUp} whileHover={{ y: -6, scale: 1.02 }}
                 className="rounded-xl overflow-hidden relative cursor-default"
                 style={{
                   aspectRatio: "3/4",
-                  background: "linear-gradient(135deg, #0F2520, #0A1A10)",
                   border: "1px solid rgba(184,154,93,0.15)",
                   boxShadow: "0 16px 50px rgba(0,0,0,0.4)"
                 }}>
-                <div className="absolute inset-0 flex flex-col items-center justify-end p-4"
-                  style={{ background: "linear-gradient(180deg, rgba(15,37,32,0.3) 0%, rgba(7,26,20,0.8) 100%)" }}>
-                  <div className="text-[10px] text-[#B89A5D]/40 text-center">{p.label}</div>
-                  <div className="text-[9px] text-white/15 mt-0.5 text-center">{p.sub}</div>
+                <img src={p.img} alt={p.label} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  style={{ objectPosition: p.pos }} />
+                <div className="absolute inset-0"
+                  style={{ background: "linear-gradient(180deg, transparent 50%, rgba(7,26,20,0.85) 100%)" }} />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="text-[10px] text-[#D9C9A3]/70 tracking-wide">{p.label}</div>
                 </div>
               </motion.div>
             ))}
