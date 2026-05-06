@@ -490,6 +490,144 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ─── SEE IT IN ACTION — VIDEOS ─── */}
+      <section className="px-8 md:px-14 py-24 border-t" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #0C2218 0%, #071A14 100%)",
+        position: "relative", overflow: "hidden"
+      }}>
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(184,154,93,0.04) 0%, transparent 60%)"
+        }} />
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="text-center mb-14">
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Watch it work</div>
+            <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 500 }}>
+              See Aura in <em style={{ color: "#B89A5D" }}>action</em>
+            </h2>
+            <p className="mt-4 text-[#A8B5AC] text-sm max-w-lg mx-auto leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+              Watch how AuraFormulate turns a blank page into a complete formula, a signature scent, and a ready-to-publish listing — in minutes.
+            </p>
+            <div className="mx-auto mt-5 h-px w-24"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
+          </motion.div>
+
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-8">
+
+            {/* Video 1 — Fragrance Blender */}
+            <motion.div variants={fadeUp} className="group">
+              {/* Video container — replace src with your Supabase video URL when ready */}
+              <div className="relative rounded-2xl overflow-hidden"
+                style={{
+                  aspectRatio: "16/9",
+                  background: "linear-gradient(135deg, #0F2520, #0A1A10)",
+                  border: "1px solid rgba(184,154,93,0.2)",
+                  boxShadow: "0 30px 80px rgba(0,0,0,0.5)"
+                }}>
+                {/* SWAP THIS for your video: replace the div below with:
+                    <video src="YOUR_SUPABASE_VIDEO_URL" controls poster="YOUR_THUMBNAIL_URL"
+                      className="w-full h-full object-cover" /> */}
+                <video
+                  controls
+                  className="w-full h-full object-cover"
+                  style={{ background: "#071A14" }}
+                  poster="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png"
+                >
+                  {/* Add your video source here: */}
+                  {/* <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance-demo.mp4" type="video/mp4" /> */}
+                  <source src="" type="video/mp4" />
+                </video>
+
+                {/* Overlay shown when no video yet — remove once video is added */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+                  style={{ background: "rgba(7,26,20,0.7)" }}>
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                    style={{
+                      background: "rgba(184,154,93,0.15)",
+                      border: "1px solid rgba(184,154,93,0.3)",
+                      boxShadow: "0 0 30px rgba(184,154,93,0.1)"
+                    }}>
+                    <div className="text-2xl ml-1">▶</div>
+                  </div>
+                  <div className="text-xs text-[#B89A5D] tracking-widest uppercase">Video coming soon</div>
+                </div>
+
+                {/* Gold top accent */}
+                <div className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
+              </div>
+
+              {/* Caption */}
+              <div className="mt-4 px-1">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-base">🌸</span>
+                  <span className="text-sm font-medium text-[#D9C9A3]">Aura builds a fragrance blend</span>
+                </div>
+                <p className="text-xs text-white/40 leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
+                  Watch Aura take a mood description and turn it into three complete, named scent blends — top, middle, and base notes broken down, usage rates included, ready to attach to any recipe or client.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Video 2 — Formulator */}
+            <motion.div variants={fadeUp} className="group">
+              <div className="relative rounded-2xl overflow-hidden"
+                style={{
+                  aspectRatio: "16/9",
+                  background: "linear-gradient(135deg, #0F2520, #0A1A10)",
+                  border: "1px solid rgba(184,154,93,0.2)",
+                  boxShadow: "0 30px 80px rgba(0,0,0,0.5)"
+                }}>
+                {/* SWAP THIS for your video: replace the div below with:
+                    <video src="YOUR_SUPABASE_VIDEO_URL" controls poster="YOUR_THUMBNAIL_URL"
+                      className="w-full h-full object-cover" /> */}
+                <video
+                  controls
+                  className="w-full h-full object-cover"
+                  style={{ background: "#071A14" }}
+                  poster="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Formulator-zoom.png"
+                >
+                  {/* Add your video source here: */}
+                  {/* <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/formulator-demo.mp4" type="video/mp4" /> */}
+                  <source src="" type="video/mp4" />
+                </video>
+
+                {/* Overlay shown when no video yet */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+                  style={{ background: "rgba(7,26,20,0.7)" }}>
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
+                    style={{
+                      background: "rgba(184,154,93,0.15)",
+                      border: "1px solid rgba(184,154,93,0.3)",
+                      boxShadow: "0 0 30px rgba(184,154,93,0.1)"
+                    }}>
+                    <div className="text-2xl ml-1">▶</div>
+                  </div>
+                  <div className="text-xs text-[#B89A5D] tracking-widest uppercase">Video coming soon</div>
+                </div>
+
+                <div className="absolute top-0 left-0 right-0 h-0.5"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
+              </div>
+
+              <div className="mt-4 px-1">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-base">⚗️</span>
+                  <span className="text-sm font-medium text-[#D9C9A3]">Aura formulates a recipe from scratch</span>
+                </div>
+                <p className="text-xs text-white/40 leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
+                  From a simple description to a complete, costed formula — watch Aura select ingredients, assign phases, flag interactions, and generate a recipe ready to save to your library in under a minute.
+                </p>
+              </div>
+            </motion.div>
+
+          </motion.div>
+        </div>
+      </section>
+
       {/* MID-PAGE EMOTIONAL SECTION */}
       <section className="relative py-28 px-8 md:px-14 overflow-hidden" style={{ background: "#071A14" }}>
         <img
