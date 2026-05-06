@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -309,68 +309,184 @@ export default function LandingPage() {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
-              className="grid grid-cols-2 gap-3" style={{ position: "relative" }}>
-              {[
+            {(() => {
+              const cards = [
                 { title: "Smart Formulator", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png" },
                 { title: "Order Management", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/OrdersSS.png" },
                 { title: "Fragrance Blender", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png" },
                 { title: "Education Hub", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png" },
-              ].map((card) => (
-                <motion.div key={card.title} variants={fadeUp}
-                  className="relative rounded-xl cursor-pointer group"
-                  style={{ aspectRatio: "4/3", border: "1px solid rgba(184,154,93,0.18)", boxShadow: "0 16px 50px rgba(0,0,0,0.5)", overflow: "visible", zIndex: 1 }}>
-
-                  {/* Base thumbnail — always visible */}
-                  <div className="w-full h-full rounded-xl overflow-hidden">
-                    <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0 rounded-xl" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(7,20,16,0.92) 100%)" }} />
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <div className="text-xs font-medium text-[#D9C9A3]">{card.title}</div>
-                      <div className="text-[9px] text-[#B89A5D]/60 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">Click to explore →</div>
-                    </div>
-                  </div>
-
-                  {/* EXPANDED overlay — scales up on hover, sits above everything */}
-                  <div className="absolute inset-0 rounded-xl pointer-events-none"
-                    style={{
-                      transform: "scale(1)",
-                      transformOrigin: "center center",
-                      transition: "transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, z-index 0s",
-                      zIndex: 1,
-                    }}>
-                  </div>
-
-                  {/* The actual pop-up expansion */}
-                  <motion.div
-                    className="absolute rounded-2xl overflow-hidden pointer-events-none"
-                    style={{
-                      inset: 0,
-                      zIndex: 50,
-                      border: "1px solid rgba(184,154,93,0.35)",
-                    }}
-                    initial={{ scale: 1, opacity: 0 }}
-                    whileHover={{
-                      scale: 2.1,
-                      opacity: 1,
-                      zIndex: 100,
-                      boxShadow: "0 40px 100px rgba(0,0,0,0.85), 0 0 0 1px rgba(184,154,93,0.3)",
-                      transition: { duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }
-                    }}
-                  >
-                    <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top" />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(7,20,16,0.85) 100%)" }} />
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="text-sm font-medium text-[#D9C9A3]">{card.title}</div>
-                    </div>
-                    {/* Gold corner accent on expanded */}
-                    <div className="absolute top-0 left-0 right-0 h-0.5"
-                      style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.5), transparent)" }} />
+              ];
+              const ScreenshotGrid = () => {
+                const [hovered, setHovered] = useState<string | null>(null);
+                return (
+                  <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="grid grid-cols-2 gap-3" style={{ position: "relative" }}>
+                    {cards.map((card) => (
+                      <motion.div key={card.title} variants={fadeUp}
+                        className="relative rounded-xl cursor-pointer"
+                        style={{
+                          aspectRatio: "4/3",
+                          border: `1px solid ${hovered === card.title ? "rgba(184,154,93,0.4)" : "rgba(184,154,93,0.18)"}`,
+                          boxShadow: hovered === card.title ? "0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(184,154,93,0.2)" : "0 16px 50px rgba(0,0,0,0.5)",
+                          overflow: "hidden",
+                          zIndex: hovered === card.title ? 20 : 1,
+                          transition: "border 0.2s, box-shadow 0.2s, z-index 0s",
+                        }}
+                        animate={{ scale: hovered === card.title ? 1.85 : 1 }}
+                        transition={{ duration: 0.35, ease: [0.34, 1.2, 0.64, 1] }}
+                        onMouseEnter={() => setHovered(card.title)}
+                        onMouseLeave={() => setHovered(null)}
+                      >
+                        <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top" />
+                        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(7,20,16,0.92) 100%)" }} />
+                        {/* Gold top line on hover */}
+                        <div className="absolute top-0 left-0 right-0 h-0.5 transition-opacity duration-200"
+                          style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.6), transparent)", opacity: hovered === card.title ? 1 : 0 }} />
+                        <div className="absolute bottom-0 left-0 right-0 p-3">
+                          <div className="text-xs font-medium text-[#D9C9A3]">{card.title}</div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
+                );
+              };
+              return <ScreenshotGrid />;
+            })()}
           </div>
+        </div>
+      </section>
+
+      {/* ─── MEET AURA ─── */}
+      <section className="px-8 md:px-14 py-24 border-t" style={{
+        borderColor: "rgba(184,154,93,0.1)",
+        background: "linear-gradient(180deg, #071A14 0%, #0C1F18 50%, #071A14 100%)",
+        position: "relative", overflow: "hidden"
+      }}>
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 60% 80% at 15% 50%, rgba(106,18,34,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 85% 30%, rgba(184,154,93,0.05) 0%, transparent 60%)"
+        }} />
+
+        <div className="max-w-6xl mx-auto relative z-10">
+
+          {/* Section header */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
+              <span className="text-[#B89A5D] text-xl">✦</span>
+              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, #B89A5D, transparent)" }} />
+            </div>
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Your AI creative partner</div>
+            <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 500 }}>
+              Meet <em style={{ color: "#B89A5D" }}>Aura</em>
+            </h2>
+            <p className="mt-4 text-[#A8B5AC] text-base max-w-xl mx-auto leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+              Aura is the AI at the heart of AuraFormulate — a world-class perfumer, formulation expert, and creative collaborator who speaks to you the way a knowledgeable friend would. Not robotic. Not generic. Intuitive, inspiring, and always in your corner.
+            </p>
+          </motion.div>
+
+          {/* Three feature cards */}
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-6">
+
+            {/* Card 1 — Formulator */}
+            <motion.div variants={fadeUp} whileHover={{ y: -6 }}
+              className="rounded-2xl p-7 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, rgba(15,42,34,0.7), rgba(7,26,20,0.9))",
+                border: "1px solid rgba(184,154,93,0.18)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)"
+              }}>
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
+                style={{ background: "rgba(184,154,93,0.1)", border: "1px solid rgba(184,154,93,0.2)" }}>⚗️</div>
+              <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Smart Formulator</div>
+              <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura builds recipes with you</h3>
+              <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
+                Tell Aura what you want to create — the skin type, the feel, the purpose — and she'll generate a complete, professional formula using ingredients you actually have. She explains every choice, suggests phases, and flags potential conflicts so you understand your formula, not just follow it.
+              </p>
+              <div className="mt-5 pt-5 border-t" style={{ borderColor: "rgba(184,154,93,0.1)" }}>
+                <div className="text-[10px] text-[#B89A5D]/60 italic">"Give me a lightweight serum for oily skin with my rosehip and niacinamide..."</div>
+              </div>
+            </motion.div>
+
+            {/* Card 2 — Fragrance Blender */}
+            <motion.div variants={fadeUp} whileHover={{ y: -6 }}
+              className="rounded-2xl p-7 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, rgba(20,45,34,0.8), rgba(11,28,20,0.95))",
+                border: "1px solid rgba(184,154,93,0.25)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,154,93,0.04)"
+              }}>
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.5), transparent)" }} />
+              {/* Featured badge */}
+              <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
+                style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
+                style={{ background: "rgba(184,154,93,0.12)", border: "1px solid rgba(184,154,93,0.25)" }}>🌸</div>
+              <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
+              <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
+              <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
+                Describe a mood, a memory, a feeling — and Aura composes three complete, distinct fragrance blends, each with a name, a story, and a full top/middle/base note breakdown. She works with your existing scent library or suggests inspired additions. Save your favorites, attach them to recipes, or link them to a specific client's profile.
+              </p>
+              <div className="mt-5 pt-5 border-t" style={{ borderColor: "rgba(184,154,93,0.1)" }}>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Top/Mid/Base notes", "3 blend concepts", "Client profiles", "Save to recipe"].map(tag => (
+                    <span key={tag} className="text-[9px] px-2 py-1 rounded-full text-[#B89A5D]"
+                      style={{ background: "rgba(184,154,93,0.08)", border: "1px solid rgba(184,154,93,0.15)" }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3 — Labeling + Etsy */}
+            <motion.div variants={fadeUp} whileHover={{ y: -6 }}
+              className="rounded-2xl p-7 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, rgba(15,42,34,0.7), rgba(7,26,20,0.9))",
+                border: "1px solid rgba(184,154,93,0.18)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)"
+              }}>
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
+                style={{ background: "rgba(184,154,93,0.1)", border: "1px solid rgba(184,154,93,0.2)" }}>🏷️</div>
+              <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
+              <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
+              <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
+                Aura turns your recipe into a complete compliance package — proper INCI names in descending order, marketing claims, required warnings, and storage instructions. Then she keeps going: generate polished product descriptions, SEO-optimized Etsy listing copy, and tags that actually get found. Everything ready to copy, save, or send straight to Canva.
+              </p>
+              <div className="mt-5 pt-5 border-t" style={{ borderColor: "rgba(184,154,93,0.1)" }}>
+                <div className="flex flex-wrap gap-1.5">
+                  {["INCI names", "Compliance copy", "Etsy listings", "SEO tags", "Canva export"].map(tag => (
+                    <span key={tag} className="text-[9px] px-2 py-1 rounded-full text-[#B89A5D]"
+                      style={{ background: "rgba(184,154,93,0.08)", border: "1px solid rgba(184,154,93,0.15)" }}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+          </motion.div>
+
+          {/* Bottom Aura quote */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-12 rounded-2xl px-8 py-6 text-center relative overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, rgba(106,18,34,0.12), rgba(184,154,93,0.06))",
+              border: "1px solid rgba(184,154,93,0.15)"
+            }}>
+            <div className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(106,18,34,0.06), transparent 70%)" }} />
+            <p className="text-base italic text-[#D9C9A3] relative z-10" style={{ fontFamily: "Georgia, serif" }}>
+              "I'm not here to replace your creativity — I'm here to make more of it possible."
+            </p>
+            <p className="text-[10px] text-[#B89A5D] mt-2 tracking-widest uppercase relative z-10">— Aura</p>
+          </motion.div>
+
         </div>
       </section>
 
