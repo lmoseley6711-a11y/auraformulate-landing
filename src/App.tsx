@@ -309,21 +309,64 @@ export default function LandingPage() {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 gap-3">
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
+              className="grid grid-cols-2 gap-3" style={{ position: "relative" }}>
               {[
                 { title: "Smart Formulator", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/FormulatorSS.png" },
                 { title: "Order Management", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/OrdersSS.png" },
                 { title: "Fragrance Blender", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png" },
                 { title: "Education Hub", img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Education-HubSS.png" },
               ].map((card) => (
-                <motion.div key={card.title} variants={fadeUp} whileHover={{ scale: 1.03, y: -4, zIndex: 2 }}
-                  className="relative overflow-hidden rounded-xl cursor-default"
-                  style={{ aspectRatio: "4/3", border: "1px solid rgba(184,154,93,0.18)", boxShadow: "0 16px 50px rgba(0,0,0,0.5)" }}>
-                  <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(7,20,16,0.95) 100%)" }} />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <div className="text-xs font-medium text-[#D9C9A3]">{card.title}</div>
+                <motion.div key={card.title} variants={fadeUp}
+                  className="relative rounded-xl cursor-pointer group"
+                  style={{ aspectRatio: "4/3", border: "1px solid rgba(184,154,93,0.18)", boxShadow: "0 16px 50px rgba(0,0,0,0.5)", overflow: "visible", zIndex: 1 }}>
+
+                  {/* Base thumbnail — always visible */}
+                  <div className="w-full h-full rounded-xl overflow-hidden">
+                    <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top" />
+                    <div className="absolute inset-0 rounded-xl" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(7,20,16,0.92) 100%)" }} />
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <div className="text-xs font-medium text-[#D9C9A3]">{card.title}</div>
+                      <div className="text-[9px] text-[#B89A5D]/60 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">Click to explore →</div>
+                    </div>
                   </div>
+
+                  {/* EXPANDED overlay — scales up on hover, sits above everything */}
+                  <div className="absolute inset-0 rounded-xl pointer-events-none"
+                    style={{
+                      transform: "scale(1)",
+                      transformOrigin: "center center",
+                      transition: "transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, z-index 0s",
+                      zIndex: 1,
+                    }}>
+                  </div>
+
+                  {/* The actual pop-up expansion */}
+                  <motion.div
+                    className="absolute rounded-2xl overflow-hidden pointer-events-none"
+                    style={{
+                      inset: 0,
+                      zIndex: 50,
+                      border: "1px solid rgba(184,154,93,0.35)",
+                    }}
+                    initial={{ scale: 1, opacity: 0 }}
+                    whileHover={{
+                      scale: 2.1,
+                      opacity: 1,
+                      zIndex: 100,
+                      boxShadow: "0 40px 100px rgba(0,0,0,0.85), 0 0 0 1px rgba(184,154,93,0.3)",
+                      transition: { duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }
+                    }}
+                  >
+                    <img src={card.img} alt={card.title} className="w-full h-full object-cover object-top" />
+                    <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(7,20,16,0.85) 100%)" }} />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <div className="text-sm font-medium text-[#D9C9A3]">{card.title}</div>
+                    </div>
+                    {/* Gold corner accent on expanded */}
+                    <div className="absolute top-0 left-0 right-0 h-0.5"
+                      style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.5), transparent)" }} />
+                  </motion.div>
                 </motion.div>
               ))}
             </motion.div>
