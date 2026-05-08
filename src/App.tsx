@@ -536,24 +536,8 @@ export default function LandingPage() {
                   style={{ background: "#071A14" }}
                   poster="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png"
                 >
-                  {/* Add your video source here: */}
-                  {/* <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance-demo.mp4" type="video/mp4" /> */}
-                  <source src="" type="video/mp4" />
+                  <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance_demo.mp4" type="video/mp4" />
                 </video>
-
-                {/* Overlay shown when no video yet — remove once video is added */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-                  style={{ background: "rgba(7,26,20,0.7)" }}>
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
-                    style={{
-                      background: "rgba(184,154,93,0.15)",
-                      border: "1px solid rgba(184,154,93,0.3)",
-                      boxShadow: "0 0 30px rgba(184,154,93,0.1)"
-                    }}>
-                    <div className="text-2xl ml-1">▶</div>
-                  </div>
-                  <div className="text-xs text-[#B89A5D] tracking-widest uppercase">Video coming soon</div>
-                </div>
 
                 {/* Gold top accent */}
                 <div className="absolute top-0 left-0 right-0 h-0.5"
