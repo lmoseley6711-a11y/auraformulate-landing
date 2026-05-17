@@ -56,7 +56,7 @@ export default function LandingPage() {
         </nav>
         <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
           className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition"
-          style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 2px 12px rgba(106,18,34,0.35)", letterSpacing: "0.04em" }}>
+          style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 2px 12px rgba(168,95,26,0.4)", letterSpacing: "0.04em" }}>
           Try Free
         </motion.a>
       </header>
@@ -95,7 +95,7 @@ export default function LandingPage() {
 
             <motion.div variants={fadeUp} className="mb-4 inline-flex items-center gap-2 text-[10px] px-3 py-1.5 rounded-full border"
               style={{ background: "rgba(15,42,34,0.8)", borderColor: "rgba(184,154,93,0.2)", color: "#B89A5D", letterSpacing: "0.18em" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6A1222] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A85F1A] animate-pulse" />
               NOW LIVE — MADE FOR MAKERS
             </motion.div>
 
@@ -116,7 +116,7 @@ export default function LandingPage() {
                 whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }}
                 whileTap={{ scale: 0.97 }}
                 className="px-7 py-3.5 rounded-lg font-medium text-white text-sm transition"
-                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
                 Start free today →
               </motion.a>
               <motion.a href="#features"
@@ -301,9 +301,9 @@ export default function LandingPage() {
                 ))}
               </motion.ul>
               <motion.a href="https://app.auraformulate.com"
-                whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(106,18,34,0.3)" }} whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(168,95,26,0.35)" }} whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-lg text-sm text-white font-medium transition"
-                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.25)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.3)" }}>
                 Explore all features →
               </motion.a>
             </motion.div>
@@ -748,7 +748,7 @@ export default function LandingPage() {
               </ul>
               <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
                 className="block text-center py-3 rounded-lg text-sm font-semibold text-white transition"
-                style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
                 Start Pro free trial →
               </motion.a>
             </motion.div>
@@ -823,7 +823,7 @@ export default function LandingPage() {
             <motion.a href="https://app.auraformulate.com"
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
               className="px-5 py-3 rounded-lg text-sm font-semibold text-white whitespace-nowrap"
-              style={{ background: "linear-gradient(135deg, #6A1222, #702730)", boxShadow: "0 4px 20px rgba(106,18,34,0.3)" }}>
+              style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
               Get started →
             </motion.a>
           </div>
