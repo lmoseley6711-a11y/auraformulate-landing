@@ -400,8 +400,9 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
-                style={{ background: "rgba(184,154,93,0.1)", border: "1px solid rgba(184,154,93,0.2)" }}>⚗️</div>
+              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/formulator_icon2.jpg" alt="Smart Formulator" className="w-full h-full object-cover" />
+              </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Smart Formulator</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura builds recipes with you</h3>
               <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
@@ -425,8 +426,9 @@ export default function LandingPage() {
               {/* Featured badge */}
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
-                style={{ background: "rgba(184,154,93,0.12)", border: "1px solid rgba(184,154,93,0.25)" }}>🌸</div>
+              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance_blender_icon_5.jpg" alt="Fragrance Blender" className="w-full h-full object-cover" />
+              </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
               <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
@@ -452,8 +454,9 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-5"
-                style={{ background: "rgba(184,154,93,0.1)", border: "1px solid rgba(184,154,93,0.2)" }}>🏷️</div>
+              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/labeling_icon.jpg" alt="Labeling & Marketing" className="w-full h-full object-cover" />
+              </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
               <p className="text-sm text-[#A8B5AC] leading-relaxed" style={{ fontFamily: "Georgia, serif", fontWeight: 300 }}>
