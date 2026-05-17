@@ -54,9 +54,9 @@ export default function LandingPage() {
           <a href="#pricing" className="hover:text-[#B89A5D] transition-colors duration-200">Pricing</a>
           <a href="#who" className="hover:text-[#B89A5D] transition-colors duration-200">About</a>
         </nav>
-        <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
+        <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.04, y: -3, boxShadow: "0 8px 30px rgba(168,95,26,0.5), 0 4px 12px rgba(0,0,0,0.4)" }} whileTap={{ scale: 0.97 }}
           className="px-5 py-2 rounded-lg text-sm font-semibold text-white transition"
-          style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 2px 12px rgba(168,95,26,0.4)", letterSpacing: "0.04em" }}>
+          style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset", letterSpacing: "0.04em" }}>
           Try Free
         </motion.a>
       </header>
@@ -113,10 +113,10 @@ export default function LandingPage() {
 
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
               <motion.a href="https://app.auraformulate.com"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }}
+                whileHover={{ scale: 1.05, y: -4, boxShadow: "0 8px 30px rgba(168,95,26,0.5), 0 4px 12px rgba(0,0,0,0.4)" }}
                 whileTap={{ scale: 0.97 }}
                 className="px-7 py-3.5 rounded-lg font-medium text-white text-sm transition"
-                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset" }}>
                 Start free today →
               </motion.a>
               <motion.a href="#features"
@@ -301,9 +301,9 @@ export default function LandingPage() {
                 ))}
               </motion.ul>
               <motion.a href="https://app.auraformulate.com"
-                whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(168,95,26,0.35)" }} whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.03, y: -4, boxShadow: "0 8px 30px rgba(168,95,26,0.5), 0 4px 12px rgba(0,0,0,0.4)" }} whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-lg text-sm text-white font-medium transition"
-                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.3)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset" }}>
                 Explore all features →
               </motion.a>
             </motion.div>
@@ -722,7 +722,7 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
-              <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02, y: -4, boxShadow: "0 8px 30px rgba(168,95,26,0.5), 0 4px 12px rgba(0,0,0,0.4)" }} whileTap={{ scale: 0.97 }}
                 className="block text-center py-3 rounded-lg text-sm font-medium transition"
                 style={{ color: "#B89A5D", border: "1px solid rgba(184,154,93,0.25)", background: "rgba(184,154,93,0.06)" }}>
                 Get started free
@@ -748,7 +748,7 @@ export default function LandingPage() {
               </ul>
               <motion.a href="https://app.auraformulate.com" whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
                 className="block text-center py-3 rounded-lg text-sm font-semibold text-white transition"
-                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
+                style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset" }}>
                 Start Pro free trial →
               </motion.a>
             </motion.div>
@@ -821,9 +821,9 @@ export default function LandingPage() {
               className="flex-1 px-4 py-3 rounded-lg text-sm text-[#E8E3D9] outline-none transition"
               style={{ background: "rgba(7,20,16,0.8)", border: "1px solid rgba(184,154,93,0.2)" }} />
             <motion.a href="https://app.auraformulate.com"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(106,18,34,0.4)" }} whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.05, y: -4, boxShadow: "0 8px 30px rgba(168,95,26,0.5), 0 4px 12px rgba(0,0,0,0.4)" }} whileTap={{ scale: 0.97 }}
               className="px-5 py-3 rounded-lg text-sm font-semibold text-white whitespace-nowrap"
-              style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 4px 20px rgba(168,95,26,0.35)" }}>
+              style={{ background: "linear-gradient(135deg, #A85F1A, #C17A2E)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset" }}>
               Get started →
             </motion.a>
           </div>
