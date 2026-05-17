@@ -245,9 +245,9 @@ export default function LandingPage() {
         <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
           {[
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/RecipesSS.png", label: "Recipe Library", desc: "Every formula saved, searchable, and ready to scale to any batch size.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg" },
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/ClientsSS.png", label: "Client Profiles", desc: "Track clients, their orders, preferences, and linked fragrance blends — all in one place.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_clients.jpg" },
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/CostSS.png", label: "Cost & Pricing", desc: "Know exactly what each formula costs to make and what to charge for it.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_cost.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Recipe_Library.png", label: "Recipe Library", desc: "Every formula saved, searchable, and ready to scale to any batch size.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/client_profiles.png", label: "Client Profiles", desc: "Track clients, their skin type, allergies, preferences, and full order history — all in one place.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_clients.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Cost_Pricing.png", label: "Cost & Pricing", desc: "Know exactly what each formula costs to make and what to charge for it.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_cost.jpg" },
           ].map((s) => (
             <motion.div key={s.label} variants={fadeUp} whileHover={{ y: -8 }} className="rounded-2xl overflow-hidden cursor-default"
               style={{
