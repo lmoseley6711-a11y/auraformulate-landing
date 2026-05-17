@@ -400,7 +400,7 @@ export default function LandingPage() {
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
               <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/formulator_icon2.jpg" alt="Smart Formulator" className="w-full h-full object-cover" />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg" alt="Smart Formulator" className="w-full h-full object-cover" />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Smart Formulator</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura builds recipes with you</h3>
@@ -426,7 +426,7 @@ export default function LandingPage() {
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
               <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance_blender_icon_5.jpg" alt="Fragrance Blender" className="w-full h-full object-cover" />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_fragrance.jpg" alt="Fragrance Blender" className="w-full h-full object-cover" />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
@@ -454,7 +454,7 @@ export default function LandingPage() {
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
               <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/labeling_icon.jpg" alt="Labeling & Marketing" className="w-full h-full object-cover" />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_labeling.jpg" alt="Labeling & Marketing" className="w-full h-full object-cover" />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
