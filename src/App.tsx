@@ -173,7 +173,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-3 mt-3 px-1">
                 <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
                   style={{ background: "rgba(184,154,93,0.07)", border: "1px solid rgba(184,154,93,0.15)" }}>
-                  <span className="text-sm">⚗️</span>
+                  <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg" alt="" className="w-full h-full object-cover" /></div>
                   <div>
                     <div className="text-[10px] font-medium text-[#D9C9A3]">AI Formulator</div>
                     <div className="text-[9px] text-white/30">Ready to use</div>
@@ -182,7 +182,7 @@ export default function LandingPage() {
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 rounded-lg"
                   style={{ background: "rgba(184,154,93,0.07)", border: "1px solid rgba(184,154,93,0.15)" }}>
-                  <span className="text-sm">📖</span>
+                  <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg" alt="" className="w-full h-full object-cover" /></div>
                   <div>
                     <div className="text-[10px] font-medium text-[#D9C9A3]">Recipe Library</div>
                     <div className="text-[9px] text-white/30">24 saved</div>
@@ -207,20 +207,19 @@ export default function LandingPage() {
         <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
           className="max-w-5xl mx-auto grid grid-cols-4 md:grid-cols-7 gap-4 md:gap-6">
           {[
-            { icon: "⚗️", label: "Formulator" }, { icon: "📖", label: "Recipes" },
-            { icon: "📦", label: "Orders" }, { icon: "🌿", label: "Inventory" },
-            { icon: "🌸", label: "Fragrance" }, { icon: "👥", label: "Clients" },
-            { icon: "🚚", label: "Shipping" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg", label: "Formulator" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg", label: "Recipes" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_orders.jpg", label: "Orders" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_inventory.jpg", label: "Inventory" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_fragrance.jpg", label: "Fragrance" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_clients.jpg", label: "Clients" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_shipping.jpg", label: "Shipping" },
           ].map((f) => (
             <motion.div key={f.label} variants={fadeUp} whileHover={{ y: -4, scale: 1.05 }}
               className="flex flex-col items-center text-center group cursor-default">
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-2.5 text-lg transition-all duration-300"
-                style={{
-                  background: "linear-gradient(135deg, rgba(184,154,93,0.12), rgba(184,154,93,0.04))",
-                  border: "1px solid rgba(184,154,93,0.18)",
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)"
-                }}>
-                {f.icon}
+              <div className="w-12 h-12 rounded-xl overflow-hidden mb-2.5 transition-all duration-300"
+                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.4)" }}>
+                <img src={f.img} alt={f.label} className="w-full h-full object-cover" />
               </div>
               <div className="text-[10px] font-medium text-[#D9C9A3]/70 tracking-wide">{f.label}</div>
             </motion.div>
@@ -246,9 +245,9 @@ export default function LandingPage() {
         <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto relative z-10">
           {[
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Formulator-zoom.png", label: "Smart Formulator", desc: "Build AI-powered recipes with real-time cost tracking and ingredient analysis.", icon: "⚗️" },
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Fragrance-zoom.png", label: "Fragrance Blender", desc: "Create signature scent blends with AI-guided combinations.", icon: "🌸" },
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/LabelingSS.png", label: "Labeling & Compliance", desc: "Generate INCI lists and professional label copy instantly.", icon: "🏷️" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/RecipesSS.png", label: "Recipe Library", desc: "Every formula saved, searchable, and ready to scale to any batch size.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/ClientsSS.png", label: "Client Profiles", desc: "Track clients, their orders, preferences, and linked fragrance blends — all in one place.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_clients.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/CostSS.png", label: "Cost & Pricing", desc: "Know exactly what each formula costs to make and what to charge for it.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_cost.jpg" },
           ].map((s) => (
             <motion.div key={s.label} variants={fadeUp} whileHover={{ y: -8 }} className="rounded-2xl overflow-hidden cursor-default"
               style={{
@@ -550,7 +549,7 @@ export default function LandingPage() {
               {/* Caption */}
               <div className="mt-4 px-1">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-base">🌸</span>
+                  <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_fragrance.jpg" alt="" className="w-full h-full object-cover" /></div>
                   <span className="text-sm font-medium text-[#D9C9A3]">Aura builds a fragrance blend</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
@@ -586,7 +585,7 @@ export default function LandingPage() {
 
               <div className="mt-4 px-1">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-base">⚗️</span>
+                  <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg" alt="" className="w-full h-full object-cover" /></div>
                   <span className="text-sm font-medium text-[#D9C9A3]">Aura formulates a recipe from scratch</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed" style={{ fontFamily: "Georgia, serif" }}>
