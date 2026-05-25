@@ -132,7 +132,9 @@ export default function LandingPage() {
                 style={{ color: "#1a1200", background: "linear-gradient(135deg, #B89A5D, #D4B87A)", boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset", fontWeight: 600, letterSpacing: "0.04em", border: "none" }}
                 whileHover={{ scale: 1.05, y: -4, boxShadow: "0 8px 30px rgba(184,154,93,0.5), 0 4px 12px rgba(0,0,0,0.4)" }}
                 whileTap={{ scale: 0.97 }}>
-                <span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:22, height:22, borderRadius:'50%', background:'rgba(255,255,255,0.2)', fontSize:10 }}>▶</span>
+                <span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:22, height:22, borderRadius:'50%', background:'rgba(0,0,0,0.15)' }}>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><polygon points="2,1 9,5 2,9" fill="#1a1200"/></svg>
+                </span>
                 Watch the Video
               </motion.button>
             </motion.div>
