@@ -26,6 +26,7 @@ const glowPulse = {
 };
 
 export default function LandingPage() {
+  const [showVideo, setShowVideo] = useState(false);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const mockupY = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -125,6 +126,14 @@ export default function LandingPage() {
                 whileHover={{ background: "rgba(184,154,93,0.12)" }}>
                 See what's inside ↓
               </motion.a>
+              <motion.button
+                onClick={() => setShowVideo(true)}
+                className="px-7 py-3.5 rounded-lg text-sm border transition flex items-center gap-2"
+                style={{ color: "#E8E3D9", borderColor: "rgba(184,154,93,0.25)", background: "rgba(184,154,93,0.06)" }}
+                whileHover={{ background: "rgba(184,154,93,0.12)", scale: 1.02 }}>
+                <span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:22, height:22, borderRadius:'50%', background:'rgba(184,154,93,0.2)', fontSize:10 }}>▶</span>
+                Watch the Video
+              </motion.button>
             </motion.div>
 
             <motion.div variants={fadeUp} className="mt-12 flex gap-8 text-sm">
@@ -845,6 +854,38 @@ export default function LandingPage() {
           <a href="https://app.auraformulate.com" className="hover:text-[#B89A5D] transition">Launch App</a>
         </div>
       </footer>
+
+      {/* VIDEO LIGHTBOX MODAL */}
+      {showVideo && (
+        <div
+          onClick={() => setShowVideo(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.92)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '1rem'
+          }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '1000px' }}>
+            <button
+              onClick={() => setShowVideo(false)}
+              style={{
+                position: 'absolute', top: -40, right: 0,
+                background: 'none', border: 'none', color: '#B89A5D',
+                fontSize: '1.5rem', cursor: 'pointer', lineHeight: 1
+              }}>✕</button>
+            <video
+              src="https://abeptkegweaoyaobjykf.supabase.co/storage/v1/object/public/assets/launch_video.mp4"
+              controls
+              autoPlay
+              style={{
+                width: '100%', borderRadius: '12px',
+                boxShadow: '0 20px 80px rgba(0,0,0,0.8)',
+                border: '1px solid rgba(184,154,93,0.2)'
+              }}
+            />
+          </div>
+        </div>
+      )}
 
     </div>
   );
