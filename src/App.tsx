@@ -102,7 +102,7 @@ export default function LandingPage() {
 
             <motion.h1 variants={fadeUp} className="text-5xl md:text-6xl leading-[1.08]" style={{ fontWeight: 500 }}>
               Turn your passion
-              <br />for making
+              <br />for creating
               <br />
               <em style={{ color: "#B89A5D" }}>into a real business</em>
             </motion.h1>
