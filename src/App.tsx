@@ -51,7 +51,7 @@ export default function LandingPage() {
       {/* LAUNCH WEEK BANNER */}
       {isLaunchWeek && !bannerDismissed && (
         <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9998,
+          position: 'relative', top: 0, left: 0, right: 0, zIndex: 9998,
           background: 'linear-gradient(90deg, #071A14, #0f2d1f, #071A14)',
           borderBottom: '1px solid rgba(184,154,93,0.4)',
           padding: '0.6rem 1.5rem',
@@ -86,7 +86,7 @@ export default function LandingPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '1rem'
           }}>
-          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '900px' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
             <button
               onClick={() => setShowFounderVideo(false)}
               style={{
