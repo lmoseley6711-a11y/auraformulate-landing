@@ -17,13 +17,6 @@ const stagger = {
   }
 };
 
-const glowPulse = {
-  animate: {
-    opacity: [0.3, 0.6, 0.3],
-    scale: [1, 1.08, 1],
-    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" as const }
-  }
-};
 
 export default function LandingPage() {
   const [showVideo, setShowVideo] = useState(false);
@@ -31,9 +24,6 @@ export default function LandingPage() {
   const [bannerDismissed, setBannerDismissed] = useState(() =>
     localStorage.getItem('launch_banner_dismissed') === 'true'
   );
-  const now = new Date();
-  const launchStart = new Date('2026-06-08T00:00:00Z');
-  const launchEnd = new Date('2026-06-15T23:59:59Z');
   const isLaunchWeek = true; // PREVIEW — revert before launch
 
   const heroRef = useRef(null);
