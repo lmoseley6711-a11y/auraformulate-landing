@@ -28,10 +28,14 @@ const glowPulse = {
 export default function LandingPage() {
   const [showVideo, setShowVideo] = useState(false);
   const [showFounderVideo, setShowFounderVideo] = useState(false);
-  const [bannerDismissed, setBannerDismissed] = useState(() => 
+  const [bannerDismissed, setBannerDismissed] = useState(() =>
     localStorage.getItem('launch_banner_dismissed') === 'true'
   );
-  const isLaunchWeek = true; // PREVIEW MODE - remove before final push
+  const now = new Date();
+  const launchStart = new Date('2026-06-08T00:00:00Z');
+  const launchEnd = new Date('2026-06-15T23:59:59Z');
+  const isLaunchWeek = true; // PREVIEW — revert before launch
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const mockupY = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -48,13 +52,204 @@ export default function LandingPage() {
         mixBlendMode: "overlay"
       }} />
 
-()}
+      {/* LAUNCH WEEK BANNER */}
+      {isLaunchWeek && !bannerDismissed && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+          background: 'linear-gradient(90deg, #071A14, #0f2d1f, #071A14)',
+          borderBottom: '1px solid rgba(184,154,93,0.4)',
+          padding: '0.5rem 1.5rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem',
+        }}>
+          <span style={{ fontSize: '0.82rem', color: '#E5C98B' }}>🎉 We're live on Product Hunt!</span>
+          <button
+            onClick={() => setShowFounderVideo(true)}
+            style={{
+              fontSize: '0.78rem', color: '#071A14', fontWeight: 600,
+              background: 'linear-gradient(135deg, #B89A5D, #D4B87A)',
+              border: 'none', borderRadius: '6px', padding: '0.28rem 0.85rem',
+              cursor: 'pointer'
+            }}>
+            Meet the Founder →
+          </button>
+          <button
+            onClick={() => { setBannerDismissed(true); localStorage.setItem('launch_banner_dismissed', 'true'); }}
+            style={{ position: 'absolute', right: '1rem', background: 'none', border: 'none', color: '#B89A5D', cursor: 'pointer', fontSize: '1.1rem' }}>
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* NAVBAR */}
+      <nav
+        style={{
+          position: 'fixed',
+          top: isLaunchWeek && !bannerDismissed ? '36px' : 0,
+          left: 0, right: 0,
+          zIndex: 99,
+          background: 'rgba(7,26,20,0.85)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(184,154,93,0.12)',
+          padding: '0.85rem 2rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          transition: 'top 0.2s ease'
+        }}>
+        <div style={{ fontSize: '1.1rem', color: '#B89A5D', letterSpacing: '0.05em' }}>🌿 AuraFormulate</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <a href="#features" style={{ fontSize: '0.78rem', color: 'rgba(232,227,217,0.6)', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#B89A5D')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(232,227,217,0.6)')}>Features</a>
+          <a href="#pricing" style={{ fontSize: '0.78rem', color: 'rgba(232,227,217,0.6)', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#B89A5D')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(232,227,217,0.6)')}>Pricing</a>
+          <motion.a
+            href="https://app.auraformulate.com"
+            whileHover={{ scale: 1.04, y: -2, boxShadow: "0 6px 20px rgba(168,95,26,0.45)" }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              fontSize: '0.78rem', fontWeight: 600, color: 'white', textDecoration: 'none',
+              padding: '0.45rem 1.1rem', borderRadius: '8px',
+              background: 'linear-gradient(135deg, #A85F1A, #C17A2E)',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.5)'
+            }}>
+            Sign in →
+          </motion.a>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section
+        ref={heroRef}
+        style={{
+          paddingTop: isLaunchWeek && !bannerDismissed ? '10rem' : '8rem',
+          paddingBottom: '6rem',
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
+          position: 'relative',
+          overflow: 'hidden',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          background: 'linear-gradient(180deg, #071A14 0%, #0A1E14 60%, #071A14 100%)'
+        }}>
+        {/* Background glows */}
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(106,18,34,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 80% 50%, rgba(184,154,93,0.06) 0%, transparent 60%)'
+        }} />
+
+        <div style={{ maxWidth: '72rem', margin: '0 auto', width: '100%', position: 'relative', zIndex: 10 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', alignItems: 'center' }} className="md:grid-cols-2">
+
+            {/* Left: copy */}
+            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+                <div style={{ height: '1px', width: '2.5rem', background: 'linear-gradient(90deg, transparent, #B89A5D)' }} />
+                <span style={{ fontSize: '0.65rem', color: '#B89A5D', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Built by a formulator, for formulators</span>
+              </div>
+
+              <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.6rem)', fontWeight: 500, lineHeight: 1.15, marginBottom: '1.25rem', color: '#E8E3D9' }}>
+                The business tool<br />
+                <em style={{ color: '#B89A5D' }}>your craft deserves</em>
+              </h1>
+
+              <p style={{ fontSize: '1rem', color: '#A8B5AC', lineHeight: 1.75, marginBottom: '2rem', fontFamily: 'Georgia, serif', fontWeight: 300, maxWidth: '34rem' }}>
+                AuraFormulate gives handmade cosmetic makers an AI-powered formulation lab, fragrance blender, INCI generator, cost calculator, and client management system — all in one place. Stop creating in spreadsheets. Start creating seriously.
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+                <motion.a
+                  href="https://app.auraformulate.com"
+                  whileHover={{ scale: 1.05, y: -4, boxShadow: "0 10px 36px rgba(168,95,26,0.55), 0 4px 12px rgba(0,0,0,0.4)" }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    display: 'inline-block', padding: '0.85rem 1.75rem',
+                    borderRadius: '10px', fontSize: '0.88rem', fontWeight: 700,
+                    color: 'white', textDecoration: 'none',
+                    background: 'linear-gradient(135deg, #A85F1A, #C17A2E)',
+                    boxShadow: '0 6px 20px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.08) inset'
+                  }}>
+                  Start free today →
+                </motion.a>
+
+                <motion.a
+                  href="#features"
+                  whileHover={{ scale: 1.03, y: -2, borderColor: 'rgba(184,154,93,0.5)', background: 'rgba(184,154,93,0.08)' }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    display: 'inline-block', padding: '0.85rem 1.5rem',
+                    borderRadius: '10px', fontSize: '0.85rem', fontWeight: 500,
+                    color: '#B89A5D', textDecoration: 'none',
+                    border: '1px solid rgba(184,154,93,0.3)',
+                    background: 'rgba(184,154,93,0.04)'
+                  }}>
+                  See what's inside
+                </motion.a>
+
+                <motion.button
+                  onClick={() => setShowVideo(true)}
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.85rem 1.5rem',
+                    borderRadius: '10px', fontSize: '0.85rem', fontWeight: 600,
+                    color: '#071A14', textDecoration: 'none', cursor: 'pointer',
+                    background: 'linear-gradient(135deg, #C6A86B, #B89A5D)',
+                    border: 'none',
+                    boxShadow: '0 4px 16px rgba(184,154,93,0.25)'
+                  }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Watch the Video
+                </motion.button>
+              </div>
+
+              <p style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.2)', marginTop: '1rem', letterSpacing: '0.05em' }}>
+                Free to start · No credit card required · Cancel anytime
+              </p>
+            </motion.div>
+
+            {/* Right: mockup */}
+            <motion.div style={{ y: mockupY }} initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.2 }}>
+              <div style={{
+                borderRadius: '16px', overflow: 'hidden',
+                border: '1px solid rgba(184,154,93,0.2)',
+                boxShadow: '0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,154,93,0.06)',
+                position: 'relative'
+              }}>
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+                  background: 'linear-gradient(90deg, transparent, rgba(184,154,93,0.5), transparent)',
+                  zIndex: 2
+                }} />
+                <img
+                  src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/hero-screenshot.png"
+                  alt="AuraFormulate app"
+                  style={{ width: '100%', display: 'block' }}
+                  onError={e => {
+                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                      parent.style.background = 'linear-gradient(135deg, #0F2520, #071A14)';
+                      parent.style.aspectRatio = '16/10';
+                      parent.style.display = 'flex';
+                      parent.style.alignItems = 'center';
+                      parent.style.justifyContent = 'center';
+                      parent.innerHTML += '<span style="color:rgba(184,154,93,0.3);font-size:0.8rem;letter-spacing:0.1em">app.auraformulate.com</span>';
+                    }
+                  }}
+                />
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* ─── MEET AURA ─── */}
-      <section className="px-8 md:px-14 py-24 border-t" style={{
+      <section className="px-8 md:px-14 py-24 border-t" id="features" style={{
         borderColor: "rgba(184,154,93,0.1)",
         background: "linear-gradient(180deg, #071A14 0%, #0C1F18 50%, #071A14 100%)",
         position: "relative", overflow: "hidden"
@@ -120,7 +315,6 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.5), transparent)" }} />
-              {/* Featured badge */}
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
               <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
@@ -219,7 +413,6 @@ export default function LandingPage() {
 
             {/* Video 1 — Fragrance Blender */}
             <motion.div variants={fadeUp} className="group">
-              {/* Video container — replace src with your Supabase video URL when ready */}
               <div className="relative rounded-2xl overflow-hidden"
                 style={{
                   aspectRatio: "16/9",
@@ -227,9 +420,6 @@ export default function LandingPage() {
                   border: "1px solid rgba(184,154,93,0.2)",
                   boxShadow: "0 30px 80px rgba(0,0,0,0.5)"
                 }}>
-                {/* SWAP THIS for your video: replace the div below with:
-                    <video src="YOUR_SUPABASE_VIDEO_URL" controls poster="YOUR_THUMBNAIL_URL"
-                      className="w-full h-full object-cover" /> */}
                 <video
                   controls
                   className="w-full h-full object-cover"
@@ -238,13 +428,9 @@ export default function LandingPage() {
                 >
                   <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/fragrance_demo.mp4" type="video/mp4" />
                 </video>
-
-                {/* Gold top accent */}
                 <div className="absolute top-0 left-0 right-0 h-0.5"
                   style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
               </div>
-
-              {/* Caption */}
               <div className="mt-4 px-1">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_fragrance.jpg" alt="" className="w-full h-full object-cover" /></div>
@@ -265,9 +451,6 @@ export default function LandingPage() {
                   border: "1px solid rgba(184,154,93,0.2)",
                   boxShadow: "0 30px 80px rgba(0,0,0,0.5)"
                 }}>
-                {/* SWAP THIS for your video: replace the div below with:
-                    <video src="YOUR_SUPABASE_VIDEO_URL" controls poster="YOUR_THUMBNAIL_URL"
-                      className="w-full h-full object-cover" /> */}
                 <video
                   controls
                   className="w-full h-full object-cover"
@@ -276,11 +459,9 @@ export default function LandingPage() {
                 >
                   <source src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/formulator_demo.mp4" type="video/mp4" />
                 </video>
-
                 <div className="absolute top-0 left-0 right-0 h-0.5"
                   style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
               </div>
-
               <div className="mt-4 px-1">
                 <div className="flex items-center gap-2 mb-1.5">
                   <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0"><img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg" alt="" className="w-full h-full object-cover" /></div>
@@ -454,7 +635,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* BOTTOM: BRAND FEEL — product photo grid placeholder */}
+      {/* BOTTOM PHOTO GRID */}
       <section className="relative py-20 px-8 md:px-14 overflow-hidden border-t" style={{
         borderColor: "rgba(184,154,93,0.1)",
         background: "linear-gradient(180deg, #071A14 0%, #0A1E12 100%)"
@@ -467,7 +648,6 @@ export default function LandingPage() {
             <h2 className="text-4xl" style={{ fontWeight: 500 }}>Professional results, <em style={{ color: "#B89A5D" }}>maker-made</em></h2>
             <div className="mx-auto mt-5 h-px w-24" style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
           </motion.div>
-          {/* PLACEHOLDER GRID — replace each div with <img src="..." /> + your Supabase lifestyle/product image URLs */}
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/banner-labeling.jpg", label: "Labeling & Compliance", pos: "center top" },
@@ -544,7 +724,7 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      {/* VIDEO LIGHTBOX MODAL */}
+      {/* LAUNCH VIDEO LIGHTBOX */}
       {showVideo && (
         <div
           onClick={() => setShowVideo(false)}
@@ -576,34 +756,6 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* LAUNCH WEEK BANNER */}
-      {isLaunchWeek && !bannerDismissed && (
-        <div style={{
-          position: 'fixed', top: '60px', left: 0, right: 0, zIndex: 49,
-          background: 'linear-gradient(90deg, #071A14, #0f2d1f, #071A14)',
-          borderBottom: '1px solid rgba(184,154,93,0.4)',
-          padding: '0.6rem 1.5rem',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem',
-        }}>
-          <span style={{ fontSize: '0.85rem', color: '#E5C98B' }}>🎉 We're live on Product Hunt!</span>
-          <button
-            onClick={() => setShowFounderVideo(true)}
-            style={{
-              fontSize: '0.8rem', color: '#071A14', fontWeight: 600,
-              background: 'linear-gradient(135deg, #B89A5D, #D4B87A)',
-              border: 'none', borderRadius: '6px', padding: '0.3rem 0.9rem',
-              cursor: 'pointer'
-            }}>
-            Meet the Founder →
-          </button>
-          <button
-            onClick={() => { setBannerDismissed(true); localStorage.setItem('launch_banner_dismissed', 'true'); }}
-            style={{ position: 'absolute', right: '1rem', background: 'none', border: 'none', color: '#B89A5D', cursor: 'pointer', fontSize: '1.1rem' }}>
-            ✕
-          </button>
-        </div>
-      )}
-
       {/* FOUNDER VIDEO LIGHTBOX */}
       {showFounderVideo && (
         <div
@@ -614,7 +766,7 @@ export default function LandingPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '1rem'
           }}>
-          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '560px' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '640px' }}>
             <button
               onClick={() => setShowFounderVideo(false)}
               style={{
