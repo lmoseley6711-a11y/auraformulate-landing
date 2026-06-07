@@ -86,7 +86,7 @@ export default function LandingPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '1rem'
           }}>
-          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '500px' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '340px' }}>
             <button
               onClick={() => setShowFounderVideo(false)}
               style={{
