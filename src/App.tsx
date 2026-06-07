@@ -27,6 +27,22 @@ const glowPulse = {
 
 export default function LandingPage() {
   const [showVideo, setShowVideo] = useState(false);
+  const [showFounderVideo, setShowFounderVideo] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(() => 
+    localStorage.getItem('launch_banner_dismissed') === 'true'
+  );
+  const isLaunchWeek = (() => {
+    const now = new Date();
+    return now >= new Date('2026-06-08T00:00:00Z') && now <= new Date('2026-06-15T23:59:59Z');
+  })();
+  const [showFounderVideo, setShowFounderVideo] = useState(false);
+  const [bannerDismissed, setBannerDismissed] = useState(() => 
+    localStorage.getItem('launch_banner_dismissed') === 'true'
+  );
+  const isLaunchWeek = (() => {
+    const now = new Date();
+    return now >= new Date('2026-06-08T00:00:00Z') && now <= new Date('2026-06-15T23:59:59Z');
+  })();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const mockupY = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -42,6 +58,66 @@ export default function LandingPage() {
         opacity: 0.025,
         mixBlendMode: "overlay"
       }} />
+
+      {/* LAUNCH WEEK BANNER */}
+      {isLaunchWeek && !bannerDismissed && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9998,
+          background: 'linear-gradient(90deg, #071A14, #0f2d1f, #071A14)',
+          borderBottom: '1px solid rgba(184,154,93,0.4)',
+          padding: '0.6rem 1.5rem',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem',
+        }}>
+          <span style={{ fontSize: '0.85rem', color: '#E5C98B' }}>🎉 We're live on Product Hunt!</span>
+          <button
+            onClick={() => setShowFounderVideo(true)}
+            style={{
+              fontSize: '0.8rem', color: '#071A14', fontWeight: 600,
+              background: 'linear-gradient(135deg, #B89A5D, #D4B87A)',
+              border: 'none', borderRadius: '6px', padding: '0.3rem 0.9rem',
+              cursor: 'pointer'
+            }}>
+            Meet the Founder →
+          </button>
+          <button
+            onClick={() => { setBannerDismissed(true); localStorage.setItem('launch_banner_dismissed', 'true'); }}
+            style={{ position: 'absolute', right: '1rem', background: 'none', border: 'none', color: '#B89A5D', cursor: 'pointer', fontSize: '1.1rem' }}>
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* FOUNDER VIDEO LIGHTBOX */}
+      {showFounderVideo && (
+        <div
+          onClick={() => setShowFounderVideo(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.92)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '1rem'
+          }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: '900px' }}>
+            <button
+              onClick={() => setShowFounderVideo(false)}
+              style={{
+                position: 'absolute', top: -40, right: 0,
+                background: 'none', border: 'none', color: '#B89A5D',
+                fontSize: '1.5rem', cursor: 'pointer'
+              }}>✕</button>
+            <video
+              src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/founder_video_compressed.mp4"
+              controls
+              autoPlay
+              style={{
+                width: '100%', borderRadius: '12px',
+                boxShadow: '0 20px 80px rgba(0,0,0,0.8)',
+                border: '1px solid rgba(184,154,93,0.2)'
+              }}
+            />
+          </div>
+        </div>
+      )}
 
       {/* NAVBAR */}
       <header className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-8 md:px-14 py-5"
