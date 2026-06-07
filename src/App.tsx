@@ -32,11 +32,6 @@ export default function LandingPage() {
     localStorage.getItem('launch_banner_dismissed') === 'true'
   );
   const isLaunchWeek = true; // PREVIEW MODE - remove before final push
-  const [showFounderVideo, setShowFounderVideo] = useState(false);
-  const [bannerDismissed, setBannerDismissed] = useState(() => 
-    localStorage.getItem('launch_banner_dismissed') === 'true'
-  );
-  const isLaunchWeek = true; // PREVIEW MODE - remove before final push
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const mockupY = useTransform(scrollYProgress, [0, 1], [0, -60]);
