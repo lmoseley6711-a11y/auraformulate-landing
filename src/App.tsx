@@ -438,28 +438,78 @@ export default function LandingPage() {
         background: "linear-gradient(180deg, #071A14 0%, #0C1F18 50%, #071A14 100%)",
         position: "relative", overflow: "hidden"
       }}>
-        {/* Ambient glow */}
+        {/* Deep wine glow — layered with dark green to prevent pink cast */}
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: "radial-gradient(ellipse 60% 80% at 15% 50%, rgba(106,18,34,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 85% 30%, rgba(184,154,93,0.05) 0%, transparent 60%)"
+          background: "radial-gradient(ellipse 70% 90% at 15% 50%, rgba(90,12,20,0.18) 0%, rgba(7,26,20,0.65) 55%, transparent 75%)"
+        }} />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 50% 60% at 85% 40%, rgba(184,154,93,0.06) 0%, transparent 60%)"
+        }} />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "radial-gradient(ellipse 55% 100% at 0% 50%, rgba(7,26,20,0.45) 0%, transparent 55%)"
         }} />
 
         <div className="max-w-6xl mx-auto relative z-10">
 
-          {/* Section header */}
+          {/* Aura portrait + intro — two column */}
+          <div className="grid md:grid-cols-2 gap-14 items-center mb-20">
+
+            {/* Left — portrait */}
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+              <div className="relative rounded-2xl overflow-hidden"
+                style={{
+                  border: "1px solid rgba(184,154,93,0.25)",
+                  boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,154,93,0.06)",
+                  maxHeight: "560px"
+                }}>
+                <img
+                  src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/AURAIMAGE.png"
+                  alt="Aura — AI Formulation Assistant"
+                  className="w-full object-cover"
+                  style={{ objectPosition: "center top", maxHeight: "560px" }}
+                />
+                <div className="absolute top-0 left-0 right-0 h-px"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.6), transparent)" }} />
+                <div className="absolute bottom-0 left-0 right-0 h-28"
+                  style={{ background: "linear-gradient(180deg, transparent, rgba(7,26,20,0.9))" }} />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.25em] mb-0.5">Your AI Creative Partner</div>
+                  <div className="text-2xl text-[#E8E3D9]" style={{ fontWeight: 500 }}>Aura</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right — intro text */}
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.15 }}>
+              <div className="flex items-center gap-4 mb-5">
+                <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
+                <span className="text-[#B89A5D] text-xl">✦</span>
+              </div>
+              <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Your AI creative partner</div>
+              <h2 className="text-4xl md:text-5xl mb-6" style={{ fontWeight: 500 }}>
+                Meet <em style={{ color: "#B89A5D" }}>Aura</em>
+              </h2>
+              <p className="text-[#A8B5AC] text-base leading-relaxed mb-5" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+                Aura is the AI at the heart of AuraFormulate — a world-class perfumer, formulation expert, and creative collaborator who speaks to you the way a knowledgeable friend would. Not robotic. Not generic. Intuitive, inspiring, and always in your corner.
+              </p>
+              <p className="text-[#A8B5AC] text-base leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
+                Tell her what you want to create and she builds it from your actual inventory. Describe a mood and she composes a signature fragrance blend. Ask her anything about your formula and she answers like an expert who actually knows your business.
+              </p>
+              <div className="mt-8 pt-6 border-t" style={{ borderColor: "rgba(184,154,93,0.12)" }}>
+                <div className="text-sm italic text-[#D9C9A3]/70" style={{ fontFamily: "Georgia, serif" }}>
+                  "I'm not here to replace your creativity — I'm here to make more of it possible."
+                </div>
+                <div className="text-[10px] text-[#B89A5D] mt-2 tracking-widest uppercase">— Aura</div>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Section subheader for the cards */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="text-center mb-16">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, transparent, #B89A5D)" }} />
-              <span className="text-[#B89A5D] text-xl">✦</span>
-              <div className="h-px w-16" style={{ background: "linear-gradient(90deg, #B89A5D, transparent)" }} />
-            </div>
-            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-3">Your AI creative partner</div>
-            <h2 className="text-4xl md:text-5xl" style={{ fontWeight: 500 }}>
-              Meet <em style={{ color: "#B89A5D" }}>Aura</em>
-            </h2>
-            <p className="mt-4 text-[#A8B5AC] text-base max-w-xl mx-auto leading-relaxed" style={{ fontWeight: 300, fontFamily: "Georgia, serif" }}>
-              Aura is the AI at the heart of AuraFormulate — a world-class perfumer, formulation expert, and creative collaborator who speaks to you the way a knowledgeable friend would. Not robotic. Not generic. Intuitive, inspiring, and always in your corner.
-            </p>
+            className="text-center mb-12">
+            <div className="text-[10px] text-[#B89A5D] uppercase tracking-[0.2em] mb-2">What she can do</div>
+            <h3 className="text-2xl text-[#E8E3D9]" style={{ fontWeight: 400 }}>Aura works across your entire business</h3>
           </motion.div>
 
           {/* Three feature cards */}
