@@ -526,8 +526,8 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
-              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_formulator.jpg" alt="Smart Formulator" className="w-full h-full object-cover" />
+              <div className="w-full h-36 rounded-xl overflow-hidden mb-5 -mx-0" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura44.png" alt="Aura formulating" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Smart Formulator</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura builds recipes with you</h3>
@@ -552,8 +552,8 @@ export default function LandingPage() {
               {/* Featured badge */}
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
-              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_fragrance.jpg" alt="Fragrance Blender" className="w-full h-full object-cover" />
+              <div className="w-full h-36 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura66543.png" alt="Aura smelling fragrance" className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
@@ -580,8 +580,8 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
-              <div className="w-14 h-14 rounded-2xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_labeling.jpg" alt="Labeling & Marketing" className="w-full h-full object-cover" />
+              <div className="w-full h-36 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura476.png" alt="Aura at lab bench" className="w-full h-full object-cover" style={{ objectPosition: "center 25%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
@@ -789,8 +789,17 @@ export default function LandingPage() {
             </motion.div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <div className="rounded-2xl p-9 relative overflow-hidden"
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-col gap-6">
+            {/* Aura lifestyle image */}
+            <div className="rounded-2xl overflow-hidden relative"
+              style={{ border: "1px solid rgba(184,154,93,0.2)", boxShadow: "0 20px 60px rgba(0,0,0,0.5)", height: "260px" }}>
+              <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura47654.png"
+                alt="Aura in her studio" className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 50%, rgba(7,26,20,0.7) 100%)" }} />
+              <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.4), transparent)" }} />
+            </div>
+            {/* Testimonial */}
+            <div className="rounded-2xl p-7 relative overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, rgba(15,42,34,0.8), rgba(11,28,20,0.9))",
                 border: "1px solid rgba(184,154,93,0.18)",
@@ -798,13 +807,13 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none"
                 style={{ background: "radial-gradient(circle at top right, rgba(184,154,93,0.08), transparent 70%)" }} />
-              <div className="text-5xl text-[#B89A5D] leading-none mb-4" style={{ opacity: 0.5 }}>"</div>
-              <p className="text-lg italic text-[#E8E3D9] leading-relaxed mb-6">
+              <div className="text-5xl text-[#B89A5D] leading-none mb-3" style={{ opacity: 0.5 }}>"</div>
+              <p className="text-base italic text-[#E8E3D9] leading-relaxed mb-5">
                 I used to dread the business side of things. Now I actually feel like I know what I'm doing. My recipes are all in one place, I know exactly what to charge, and my clients think I'm way more organized than I actually am.
               </p>
-              <div className="h-px mb-6" style={{ background: "linear-gradient(90deg, rgba(184,154,93,0.2), transparent)" }} />
+              <div className="h-px mb-4" style={{ background: "linear-gradient(90deg, rgba(184,154,93,0.2), transparent)" }} />
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-[#B89A5D] font-semibold border"
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-[#B89A5D] font-semibold border text-sm"
                   style={{ background: "linear-gradient(135deg, #071A14, #1a3020)", borderColor: "rgba(184,154,93,0.2)" }}>S</div>
                 <div>
                   <div className="text-sm font-medium text-[#E8E3D9]">Sarah M.</div>
@@ -900,7 +909,7 @@ export default function LandingPage() {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/banner-labeling.jpg", label: "Labeling & Compliance", pos: "center top" },
-              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle1.jpg", label: "The Craft", pos: "center" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura6888.png", label: "The Craft", pos: "center top" },
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/product2.jpg", label: "Your Products", pos: "center" },
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle2.jpg", label: "The Process", pos: "center" },
             ].map((p, i) => (
