@@ -527,7 +527,7 @@ export default function LandingPage() {
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
               <div className="w-full h-36 rounded-xl overflow-hidden mb-5 -mx-0" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura44.png" alt="Aura formulating" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura123.png" alt="Aura formulating" className="w-full h-full object-cover" style={{ objectPosition: "center 25%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Smart Formulator</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura builds recipes with you</h3>
@@ -909,7 +909,7 @@ export default function LandingPage() {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/banner-labeling.jpg", label: "Labeling & Compliance", pos: "center top" },
-              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura6888.png", label: "The Craft", pos: "center top" },
+              { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle1.jpg", label: "The Craft", pos: "center" },
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/product2.jpg", label: "Your Products", pos: "center" },
               { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/lifestyle2.jpg", label: "The Process", pos: "center" },
             ].map((p, i) => (
