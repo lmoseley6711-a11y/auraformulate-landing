@@ -324,7 +324,7 @@ export default function LandingPage() {
           {[
             { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Recipe_Library.png", label: "Recipe Library", desc: "Every formula saved, searchable, and ready to scale to any batch size.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_recipes.jpg" },
             { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/client_profiles.png", label: "Client Profiles", desc: "Track clients, their skin type, allergies, preferences, and full order history — all in one place.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_clients.jpg" },
-            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Cost_Pricing.png", label: "Cost & Pricing", desc: "Know exactly what each formula costs to make and what to charge for it.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_cost.jpg" },
+            { img: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/Cost-PricingSS.png", label: "Cost & Pricing", desc: "Know exactly what each formula costs to make and what to charge for it.", icon: "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/icon_cost.jpg" },
           ].map((s) => (
             <motion.div key={s.label} variants={fadeUp} whileHover={{ y: -8 }} className="rounded-2xl overflow-hidden cursor-default"
               style={{
@@ -340,7 +340,9 @@ export default function LandingPage() {
                 <div className="absolute top-0 left-5 right-5 h-px"
                   style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.2), transparent)" }} />
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-base">{s.icon}</span>
+                  <div className="w-5 h-5 rounded overflow-hidden flex-shrink-0">
+                    <img src={s.icon} alt="" className="w-full h-full object-cover" />
+                  </div>
                   <span className="text-base font-medium text-[#D9C9A3]">{s.label}</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed">{s.desc}</p>
