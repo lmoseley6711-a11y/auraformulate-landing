@@ -581,7 +581,7 @@ export default function LandingPage() {
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
               <div className="w-full h-36 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura476.png" alt="Aura at lab bench" className="w-full h-full object-cover" style={{ objectPosition: "center 25%" }} />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/a2.png" alt="Aura at lab bench" className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
