@@ -553,7 +553,7 @@ export default function LandingPage() {
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
               <div className="w-full h-44 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura66543.png" alt="Aura smelling fragrance" className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura66543.png" alt="Aura smelling fragrance" className="w-full h-full object-cover" style={{ objectPosition: "center 32%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
@@ -580,8 +580,8 @@ export default function LandingPage() {
               }}>
               <div className="absolute top-0 left-0 right-0 h-px"
                 style={{ background: "linear-gradient(90deg, transparent, rgba(184,154,93,0.3), transparent)" }} />
-              <div className="w-full h-64 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/a2.png" alt="Aura at lab bench" className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
+              <div className="w-full h-80 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/a2.png" alt="Aura at lab bench" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Labeling & Marketing</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>From formula to shelf-ready</h3>
