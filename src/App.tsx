@@ -553,7 +553,7 @@ export default function LandingPage() {
               <div className="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[9px] font-semibold text-[#071A14] uppercase tracking-widest"
                 style={{ background: "linear-gradient(135deg, #C6A86B, #B89A5D)" }}>Fan Favorite</div>
               <div className="w-full h-44 rounded-xl overflow-hidden mb-5" style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura66543.png" alt="Aura smelling fragrance" className="w-full h-full object-cover" style={{ objectPosition: "center 32%" }} />
+                <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/aura66543.png" alt="Aura smelling fragrance" className="w-full h-full object-cover" style={{ objectPosition: "center 8%" }} />
               </div>
               <div className="text-[10px] text-[#B89A5D] uppercase tracking-widest mb-2">Fragrance Blender</div>
               <h3 className="text-xl text-[#E8E3D9] mb-3" style={{ fontWeight: 500 }}>Aura thinks like a perfumer</h3>
