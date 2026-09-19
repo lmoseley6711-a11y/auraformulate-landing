@@ -28,6 +28,7 @@ const glowPulse = {
 export default function LandingPage() {
   const [showVideo, setShowVideo] = useState(false);
   const [showFounderVideo, setShowFounderVideo] = useState(false);
+  const [founderVideoError, setFounderVideoError] = useState(false);
   const [bannerDismissed, setBannerDismissed] = useState(() => 
     localStorage.getItem('launch_banner_dismissed') === 'true'
   );
@@ -59,7 +60,7 @@ export default function LandingPage() {
         }}>
           <span style={{ fontSize: '0.85rem', color: '#E5C98B' }}>🎉 We're live on Product Hunt!</span>
           <button
-            onClick={() => setShowFounderVideo(true)}
+            onClick={() => { setFounderVideoError(false); setShowFounderVideo(true); }}
             style={{
               fontSize: '0.8rem', color: '#071A14', fontWeight: 600,
               background: 'linear-gradient(135deg, #B89A5D, #D4B87A)',
@@ -94,16 +95,31 @@ export default function LandingPage() {
                 background: 'none', border: 'none', color: '#B89A5D',
                 fontSize: '1.5rem', cursor: 'pointer'
               }}>✕</button>
-            <video
-              src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/founder_video_compressed.mp4"
-              controls
-              autoPlay
-              style={{
-                width: '100%', borderRadius: '12px',
-                boxShadow: '0 20px 80px rgba(0,0,0,0.8)',
-                border: '1px solid rgba(184,154,93,0.2)'
-              }}
-            />
+            {founderVideoError ? (
+              <div role="alert" style={{
+                padding: '2rem 1.25rem', textAlign: 'center', color: '#E8E3D9',
+                background: '#0b2119', border: '1px solid rgba(184,154,93,0.35)', borderRadius: '12px'
+              }}>
+                <p style={{ margin: 0, fontSize: '1.1rem', color: '#E5C98B' }}>The maker video could not load.</p>
+                <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'rgba(232,227,217,0.65)' }}>Please refresh the page and try again.</p>
+              </div>
+            ) : (
+              <video
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                onError={() => setFounderVideoError(true)}
+                style={{
+                  width: '100%', maxHeight: '82vh', objectFit: 'contain', borderRadius: '12px',
+                  background: '#020705', boxShadow: '0 20px 80px rgba(0,0,0,0.8)',
+                  border: '1px solid rgba(184,154,93,0.2)'
+                }}
+              >
+                <source src="/videos/founder_video_compressed.mp4" type="video/mp4" />
+                Your browser does not support MP4 video playback.
+              </video>
+            )}
           </div>
         </div>
       )}
