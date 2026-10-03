@@ -69,7 +69,7 @@ const reveal = {
 function Brand() {
   return (
     <a href="#top" className="brand" aria-label="AuraFormulate home">
-      <span className="brand-mark">AF</span>
+      <span className="brand-mark"><img src="/AF_Logo.webp" alt="" /></span>
       <span>
         <strong>AuraFormulate</strong>
         <small>Formulation atelier</small>
@@ -99,7 +99,6 @@ export default function LandingPage() {
       <div className="announcement">
         <span className="announcement-dot" />
         <span>A complete studio for independent cosmetic makers</span>
-        <button onClick={() => setVideo("founder")}>Meet the founder <Arrow /></button>
       </div>
 
       <header className="site-header">
@@ -108,6 +107,7 @@ export default function LandingPage() {
           <a href="#platform">Platform</a>
           <a href="#aura">Meet Aura</a>
           <a href="#demos">Demos</a>
+          <a href="#founder">Founder</a>
           <a href="#pricing">Pricing</a>
         </nav>
         <div className="header-actions">
@@ -131,6 +131,7 @@ export default function LandingPage() {
                 ["Platform", "#platform"],
                 ["Meet Aura", "#aura"],
                 ["Demos", "#demos"],
+                ["Founder", "#founder"],
                 ["Pricing", "#pricing"],
                 ["Questions", "#faq"],
               ].map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<span>→</span></a>)}
@@ -143,6 +144,10 @@ export default function LandingPage() {
       <section className="hero section-pad">
         <div className="hero-aura hero-aura-one" />
         <div className="hero-aura hero-aura-two" />
+        <div className="hero-artwork" aria-hidden="true">
+          <img src="/hero-atelier-v2.webp" alt="" />
+          <div className="hero-artwork-overlay" />
+        </div>
         <div className="hero-copy">
           <motion.p {...reveal} className="eyebrow">Formulate beautifully. Build intelligently.</motion.p>
           <motion.h1 {...reveal}>
@@ -155,7 +160,7 @@ export default function LandingPage() {
           <motion.div {...reveal} className="hero-actions">
             <a className="button button-copper" href={APP_URL}>Start creating free <Arrow /></a>
             <button className="button button-ghost" onClick={() => setVideo("overview")}>
-              <span className="play">▶</span> Watch the overview
+              <span className="play">▶</span> Watch the formulator demo
             </button>
           </motion.div>
           <motion.div {...reveal} className="hero-proof">
@@ -165,18 +170,7 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        <motion.div className="hero-visual" initial={{ opacity: 0, scale: .96, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .9, delay: .15 }}>
-          <div className="hero-photo">
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/hero2.jpg" alt="Cosmetic maker pouring a botanical oil" />
-            <span className="photo-label">Made for the maker behind the brand</span>
-          </div>
-          <div className="app-window">
-            <div className="window-bar"><span /><span /><span /><small>app.auraformulate.com</small></div>
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png" alt="AuraFormulate dashboard" />
-          </div>
-          <div className="floating-note floating-note-one"><b>Formula saved</b><span>Version history updated</span></div>
-          <div className="floating-note floating-note-two"><b>Margin protected</b><span>Pricing calculated</span></div>
-        </motion.div>
+
       </section>
 
       <section className="trust-strip" aria-label="Platform capabilities">
@@ -274,6 +268,20 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
+      <section id="founder" className="founder-section section-pad">
+        <motion.div {...reveal} className="founder-copy">
+          <p className="eyebrow">Meet the maker behind the studio</p>
+          <h2>Built by a maker, <em>for makers.</em></h2>
+          <p>Hear from founder Leah Rexrode about the idea behind AuraFormulate and the people it was built to support.</p>
+          <button className="button button-copper" onClick={() => setVideo("founder")}><span className="play">▶</span> Watch Leah’s story</button>
+        </motion.div>
+        <motion.div {...reveal} className="founder-preview">
+          <video controls preload="metadata" playsInline aria-label="Meet AuraFormulate founder Leah Rexrode">
+            <source src="/videos/founder_video_compressed.mp4" type="video/mp4" />
+          </video>
+        </motion.div>
+      </section>
+
       <section id="pricing" className="pricing section-pad">
         <motion.div {...reveal} className="section-heading centered">
           <p className="eyebrow">Simple pricing</p>
@@ -349,7 +357,7 @@ export default function LandingPage() {
               <button className="modal-close" onClick={() => setVideo(null)} aria-label="Close video">×</button>
               <video controls autoPlay playsInline>
                 <source
-                  src={video === "founder" ? "/videos/founder_video_compressed.mp4" : "https://abeptkegweaoyaobjykf.supabase.co/storage/v1/object/public/assets/launch_video.mp4"}
+                  src={video === "founder" ? "/videos/founder_video_compressed.mp4" : "https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/formulator_demo.mp4"}
                   type="video/mp4"
                 />
               </video>
