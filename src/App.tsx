@@ -144,6 +144,10 @@ export default function LandingPage() {
       <section className="hero section-pad">
         <div className="hero-aura hero-aura-one" />
         <div className="hero-aura hero-aura-two" />
+        <div className="hero-artwork" aria-hidden="true">
+          <img src="/hero-atelier-v2.webp" alt="" />
+          <div className="hero-artwork-overlay" />
+        </div>
         <div className="hero-copy">
           <motion.p {...reveal} className="eyebrow">Formulate beautifully. Build intelligently.</motion.p>
           <motion.h1 {...reveal}>
@@ -166,21 +170,7 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        <motion.div className="hero-visual hero-product-stage" initial={{ opacity: 0, scale: .97, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .9, delay: .15 }}>
-          <div className="hero-stage-backdrop" aria-hidden="true">
-            <span>A</span>
-          </div>
-          <div className="hero-screen-frame">
-            <div className="window-bar"><span /><span /><span /><small>app.auraformulate.com</small></div>
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png" alt="AuraFormulate dashboard showing the connected formulation workspace" />
-          </div>
-          <div className="hero-stage-badge">
-            <small>Built for independent makers</small>
-            <strong>Formula to finished product</strong>
-          </div>
-          <div className="floating-note floating-note-one"><b>Formula saved</b><span>Version history updated</span></div>
-          <div className="floating-note floating-note-two"><b>Margin protected</b><span>Pricing calculated</span></div>
-        </motion.div>
+
       </section>
 
       <section className="trust-strip" aria-label="Platform capabilities">
