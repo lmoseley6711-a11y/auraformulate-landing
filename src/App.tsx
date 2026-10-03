@@ -166,14 +166,17 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        <motion.div className="hero-visual" initial={{ opacity: 0, scale: .96, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .9, delay: .15 }}>
-          <div className="hero-photo">
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/hero2.jpg" alt="Cosmetic maker pouring a botanical oil" />
-            <span className="photo-label">Made for the maker behind the brand</span>
+        <motion.div className="hero-visual hero-product-stage" initial={{ opacity: 0, scale: .97, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .9, delay: .15 }}>
+          <div className="hero-stage-backdrop" aria-hidden="true">
+            <span>A</span>
           </div>
-          <div className="app-window">
+          <div className="hero-screen-frame">
             <div className="window-bar"><span /><span /><span /><small>app.auraformulate.com</small></div>
-            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png" alt="AuraFormulate dashboard" />
+            <img src="https://zeotpulikdmwgtcdtazf.supabase.co/storage/v1/object/public/assets/DashboardSS.png" alt="AuraFormulate dashboard showing the connected formulation workspace" />
+          </div>
+          <div className="hero-stage-badge">
+            <small>Built for independent makers</small>
+            <strong>Formula to finished product</strong>
           </div>
           <div className="floating-note floating-note-one"><b>Formula saved</b><span>Version history updated</span></div>
           <div className="floating-note floating-note-two"><b>Margin protected</b><span>Pricing calculated</span></div>
