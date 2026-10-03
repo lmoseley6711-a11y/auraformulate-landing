@@ -771,3 +771,30 @@ body,
   .hero-copy { padding:15px 0; }
 }
 
+/* Use the real AuraFormulate crest in every Brand instance. */
+.brand-mark {
+  width:48px;
+  height:48px;
+  overflow:hidden;
+  padding:3px;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+}
+.brand-mark img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 8px rgba(49,35,16,.18));
+}
+.mobile-menu .brand-mark {
+  background:transparent;
+  color:inherit;
+}
+@media(max-width:820px) {
+  .brand-mark { width:43px; height:43px; }
+}
+@media(max-width:560px) {
+  .brand-mark { width:40px; height:40px; }
+}
+

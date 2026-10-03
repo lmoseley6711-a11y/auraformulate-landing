@@ -69,7 +69,7 @@ const reveal = {
 function Brand() {
   return (
     <a href="#top" className="brand" aria-label="AuraFormulate home">
-      <span className="brand-mark">AF</span>
+      <span className="brand-mark"><img src="/AF_Logo.webp" alt="" /></span>
       <span>
         <strong>AuraFormulate</strong>
         <small>Formulation atelier</small>
